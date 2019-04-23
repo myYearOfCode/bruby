@@ -1,7 +1,12 @@
 import React from 'react'
 
+import Sample from './Sample'
+
+
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+  return (
+    <Sample />
+  )
 }
 
 export default App
