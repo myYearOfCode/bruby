@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get 'api/pico/picoChangeState', to: 'pico_change_state#index'
   get 'api/pico/getActionsNeeded', to: 'get_actions_needed#index'
 
-  # namespace :api do
-  #   namespace :pico do
+  get '/brews', to: 'brew#index'
+
 # /API/pico/getRecipe?uid=f91dc3e8cfa484a6d37911d951ac0a72&rfid=04134a6aec4a81&ibu=-1&abv=-1.0
 
 # /API/pico/getActionsNeeded?uid=f91dc3e8cfa484a6d37911d951ac0a72
@@ -24,6 +24,4 @@ Rails.application.routes.draw do
 
 # /API/pico/checkFirmware?uid=f91dc3e8cfa484a6d37911d951ac0a72&version=0.1.4
 
-  #   end
-  # end
 end
