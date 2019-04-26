@@ -1,5 +1,8 @@
 class PicoChangeStateController < ApplicationController
   def index
-    render plain: "##"
+    puts "PicoChangeStateController"
+    @body = "##"
+    render plain: @body
+    # render text: "##"
   end
 end

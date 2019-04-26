@@ -1,0 +1,3 @@
+class Brew < ApplicationRecord
+  
+end

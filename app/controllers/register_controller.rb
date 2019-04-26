@@ -1,5 +1,8 @@
 class RegisterController < ApplicationController
   def index
-    render plain: "#T#"
+    puts "RegisterController"
+    @body = "#T#"
+    render plain: @body.html_safe
+    # render text: "#T#"
   end
 end

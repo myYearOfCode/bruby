@@ -3,15 +3,17 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get 'api/pico/getRecipe', to: 'get_recipe#index'
-  get 'api/pico/register', to: 'register#index'
-  get 'api/pico/checkFirmware', to: 'check_firmware#index'
-  # get 'api/pico/getFirmware', to: 'get_firmware#index'
-  get 'api/pico/picoChangeState', to: 'pico_change_state#index'
-  get 'api/pico/getActionsNeeded', to: 'get_actions_needed#index'
+  get 'API/pico/getRecipe', to: 'get_recipe#index'
+  get 'API/pico/register', to: 'register#index'
+  get 'API/pico/checkFirmware', to: 'check_firmware#index'
+  # get 'API/pico/getFirmware', to: 'get_firmware#index'
+  get 'API/pico/picoChangeState', to: 'pico_change_state#index'
+  get 'API/pico/getActionsNeeded', to: 'get_actions_needed#index'
 
-  get '/brews', to: 'brew#index'
-
+  # get '/brews', to: 'brews#index'
+  resource :brews, only: [:index, :show]
+  # get '/*', to: 'catchall#index'
+  get '*path' => 'catchall#index'
 # /API/pico/getRecipe?uid=f91dc3e8cfa484a6d37911d951ac0a72&rfid=04134a6aec4a81&ibu=-1&abv=-1.0
 
 # /API/pico/getActionsNeeded?uid=f91dc3e8cfa484a6d37911d951ac0a72

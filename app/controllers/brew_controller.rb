@@ -1,5 +1,9 @@
 class BrewController < ApplicationController
   def index
-    render :index
+    # render :index
+  end
+
+  def show
+
   end
 end
