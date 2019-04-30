@@ -1,0 +1,31 @@
+input,textarea {
+     width:100%;
+     display:block }
+
+.time {
+  padding: 25px 25px;
+  max-width: 200px;
+}
+
+.stepName {
+  font-size: 2em;
+  margin-bottom: 0;
+  font-weight: bolder;
+}
+
+.step_wrapper {
+  display: flex;
+  padding: 0 25px 0 25px;
+  margin-top: 0;
+  max-width: 500px;
+}
+
+.button-group {
+  display: flex;
+  max-width: 300px
+}
+
+.button {
+  max-width: 50%;
+  margin: 3px;
+}

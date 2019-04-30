@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get 'API/pico/picoChangeState', to: 'pico_change_state#index'
   get 'API/pico/getActionsNeeded', to: 'get_actions_needed#index'
 
-  get '/brews', to: 'brew#index'
-
+  get '/brew', to: 'brew#index'
+  get '/*path', to: 'catchall#index'
 # /API/pico/getRecipe?uid=f91dc3e8cfa484a6d37911d951ac0a72&rfid=04134a6aec4a81&ibu=-1&abv=-1.0
 
 # /API/pico/getActionsNeeded?uid=f91dc3e8cfa484a6d37911d951ac0a72
