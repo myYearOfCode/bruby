@@ -1,6 +1,7 @@
-input,textarea {
-     width:100%;
-     display:block }
+input {
+     width:10px;
+     display:block
+}
 
 .time {
   padding: 25px 25px;
@@ -13,16 +14,26 @@ input,textarea {
   font-weight: bolder;
 }
 
+.textAreas {
+  display: flex;
+}
+
+.digit_box{
+  max-width: 40px;
+}
+
 .step_wrapper {
   display: flex;
   padding: 0 25px 0 25px;
   margin-top: 0;
-  max-width: 500px;
+  max-width: 800px;
+  justify-content: space-between;
 }
 
 .button-group {
   display: flex;
-  max-width: 300px
+  max-width: 300px;
+  margin-left: 45px;
 }
 
 .button {
