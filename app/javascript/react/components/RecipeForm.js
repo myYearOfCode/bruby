@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TextField from './TextField'
 import RecipeStep from './RecipeStep'
 
 class RecipeForm extends Component {
@@ -62,7 +61,7 @@ class RecipeForm extends Component {
           </div>
           <div className="button-group">
             <button className="button" onClick={this.handleClearForm}>Clear</button>
-            <input className="button" type="submit" value="Submit" />
+            <button className="button" type="submit" value="Submit"> Submit </button>
           </div>
         </form>
         </div>

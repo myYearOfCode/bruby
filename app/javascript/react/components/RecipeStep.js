@@ -14,26 +14,28 @@ import React from 'react';
 const RecipeStep = props => {
   return (
     <div>
-      <p className="stepName step_wrapper">{props.stepName}</p>
       <div className="step_wrapper">
-        <label className="label" htmlFor={`s${props.step_num}time`}>Time</label>
-        <input
-          id={`s${props.step_num}time`}
-          name={`s${props.step_num}time`}
-          className="element text time medium"
-          type="text"
-          defaultValue={props.time_val}
-          onChange={props.handlerFunction}
-        />
-        <label className="label" htmlFor={`s${props.step_num}temp`}>Temp</label>
-        <input
-          id={`s${props.step_num}temp`}
-          name={`s${props.step_num}temp`}
-          className="element text time medium"
-          type="text"
-          defaultValue={props.temp_val}
-          onChange={props.handlerFunction}
-        />
+      <p className="stepName">{props.stepName}</p>
+        <div className="textAreas">
+          <label className="label" htmlFor={`s${props.step_num}time`}>Time</label>
+          <input
+            id={`s${props.step_num}time`}
+            name={`s${props.step_num}time`}
+            className="element text time digit_box medium"
+            type="text"
+            defaultValue={props.time_val}
+            onChange={props.handlerFunction}
+          />
+          <label className="label" htmlFor={`s${props.step_num}temp`}>Temp</label>
+          <input
+            id={`s${props.step_num}temp`}
+            name={`s${props.step_num}temp`}
+            className="element text temp digit_box medium"
+            type="text"
+            defaultValue={props.temp_val}
+            onChange={props.handlerFunction}
+          />
+        </div>
       </div>
     </div>
   );
