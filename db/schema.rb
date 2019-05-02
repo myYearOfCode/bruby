@@ -10,10 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_010054) do
+ActiveRecord::Schema.define(version: 2019_05_02_005841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "brews", force: :cascade do |t|
+    t.string "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.index ["recipe_id"], name: "index_brews_on_recipe_id"
+    t.index ["user_id"], name: "index_brews_on_user_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "s1Temp", null: false
+    t.integer "s1Time", null: false
+    t.integer "s2Temp", null: false
+    t.integer "s2Time", null: false
+    t.integer "s3Temp", null: false
+    t.integer "s3Time", null: false
+    t.integer "s4Temp", null: false
+    t.integer "s4Time", null: false
+    t.integer "s5Temp", null: false
+    t.integer "s5Time", null: false
+    t.integer "s6Temp", null: false
+    t.integer "s6Time", null: false
+    t.integer "s7Temp", null: false
+    t.integer "s7Time", null: false
+    t.integer "s8Temp", null: false
+    t.integer "s8Time", null: false
+    t.integer "s9Temp", null: false
+    t.integer "s9Time", null: false
+    t.integer "s10Temp", null: false
+    t.integer "s10Time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
