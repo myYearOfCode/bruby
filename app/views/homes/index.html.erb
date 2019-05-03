@@ -26,7 +26,19 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="app">
+    <div class="wrapper">
+      <%- if current_user %>
+        <div class="signedIn">
+          <p class="welcomeTitle">
+            Welcome back <%= current_user.username %>!
+          </p>
+          <p class="welcomeBody">
+            would you like to see recipes or brews?
+          <p/>
+        </div>
+      <%- else -%>
+        not signed in
+      <%- end -%>
     </div>
   </body>
 </html>
