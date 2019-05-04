@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      resources :recipes, only: [:index, :create, :delete]
+      resources :recipes, only: [:index]
     end
   end
 
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'API/pico/getActionsNeeded', to: 'get_actions_needed#index'
 
   get '/brew', to: 'brew#index'
-  get '/*path', to: 'brew#index' #'catchall#index'
+  get '/brew/*path', to: 'brew#index'
 # /API/pico/getRecipe?uid=f91dc3e8cfa484a6d37911d951ac0a72&rfid=04134a6aec4a81&ibu=-1&abv=-1.0
 
 # /API/pico/getActionsNeeded?uid=f91dc3e8cfa484a6d37911d951ac0a72
