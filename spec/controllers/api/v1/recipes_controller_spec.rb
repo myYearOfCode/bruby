@@ -56,7 +56,6 @@ RSpec.describe Api::V1::RecipesController, type: :controller do
       expect(response.status).to eq(200)
       expect(returned_json).to be_kind_of(Hash)
       expect(returned_json).to_not be_kind_of(Array)
-      binding.pry
       expect(returned_json["error"]).to eq("you are not signed in")
     end
   end
