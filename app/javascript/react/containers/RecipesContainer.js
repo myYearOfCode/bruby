@@ -32,7 +32,7 @@ class RecipesContainer extends Component {
     if (this.state.recipes.length > 0) {
       return this.state.recipes.map((recipe) => {
         return (
-          <RecipeOverview recipe= {recipe} />
+          <RecipeOverview recipe={recipe} key={recipe.id}/>
         )
       })
     }
@@ -44,7 +44,7 @@ class RecipesContainer extends Component {
   render () {
     return(
       <div>
-        <h1> hello world! </h1>
+        <h1> USER RECIPES </h1>
         { this.renderRecipes() }
       </div>
     )
