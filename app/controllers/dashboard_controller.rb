@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
     if current_user
       render :index
     else
-      redirect_to "/"
+      render 'homes#index'
     end
   end
 end
