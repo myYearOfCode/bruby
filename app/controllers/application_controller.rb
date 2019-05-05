@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name, :email, :username])
     devise_parameter_sanitizer.permit(:sign_in, keys: [:user_name, :email, :password, :remember_me,  ])
   end
+
+  def after_sign_in_path_for(resource)
+  stored_location_for(resource) ||
+    if resource.is_a?(User)
+      '/brew'
+    end
+  end
 end
