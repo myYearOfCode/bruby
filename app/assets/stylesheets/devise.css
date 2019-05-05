@@ -1,0 +1,26 @@
+.formWrapper{
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.deviseForm{
+  min-width: 30vw;
+  background-color: #00000096;
+  padding: 25px;
+  color: white;
+}
+
+body.deviseBackground {
+  background: url("https://s3.amazonaws.com/bruby/site_images/beer_drinking.jpg") no-repeat ;
+  color: white;
+  font-color: white;
+}
+
+.deviseBackground h2{
+  color: white;
+}
+.deviseBackground label{
+  color: white;
+}
