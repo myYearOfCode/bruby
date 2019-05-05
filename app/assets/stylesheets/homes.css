@@ -1,4 +1,5 @@
 .homes{
+  background-color: black;
   background: url("https://s3.amazonaws.com/bruby/site_images/home_bkg.png") no-repeat center center fixed;
   color: white;
 }
@@ -11,15 +12,37 @@
   height: 100%;
 }
 
-.signedIn{
+.centerMessage{
   margin:auto;
-  padding: 50px;
+  padding: 20px 50px 20px 50px;
   border: 1px solid white;
   border-radius: 20px;
   background-color: #00000033;
   font-size: 100px;
+  max-width: 30vw;
+}
+
+@media only screen and (max-width: 800px) {
+  .centerMessage{
+    max-width: 60vw;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .centerMessage{
+    max-width: 90vw;
+  }
 }
 
 .welcomeTitle{
   font-weight: bold;
+}
+
+.darkBar{
+  min-width: 100%;
+  padding: 20px;
+  min-height: 20%;
+  align-self: center;
+  background-color: #0000008a;
+  font-size: 100px;
 }

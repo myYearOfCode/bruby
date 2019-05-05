@@ -9,7 +9,7 @@ export const App = (props) => {
   return (
   <Router history={browserHistory}>
     <Route path="/" component={RecipesContainer}/>
-    <Route path="/brew" component={RecipesContainer}/>
+    <Route path="/brew" component={Brew}/>
     <Route path="/brew/recipes" component={RecipesContainer}/>
   </Router>
   )
