@@ -36,7 +36,7 @@ class Brew extends Component {
     return(
       <div className="userContent" >
         Welcome back, {this.state.user}.
-         <Link to="/brew/recipes">Recipes</Link>
+        <Link to="/brew/recipes">Recipes</Link>
         <RecipesContainer />
         <hr/>
         <RecipeForm />
