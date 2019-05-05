@@ -22,7 +22,6 @@ class RecipesContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body);
       this.setState({recipes: body.recipes})
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
