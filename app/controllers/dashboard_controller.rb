@@ -3,7 +3,8 @@ class DashboardController < ApplicationController
     if current_user
       render :index
     else
-      render 'homes#index'
+      flash.now[:error] = "Please sign in to access that feature."
+      redirect_to new_user_session_path 
     end
   end
 end

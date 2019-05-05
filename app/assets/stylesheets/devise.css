@@ -13,9 +13,24 @@
 }
 
 body.deviseBackground {
-  background: url("https://s3.amazonaws.com/bruby/site_images/beer_drinking.jpg") no-repeat ;
+  background: url("https://s3.amazonaws.com/bruby/site_images/beer_drinking.jpg") no-repeat;
   color: white;
   font-color: white;
+}
+
+/* Small */
+@media screen and (max-width: 1190px) {
+  body.deviseBackground {
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+/* Larger */
+@media screen and (min-width: 1191px) {
+  body.deviseBackground {
+    background-size: 100% auto;
+  }
 }
 
 .deviseBackground h2{
