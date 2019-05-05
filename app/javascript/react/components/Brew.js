@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RecipeForm from './RecipeForm'
+import { Link } from 'react-router'
 import RecipesContainer from '../containers/RecipesContainer'
 // this will be the main user page.
 // this will have state, and grab data from fetch to get
@@ -35,6 +36,7 @@ class Brew extends Component {
     return(
       <div className="userContent" >
         Welcome back, {this.state.user}.
+         <Link to="/brew/recipes">Recipes</Link>
         <RecipesContainer />
         <hr/>
         <RecipeForm />
