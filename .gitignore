@@ -13,6 +13,10 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore the image dir
+/app/assets/images/*
+
+*/.DS_store
 
 /node_modules
 /yarn-error.log
