@@ -1,0 +1,25 @@
+.homes{
+  background: url("https://s3.amazonaws.com/bruby/site_images/home_bkg.png") no-repeat center center fixed;
+  color: white;
+}
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.signedIn{
+  margin:auto;
+  padding: 50px;
+  border: 1px solid white;
+  border-radius: 20px;
+  background-color: #00000033;
+  font-size: 100px;
+}
+
+.welcomeTitle{
+  font-weight: bold;
+}
