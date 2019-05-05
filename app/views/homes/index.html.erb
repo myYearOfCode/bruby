@@ -34,7 +34,7 @@
               Welcome back <%= current_user.username %>!
             </p>
             <p class="welcomeBody">
-              would you like to see recipes or brews?
+              would you like to see <%= link_to 'your dashboard?', dashboard_path %>
             <p/>
           <%- else -%>
             <p class="welcomeTitle">
