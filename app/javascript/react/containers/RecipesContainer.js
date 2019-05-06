@@ -14,8 +14,9 @@ class RecipesContainer extends Component {
         return (
           <RecipeOverview
             recipe={recipe}
-            key={recipe.id} 
+            key={recipe.id}
             deleteRecipe={this.props.deleteRecipe}
+            brewNextOnChangeHandler={this.props.brewNextOnChangeHandler}
           />
         )
       })

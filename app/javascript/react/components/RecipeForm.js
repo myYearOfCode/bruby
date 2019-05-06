@@ -47,8 +47,8 @@ class RecipeForm extends Component {
               </ul>
             </div>
             <div className="button-group">
-              <button className="button" onClick={this.props.clearForm} value="Clear">Clear</button>
               <button className="button" type="submit" value="Submit"> Submit </button>
+              <button className="button" onClick={this.props.clearForm} value="Clear">Clear</button>
             </div>
           </form>
         </div>

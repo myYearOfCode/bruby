@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import RecipeForm from './RecipeForm'
 import { Link } from 'react-router'
 import RecipesContainer from '../containers/RecipesContainer'
-// this will be the main user page.
-// this will have state, and grab data from fetch to get
-// user name, currently selected 'brewNext'
 
 class Dashboard extends Component {
   constructor(props){
     super(props);
     this.state = {
+      user: {
+        username: "",
+        id: null,
+        brewNext: null
+      },
       recipeName: '',
       recipes: [],
       name:   "",
@@ -38,10 +40,13 @@ class Dashboard extends Component {
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
     this.clearForm = this.clearForm.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
+    this.brewNextOnChangeHandler = this.brewNextOnChangeHandler.bind(this);
   }
 
   clearForm(event) {
-    event.preventDefault()
+    if (event){
+      event.preventDefault()
+    }
     this.setState({
       name:   "",
       s1Temp: 0,
@@ -70,6 +75,39 @@ class Dashboard extends Component {
   recipeOnChangeHandler(event) {
     console.log(event.target.value)
     this.setState({ [event.target.name]: event.target.value })
+  }
+
+  brewNextOnChangeHandler(event) {
+    fetch(`/api/v1/users/${this.state.user.id}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user: {
+          brewNext: event.target.value,
+          id: this.state.user.id
+        }
+      })
+    })
+    .then(response => {
+      console.log(response)
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText}) ,`
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({user: body.user})
+    })
+    .catch(error => {
+      console.error( `Error in fetch: ${error.message}`)
+      this.setState({error: error.message})
+    });
   }
 
   deleteRecipe(event) {
@@ -119,7 +157,8 @@ class Dashboard extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({user: body.user.username})
+      console.log(body.user)
+      this.setState({user: body.user})
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
 
@@ -186,11 +225,8 @@ class Dashboard extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      // if (body.hasOwnProperty('error')) {
-      //   console.log(`fetch error ${body.error}`)
-      // } else {
-        this.setState({recipes: body.recipes, error: ""})
-      // }
+      this.clearForm()
+      this.setState({recipes: body.recipes, error: ""})
     })
     .catch(error => {
       console.error( `Error in fetch: ${error.message}`)
@@ -227,13 +263,17 @@ class Dashboard extends Component {
     return(
       <div className="userContent" >
         <div>
-          Welcome back, {this.state.user}.
+          Welcome back, {this.state.user.username || ""}.
+        </div>
+        <div className="brewNext">
+          Currently selected recipe #{this.state.user.brewNext}
         </div>
         <Link to="/dashboard/recipes">View Recipes</Link>-
         <Link to="/dashboard/newRecipe">New Recipe</Link>
         <RecipesContainer
           recipes={this.state.recipes}
           deleteRecipe={this.deleteRecipe}
+          brewNextOnChangeHandler={this.brewNextOnChangeHandler}
         />
         <hr/>
         <RecipeForm
