@@ -1,13 +1,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
-user = User.create!(
-  username: "rossd",
-  password: "homebrewing",
-  email: "me@here.com",
-  machine: "f91dc3e8cfa484a6d37911d951ac0a72"
-)
-
 recipe = Recipe.create!(
   name: "Chocolate Stout",
   s1Temp: 90,
@@ -30,6 +23,14 @@ recipe = Recipe.create!(
   s9Time: 1,
   s10Temp: 90,
   s10Time: 1,
+)
+
+user = User.create!(
+  username: "rossd",
+  password: "homebrewing",
+  email: "me@here.com",
+  machine: "f91dc3e8cfa484a6d37911d951ac0a72",
+  brewNext: recipe.id
 )
 
 Brew.create!(
