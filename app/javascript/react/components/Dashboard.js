@@ -7,6 +7,11 @@ class Dashboard extends Component {
   constructor(props){
     super(props);
     this.state = {
+      user: {
+        username: "",
+        id: null,
+        brewNext: null
+      },
       recipeName: '',
       recipes: [],
       name:   "",
@@ -73,8 +78,36 @@ class Dashboard extends Component {
   }
 
   brewNextOnChangeHandler(event) {
-    console.log(event.target.value)
-    this.setState({ brewNext: event.target.value })
+    fetch(`/api/v1/users/${this.state.user.id}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user: {
+          brewNext: event.target.value,
+          id: this.state.user.id
+        }
+      })
+    })
+    .then(response => {
+      console.log(response)
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText}) ,`
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({user: body.user})
+    })
+    .catch(error => {
+      console.error( `Error in fetch: ${error.message}`)
+      this.setState({error: error.message})
+    });
   }
 
   deleteRecipe(event) {
@@ -124,7 +157,8 @@ class Dashboard extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({user: body.user.username})
+      console.log(body.user)
+      this.setState({user: body.user})
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
 
@@ -229,7 +263,10 @@ class Dashboard extends Component {
     return(
       <div className="userContent" >
         <div>
-          Welcome back, {this.state.user}.
+          Welcome back, {this.state.user.username || ""}.
+        </div>
+        <div className="brewNext">
+          Currently selected recipe #{this.state.user.brewNext}
         </div>
         <Link to="/dashboard/recipes">View Recipes</Link>-
         <Link to="/dashboard/newRecipe">New Recipe</Link>
