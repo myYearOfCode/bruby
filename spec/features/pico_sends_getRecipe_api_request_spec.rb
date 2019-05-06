@@ -8,7 +8,7 @@ RSpec.describe GetRecipeController, type: :controller do
 
     scenario 'send getRecipe api request' do
       get :index
-      expect(response.body).to have_content('Not Yet-ie Imperial Stout')
+      expect(response.body).to have_content('Preparing to Brew,')
     end
 
   end
