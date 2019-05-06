@@ -34,15 +34,11 @@ class Dashboard extends Component {
       s10Temp: 0,
       s10Time: 0
     }
-    // this.changeRecipesCallback = this.changeRecipesCallback.bind(this);
     this.createRecipe = this.createRecipe.bind(this);
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
     this.clearForm = this.clearForm.bind(this);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
   }
-
-  // changeRecipesCallback(recipes){
-  //   this.setState({recipes: recipes})
-  // }
 
   clearForm(event) {
     event.preventDefault()
@@ -74,6 +70,40 @@ class Dashboard extends Component {
   recipeOnChangeHandler(event) {
     console.log(event.target.value)
     this.setState({ [event.target.name]: event.target.value })
+  }
+
+  deleteRecipe(event) {
+    event.preventDefault()
+    fetch(`/api/v1/recipes/${event.target.value}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        recipe: {
+          id: event.target.value
+        }
+      })
+    })
+    .then(response => {
+      console.log(response)
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText}) ,`
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({recipes: body.recipes, error: ""})
+    })
+    .catch(error => {
+      console.error( `Error in fetch: ${error.message}`)
+      this.setState({error: error.message})
+    });
   }
 
   componentDidMount(){
@@ -201,7 +231,10 @@ class Dashboard extends Component {
         </div>
         <Link to="/dashboard/recipes">View Recipes</Link>-
         <Link to="/dashboard/newRecipe">New Recipe</Link>
-        <RecipesContainer recipes={this.state.recipes}/>
+        <RecipesContainer
+          recipes={this.state.recipes}
+          deleteRecipe={this.deleteRecipe}
+        />
         <hr/>
         <RecipeForm
           clearForm={this.clearForm}
