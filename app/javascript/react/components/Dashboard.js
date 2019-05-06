@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import RecipeForm from './RecipeForm'
 import { Link } from 'react-router'
 import RecipesContainer from '../containers/RecipesContainer'
-// this will be the main user page.
-// this will have state, and grab data from fetch to get
-// user name, currently selected 'brewNext'
 
 class Dashboard extends Component {
   constructor(props){
@@ -38,10 +35,13 @@ class Dashboard extends Component {
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
     this.clearForm = this.clearForm.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
+    this.brewNextOnChangeHandler = this.brewNextOnChangeHandler.bind(this);
   }
 
   clearForm(event) {
-    event.preventDefault()
+    if (event){
+      event.preventDefault()
+    }
     this.setState({
       name:   "",
       s1Temp: 0,
@@ -70,6 +70,11 @@ class Dashboard extends Component {
   recipeOnChangeHandler(event) {
     console.log(event.target.value)
     this.setState({ [event.target.name]: event.target.value })
+  }
+
+  brewNextOnChangeHandler(event) {
+    console.log(event.target.value)
+    this.setState({ brewNext: event.target.value })
   }
 
   deleteRecipe(event) {
@@ -186,11 +191,8 @@ class Dashboard extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      // if (body.hasOwnProperty('error')) {
-      //   console.log(`fetch error ${body.error}`)
-      // } else {
-        this.setState({recipes: body.recipes, error: ""})
-      // }
+      this.clearForm()
+      this.setState({recipes: body.recipes, error: ""})
     })
     .catch(error => {
       console.error( `Error in fetch: ${error.message}`)
@@ -234,6 +236,7 @@ class Dashboard extends Component {
         <RecipesContainer
           recipes={this.state.recipes}
           deleteRecipe={this.deleteRecipe}
+          brewNextOnChangeHandler={this.brewNextOnChangeHandler}
         />
         <hr/>
         <RecipeForm
