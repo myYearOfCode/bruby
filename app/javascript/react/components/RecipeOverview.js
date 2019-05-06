@@ -3,10 +3,26 @@ import React from 'react';
 const RecipeOverview = (props) => {
   return(
     <div className="recipeOverview">
-      <button>edit</button>
-      <button>brew next</button>
-      <button value={props.recipe.id} onClick={props.deleteRecipe}>delete</button>
-      {props.recipe.name}
+      <div className="recipeOverviewName">
+        {props.recipe.name}
+      </div>
+      <div className='recipeButtons'>
+        <button className='recipeButton'>edit</button>
+        <button
+          className='recipeButton'
+          value={props.recipe.id}
+          onClick={props.brewNextOnChangeHandler}
+        >
+          brew next
+        </button>
+        <button
+          className='recipeButton'
+          value={props.recipe.id}
+          onClick={props.deleteRecipe}
+        >
+          delete
+        </button>
+      </div>
     </div>
   )
 }
