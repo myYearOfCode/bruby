@@ -12,7 +12,11 @@ class RecipesContainer extends Component {
     if (this.props.recipes.length > 0) {
       return this.props.recipes.map((recipe) => {
         return (
-          <RecipeOverview recipe={recipe} key={recipe.id}/>
+          <RecipeOverview
+            recipe={recipe}
+            key={recipe.id} 
+            deleteRecipe={this.props.deleteRecipe}
+          />
         )
       })
     }

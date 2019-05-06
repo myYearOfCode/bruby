@@ -173,4 +173,75 @@ RSpec.describe Api::V1::RecipesController, type: :controller do
       expect(returned_json["recipes"][0]["favoriteBeer"]).to be(nil)
     end
   end
+
+  describe "DELETE #destroy" do
+    before(:each) do
+      DatabaseCleaner.clean_with(:deletion)
+      @valid_user = User.create!(
+        email: "happy@path.com",
+        password: "password",
+      )
+      @recipe = Recipe.create!(
+        name: "Pitch-Black Stout",
+        s1Temp: 90,
+        s1Time: 1,
+        s2Temp: 90,
+        s2Time: 1,
+        s3Temp: 90,
+        s3Time: 1,
+        s4Temp: 90,
+        s4Time: 1,
+        s5Temp: 90,
+        s5Time: 1,
+        s6Temp: 90,
+        s6Time: 1,
+        s7Temp: 90,
+        s7Time: 1,
+        s8Temp: 90,
+        s8Time: 1,
+        s9Temp: 90,
+        s9Time: 1,
+        s10Temp: 90,
+        s10Time: 1,
+      )
+    end
+
+    it "deletes a recipe successfully with a signed in user" do
+      sign_in @valid_user
+      expect{
+        delete :destroy, params: {id: @recipe.id, recipe:{ id: @recipe.id }}
+      }.to change(Recipe, :count).by(-1)
+      returned_json = JSON.parse(response.body)
+      expect(response.content_type).to eq("application/json")
+      expect(response.status).to eq(200)
+      expect(returned_json).to be_kind_of(Hash)
+      expect(returned_json).to_not be_kind_of(Array)
+    end
+
+    it "does not delete a recipe without a signed in user" do
+      expect{
+        delete :destroy, params: {id: @recipe.id, recipe:{ id: @recipe.id }}
+      }.to change(Recipe, :count).by(0)
+      returned_json = JSON.parse(response.body)
+      expect(response.content_type).to eq("application/json")
+      expect(response.status).to eq(200)
+      expect(returned_json).to be_kind_of(Hash)
+      expect(returned_json).to_not be_kind_of(Array)
+      expect(returned_json["error"]).to match(/you must be signed in to delete a recipe/)
+    end
+
+    it "handles invalid id numbers properly" do
+      sign_in @valid_user
+      expect{
+        delete :destroy, params: {id: @recipe.id, recipe:{ id: 1 }}
+      }.to change(Recipe, :count).by(0)
+      returned_json = JSON.parse(response.body)
+      expect(response.content_type).to eq("application/json")
+      expect(response.status).to eq(200)
+      expect(returned_json).to be_kind_of(Hash)
+      expect(returned_json).to_not be_kind_of(Array)
+      expect(returned_json["error"]).to match(/no recipe found/)
+    end
+
+  end
 end
