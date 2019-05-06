@@ -26,16 +26,10 @@
   .centerMessage{
     max-width: 60vw;
   }
-}
-
-@media only screen and (max-width: 450px) {
-  .centerMessage{
-    max-width: 90vw;
+  .homes {
+    background-position: center;
+    background-size: cover;
   }
-}
-
-.welcomeTitle{
-  font-weight: bold;
 }
 
 .darkBar{
@@ -45,4 +39,27 @@
   align-self: center;
   background-color: #0000008a;
   font-size: 100px;
+}
+
+@media only screen and (max-width: 650px) {
+  .centerMessage{
+    max-width: 90vw;
+  }
+  .homes {
+    background-position: -569px 116px;
+    background-color: black;
+    background-size: cover;
+  }
+  .darkBar {
+    align-self: flex-start;
+  }
+  .centerMessage{
+    margin:auto;
+    padding: 20px 50px 20px 50px;
+    border: 0px solid white;
+  }
+}
+
+.welcomeTitle{
+  font-weight: bold;
 }

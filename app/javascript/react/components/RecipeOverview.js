@@ -2,7 +2,7 @@ import React from 'react';
 
 const RecipeOverview = (props) => {
   return(
-    <div>
+    <div className="recipeOverview">
       <button>edit</button>
       <button>brew next</button>
       {props.recipe.name}

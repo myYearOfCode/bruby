@@ -1,0 +1,10 @@
+.recipeOverview:nth-child(even) {
+  background: #CCC
+}
+.recipeOverview:nth-child(odd) {
+  background: #FFF
+}
+
+.recipeOverview button{
+  margin: .25rem;
+}

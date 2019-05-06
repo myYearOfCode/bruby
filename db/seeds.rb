@@ -2,10 +2,10 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 user = User.create!(
-  name: "rossd",
+  username: "rossd",
   password: "homebrewing",
   email: "me@here.com",
-  hardware_id: "f91dc3e8cfa484a6d37911d951ac0a72"
+  machine: "f91dc3e8cfa484a6d37911d951ac0a72"
 )
 
 recipe = Recipe.create!(

@@ -5,31 +5,12 @@ class RecipesContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      recipes: []
     }
   }
 
-  componentDidMount() {
-    fetch('/api/v1/recipes')
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText}) ,`
-        let error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-      this.setState({recipes: body.recipes})
-    })
-    .catch(error => console.error( `Error in fetch: ${error.message}` ));
-  }
-
   renderRecipes() {
-    if (this.state.recipes.length > 0) {
-      return this.state.recipes.map((recipe) => {
+    if (this.props.recipes.length > 0) {
+      return this.props.recipes.map((recipe) => {
         return (
           <RecipeOverview recipe={recipe} key={recipe.id}/>
         )
@@ -44,7 +25,9 @@ class RecipesContainer extends Component {
     return(
       <div>
         <h1> USER RECIPES </h1>
-        { this.renderRecipes() }
+        <div className="recipesWrapper">
+          { this.renderRecipes() }
+        </div>
       </div>
     )
   }

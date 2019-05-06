@@ -4,13 +4,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :recipes, only: [:index]
+      resources :recipes, only: [:index, :create]
       resources :users, only: [:index]
     end
   end
 
-  get '/brew', to: 'brew#index'
-  get '/brew/*path', to: 'brew#index'
+  get '/dashboard', to: 'dashboard#index'
+  get '/dashboard/*path', to: 'dashboard#index'
 
   get 'API/pico/getRecipe', to: 'get_recipe#index'
   get 'API/pico/register', to: 'register#index'
