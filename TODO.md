@@ -1,6 +1,3 @@
-add tests for machine_id on user model.
-
-
 research new endpoints
 /API/pico/recipelist
 /API/pico/getAssociatedPaks
