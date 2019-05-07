@@ -5,13 +5,15 @@ feature 'user signs in', %Q{
   I want to sign in
   So that I can regain access to my account
 } do
+  before(:each) do
+    DatabaseCleaner.clean_with(:deletion)
+    @user = FactoryBot.create(:user)
+  end
   scenario 'specify valid credentials' do
-    user = FactoryBot.create(:user)
-
     visit new_user_session_path
 
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
+    fill_in 'Email', with: @user.email
+    fill_in 'Password', with: @user.password
 
     click_button 'Log in'
 

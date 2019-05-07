@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :recipes, only: [:index, :create, :destroy]
+      resources :recipes, only: [:index, :create, :destroy, :show]
       resources :users, only: [:index, :update]
       resources :sessions, only: [:index, :show]
     end

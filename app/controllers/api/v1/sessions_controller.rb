@@ -6,8 +6,10 @@ class Api::V1::SessionsController < ApplicationController
       session_ids = brew_logs.pluck(:sesId).uniq
       response={}
       # restructure the data so the session id key holds all of the logs
-      session_ids.each do |session|
-          response[session] = BrewLog.where(sesId: session)
+      if session_ids
+        session_ids.each do |session|
+            response[session] = BrewLog.where(sesId: session)
+        end
       end
       render json: response
     else
