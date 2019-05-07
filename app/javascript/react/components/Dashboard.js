@@ -266,7 +266,7 @@ class Dashboard extends Component {
           Welcome back, {this.state.user.username || ""}.
         </div>
         <div className="brewNext">
-          Currently selected recipe #{this.state.user.brewNext}
+          Currently selected recipe: {this.state.user.brewNextName}
         </div>
         <Link to="/dashboard/recipes">View Recipes</Link>-
         <Link to="/dashboard/newRecipe">New Recipe</Link>

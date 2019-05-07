@@ -28,7 +28,7 @@ class RecipeForm extends Component {
         <div id="form_container">
           <form onSubmit={this.props.createRecipe}>
             <div className="Recipe Builder">
-            <h1>
+            <h1 className="scriptHeader">
             Bruby Recipe Builder
             </h1>
               <ul>

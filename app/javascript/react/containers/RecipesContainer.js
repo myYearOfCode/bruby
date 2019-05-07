@@ -28,8 +28,8 @@ class RecipesContainer extends Component {
 
   render () {
     return(
-      <div>
-        <h1> USER RECIPES </h1>
+      <div className="yourRecipes">
+        <h1 className="scriptHeader"> Your Recipes </h1>
         <div className="recipesWrapper">
           { this.renderRecipes() }
         </div>

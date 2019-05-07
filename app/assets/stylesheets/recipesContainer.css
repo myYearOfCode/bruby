@@ -9,6 +9,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 0 10px 0 10px;
 }
 
 .recipeButtons {
@@ -31,6 +32,17 @@
   margin:  .25rem .25rem 0 .25rem;
   font-weight: 800;
   font-size: 2em;
-  /* min-width: 200px; */
-  min-width: 40%
+  min-width: 40%;
+  padding: 0 10px 0 10px;
+}
+
+.yourRecipes{
+  background-color: #e6e6e6;
+  box-shadow: 10px 10px 5px grey;
+  padding: 0 10px 0 10px;
+}
+
+.scriptHeader{
+  font-family: 'Yellowtail', cursive;
+  font-size: 4em
 }
