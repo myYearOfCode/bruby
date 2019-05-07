@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :recipes, only: [:index, :create, :destroy]
       resources :users, only: [:index, :update]
+      resources :sessions, only: [:index, :show]
     end
   end
 
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   get '/dashboard/*path', to: 'dashboard#index'
 
   get 'API/pico/getRecipe', to: 'get_recipe#index'
+  get 'API/pico/log', to: 'brew_log#index'
   get 'API/pico/register', to: 'register#index'
   get 'API/pico/checkFirmware', to: 'check_firmware#index'
   get 'API/pico/picoChangeState', to: 'pico_change_state#index'

@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_142054) do
+ActiveRecord::Schema.define(version: 2019_05_07_014407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "brew_logs", force: :cascade do |t|
+    t.string "uid", null: false
+    t.string "sesId", null: false
+    t.integer "wort", null: false
+    t.integer "therm", null: false
+    t.string "step", null: false
+    t.integer "error", null: false
+    t.integer "sesType", null: false
+    t.integer "timeLeft", null: false
+    t.decimal "shutScale", null: false
+    t.bigint "brew_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brew_id"], name: "index_brew_logs_on_brew_id"
+  end
 
   create_table "brews", force: :cascade do |t|
     t.string "data"
