@@ -166,28 +166,28 @@ class Dashboard extends Component {
       console.log(`success`);
       debugger
       this.setState({
-        s1Temp: body.recipe.s1Temp})
-        this.setState({name:   body.recipe.name})
-        this.setState({s1Time: body.recipe.s1Time})
-        this.setState({s2Temp: body.recipe.s2Temp})
-        this.setState({s2Time: body.recipe.s2Time})
-        this.setState({s3Temp: body.recipe.s3Temp})
-        this.setState({s3Time: body.recipe.s3Time})
-        this.setState({s4Temp: body.recipe.s4Temp})
-        this.setState({s4Time: body.recipe.s4Time})
-        this.setState({s5Temp: body.recipe.s5Temp})
-        this.setState({s5Time: body.recipe.s5Time})
-        this.setState({s6Temp: body.recipe.s6Temp})
-        this.setState({s6Time: body.recipe.s6Time})
-        this.setState({s7Temp: body.recipe.s7Temp})
-        this.setState({s7Time: body.recipe.s7Time})
-        this.setState({s8Temp: body.recipe.s8Temp})
-        this.setState({s8Time: body.recipe.s8Time})
-        this.setState({s9Temp: body.recipe.s9Temp})
-        this.setState({s9Time: body.recipe.s9Time})
-        this.setState({s10Temp: body.recipe.s10Temp})
-        this.setState({s10Time: body.recipe.s10Time})
-      // })
+        name:   body.recipe.name,
+        s1Temp: body.recipe.s1Temp.toString(),
+        s1Time: body.recipe.s1Time.toString(),
+        s2Temp: body.recipe.s2Temp.toString(),
+        s2Time: body.recipe.s2Time.toString(),
+        s3Temp: body.recipe.s3Temp.toString(),
+        s3Time: body.recipe.s3Time.toString(),
+        s4Temp: body.recipe.s4Temp.toString(),
+        s4Time: body.recipe.s4Time.toString(),
+        s5Temp: body.recipe.s5Temp.toString(),
+        s5Time: body.recipe.s5Time.toString(),
+        s6Temp: body.recipe.s6Temp.toString(),
+        s6Time: body.recipe.s6Time.toString(),
+        s7Temp: body.recipe.s7Temp.toString(),
+        s7Time: body.recipe.s7Time.toString(),
+        s8Temp: body.recipe.s8Temp.toString(),
+        s8Time: body.recipe.s8Time.toString(),
+        s9Temp: body.recipe.s9Temp.toString(),
+        s9Time: body.recipe.s9Time.toString(),
+        s10Temp: body.recipe.s10Temp.toString(),
+        s10Time: body.recipe.s10Time
+      })
       console.log(`success`);
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
