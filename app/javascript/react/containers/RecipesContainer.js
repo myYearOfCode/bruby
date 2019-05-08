@@ -13,10 +13,12 @@ class RecipesContainer extends Component {
       return this.props.recipes.map((recipe) => {
         return (
           <RecipeOverview
+            user={this.props.user}
             recipe={recipe}
             key={recipe.id}
             deleteRecipe={this.props.deleteRecipe}
             brewNextOnChangeHandler={this.props.brewNextOnChangeHandler}
+            loadRecipeHandler={this.props.loadRecipeHandler}
           />
         )
       })
@@ -28,8 +30,8 @@ class RecipesContainer extends Component {
 
   render () {
     return(
-      <div>
-        <h1> USER RECIPES </h1>
+      <div className="yourRecipes">
+        <h1 className="scriptHeader"> Your Recipes </h1>
         <div className="recipesWrapper">
           { this.renderRecipes() }
         </div>

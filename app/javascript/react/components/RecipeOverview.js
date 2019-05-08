@@ -2,12 +2,18 @@ import React from 'react';
 
 const RecipeOverview = (props) => {
   return(
-    <div className="recipeOverview">
+    <div className={`recipeOverview ${props.user.brewNext == props.recipe.id ? "selectedRecipe" : ""}`}>
       <div className="recipeOverviewName">
         {props.recipe.name}
       </div>
       <div className='recipeButtons'>
-        <button className='recipeButton'>edit</button>
+        <button
+          className='recipeButton'
+          value={props.recipe.id}
+          onClick={props.loadRecipeHandler}
+        >
+          edit
+        </button>
         <button
           className='recipeButton'
           value={props.recipe.id}
