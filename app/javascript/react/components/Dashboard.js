@@ -35,7 +35,8 @@ class Dashboard extends Component {
       s9Time: 0,
       s10Temp: 0,
       s10Time: 0,
-      editRecipe: null
+      editRecipe: null,
+      recipeExpanded: 0
     }
     this.createRecipe = this.createRecipe.bind(this);
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
@@ -44,6 +45,7 @@ class Dashboard extends Component {
     this.brewNextOnChangeHandler = this.brewNextOnChangeHandler.bind(this);
     this.loadRecipeHandler = this.loadRecipeHandler.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this);
+    this.viewRecipeHandler = this.viewRecipeHandler.bind(this);
   }
 
   clearForm(event) {
@@ -146,6 +148,15 @@ class Dashboard extends Component {
       console.error( `Error in fetch: ${error.message}`)
       this.setState({error: error.message})
     });
+  }
+
+  viewRecipeHandler(event){
+    console.log(`event.target.value ${event}`);
+    if (this.state.recipeExpanded === event){
+      this.setState({recipeExpanded: null})
+    } else {
+      this.setState({recipeExpanded: event})
+    }
   }
 
   loadRecipeHandler(event){
@@ -376,10 +387,12 @@ class Dashboard extends Component {
         </div>
         <RecipesContainer
           loadRecipeHandler={this.loadRecipeHandler}
-          recipes={this.state.recipes}
           deleteRecipe={this.deleteRecipe}
           brewNextOnChangeHandler={this.brewNextOnChangeHandler}
+          viewRecipeHandler={this.viewRecipeHandler}
+          recipes={this.state.recipes}
           user={this.state.user}
+          recipeExpanded={this.state.recipeExpanded}
         />
         <RecipeForm
           clearForm={this.clearForm}

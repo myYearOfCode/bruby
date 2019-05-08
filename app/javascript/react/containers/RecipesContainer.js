@@ -8,6 +8,7 @@ class RecipesContainer extends Component {
       recipesWrapper: "recipesWrapper"
     }
     this.toggleSelected = this.toggleSelected.bind(this);
+    // this.isBrewingNext = this.isBrewingNext.bind(this);
   }
 
   renderRecipes() {
@@ -21,6 +22,8 @@ class RecipesContainer extends Component {
             deleteRecipe={this.props.deleteRecipe}
             brewNextOnChangeHandler={this.props.brewNextOnChangeHandler}
             loadRecipeHandler={this.props.loadRecipeHandler}
+            recipeExpanded={this.props.recipeExpanded}
+            viewRecipeHandler={this.props.viewRecipeHandler}
           />
         )
       })
