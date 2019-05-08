@@ -5,7 +5,9 @@ class RecipesContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
+      recipesWrapper: "recipesWrapper"
     }
+    this.toggleSelected = this.toggleSelected.bind(this);
   }
 
   renderRecipes() {
@@ -28,11 +30,29 @@ class RecipesContainer extends Component {
     }
   }
 
+  toggleSelected() {
+    if (this.state.recipesWrapper === "recipesWrapper" ) {
+      this.setState({recipesWrapper: "recipesWrapper is-active" })
+    } else {
+      this.setState({recipesWrapper: "recipesWrapper"})
+    }
+  }
+
   render () {
     return(
-      <div className="yourRecipes">
-        <h1 className="scriptHeader"> Your Recipes </h1>
-        <div className="recipesWrapper">
+      <div
+        id="yourRecipes"
+        className="yourRecipes"
+      >
+        <h1
+          className="scriptHeader"
+          onClick={this.toggleSelected}
+        >
+          Recipes
+        </h1>
+        <div
+          className={this.state.recipesWrapper}
+        >
           { this.renderRecipes() }
         </div>
       </div>

@@ -374,9 +374,6 @@ class Dashboard extends Component {
         <div>
           Welcome back{`, ${this.state.user.username}` || "!"}.
         </div>
-        <div className="brewNext">
-          Currently selected recipe: {this.state.user.brewNextName}
-        </div>
         <RecipesContainer
           loadRecipeHandler={this.loadRecipeHandler}
           recipes={this.state.recipes}
@@ -384,7 +381,6 @@ class Dashboard extends Component {
           brewNextOnChangeHandler={this.brewNextOnChangeHandler}
           user={this.state.user}
         />
-        <hr/>
         <RecipeForm
           clearForm={this.clearForm}
           createRecipe={this.createRecipe}
