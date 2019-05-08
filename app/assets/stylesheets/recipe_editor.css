@@ -15,7 +15,7 @@ input {
 }
 
 .recipesFormExpanded{
-  background-color: #0000004f
+  background-color: rgba(0, 0, 0, .5);
 }
 
 .textAreas {
