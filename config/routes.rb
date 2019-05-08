@@ -7,7 +7,6 @@ Rails.application.routes.draw do
       resources :recipes, only: [:index, :create, :update, :destroy, :show]
       resources :users, only: [:index, :update]
       resources :sessions, only: [:index, :show]
-      resources :brew_logs, only: [:show]
     end
   end
 

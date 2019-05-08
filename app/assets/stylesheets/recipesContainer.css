@@ -26,8 +26,7 @@
   justify-content: space-between;
   align-content: center;
   flex-wrap:nowrap;
-  min-width: 40%;
-  max-width: 40%;
+  max-width: 300px;
 }
 
 .recipeButton {
@@ -48,7 +47,6 @@
 }
 
 .yourRecipes{
-  /* background-image: linear-gradient(90deg, black 0%, white 100%) */
   background-image: linear-gradient(90deg, #717171 0%, #c3c3c3 100%)
 }
 
@@ -59,11 +57,12 @@
 }
 
 .scriptHeader{
-  /* font-family: 'Yellowtail', cursive;
-  font-family: 'Galada', cursive;
-  font-family: 'Amita', cursive; */
-  font-family: 'Baloo Bhai', cursive;
-  font-size: 4em;
+  /* font-family: 'Yellowtail', cursive; */
+  /* font-family: 'Galada', cursive; */
+  font-family: 'Alfa Slab One', cursive;
+  /* font-family: 'Amita', cursive;  */
+  /* font-family: 'Baloo Bhai', cursive; */
+  font-size: 2.5em;
   color: #FFF;
   text-shadow: 2px 2px 3px #00000082;
   padding: 0 0 0px 12px;
@@ -80,12 +79,12 @@
   height: 30vh;
 }
 
-.recipesFormClass{
+.recipesFormExpanded{
   height: 0px;
   transition: height 500ms;
   overflow: scroll;
 }
 
-.recipesFormClass.is-active{
+.recipesFormExpanded.is-active{
   height: 60vh;
 }

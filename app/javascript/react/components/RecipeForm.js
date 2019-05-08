@@ -5,9 +5,9 @@ class RecipeForm extends Component {
   constructor(props){
     super(props);
     this.state = {
-      recipesFormClass: "recipesFormClass"
+      // recipesFormClass: "recipesFormClass"
     }
-    this.toggleSelected = this.toggleSelected.bind(this);
+    // this.toggleSelected = this.toggleSelected.bind(this);
   }
 
   recipeSteps() {
@@ -26,30 +26,30 @@ class RecipeForm extends Component {
     })
   }
 
-  toggleSelected() {
-    if (this.state.recipesFormClass === "recipesFormClass" ) {
-      this.setState({recipesFormClass: "recipesFormClass is-active" })
-    } else {
-      this.setState({recipesFormClass: "recipesFormClass"})
-    }
-  }
+  // toggleSelected() {
+  //   if (this.state.recipesFormClass === "recipesFormClass" ) {
+  //     this.setState({recipesFormClass: "recipesFormClass is-active" })
+  //   } else {
+  //     this.setState({recipesFormClass: "recipesFormClass"})
+  //   }
+  // }
 
   render () {
 
 
 
     return (
-      <div>
+      <div className="recipeBuilder">
         <div id="form_container">
           <form onSubmit={this.props.recipe.editRecipe !== null ? this.props.updateRecipe : this.props.createRecipe }>
             <div
-              onClick={this.toggleSelected}
+              onClick={this.props.toggleRecipeEditor}
             >
-            <h1               className="scriptHeader">
+            <h3 className="scriptHeader">
               Recipe Builder
-            </h1>
+            </h3>
             </div>
-            <div className={this.state.recipesFormClass}>
+            <div className={this.props.recipesFormExpanded}>
               <ul>
                 <div className="step_wrapper">
                   <label className="label" htmlFor="recipeName">Recipe Name </label>
