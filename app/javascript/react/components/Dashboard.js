@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import RecipeForm from './RecipeForm'
 import { Link } from 'react-router'
 import RecipesContainer from '../containers/RecipesContainer'
+import Brew from './Brew'
+import User from './User'
 
 class Dashboard extends Component {
   constructor(props){
@@ -36,7 +38,9 @@ class Dashboard extends Component {
       s10Temp: 0,
       s10Time: 0,
       editRecipe: null,
-      recipeExpanded: 0
+      recipeExpanded: 0,
+      recipesFormExpanded: "recipesFormExpanded",
+      userInfoExpanded: "userDashboard is-active"
     }
     this.createRecipe = this.createRecipe.bind(this);
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
@@ -46,6 +50,8 @@ class Dashboard extends Component {
     this.loadRecipeHandler = this.loadRecipeHandler.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this);
     this.viewRecipeHandler = this.viewRecipeHandler.bind(this);
+    this.toggleRecipeEditor = this.toggleRecipeEditor.bind(this);
+    this.toggleUserExpanded = this.toggleUserExpanded.bind(this);
   }
 
   clearForm(event) {
@@ -151,11 +157,18 @@ class Dashboard extends Component {
   }
 
   viewRecipeHandler(event){
-    console.log(`event.target.value ${event}`);
     if (this.state.recipeExpanded === event){
       this.setState({recipeExpanded: null})
     } else {
       this.setState({recipeExpanded: event})
+    }
+  }
+
+  toggleUserExpanded() {
+    if (this.state.userInfoExpanded === "userDashboard" ) {
+      this.setState({userInfoExpanded: "userDashboard is-active" })
+    } else {
+      this.setState({userInfoExpanded: "userDashboard"})
     }
   }
 
@@ -238,7 +251,25 @@ class Dashboard extends Component {
     })
     .then(response => response.json())
     .then(body => {
+
       this.setState({recipes: body.recipes})
+    })
+    .catch(error => console.error( `Error in fetch: ${error.message}` ));
+
+    fetch('api/v1/sessions')
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText}) ,`
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      console.log(body)
+      this.setState({sessions: body})
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
   }
@@ -353,6 +384,13 @@ class Dashboard extends Component {
     });
   }
 
+  toggleRecipeEditor() {
+    if (this.state.recipesFormExpanded === "recipesFormExpanded" ) {
+      this.setState({recipesFormExpanded: "recipesFormExpanded is-active" })
+    } else {
+      this.setState({recipesFormExpanded: "recipesFormExpanded"})
+    }
+  }
   render () {
     let makePayload = () => {
       return {
@@ -382,9 +420,11 @@ class Dashboard extends Component {
     }
     return(
       <div className="userContent" >
-        <div>
-          Welcome back{`, ${this.state.user.username}` || "!"}.
-        </div>
+        <User
+          userInfoExpanded={this.state.userInfoExpanded}
+          toggleUserExpanded={this.toggleUserExpanded}
+          user={this.state.user}
+        />
         <RecipesContainer
           loadRecipeHandler={this.loadRecipeHandler}
           deleteRecipe={this.deleteRecipe}
@@ -400,7 +440,10 @@ class Dashboard extends Component {
           recipeOnChangeHandler={this.recipeOnChangeHandler}
           updateRecipe={this.updateRecipe}
           recipe={makePayload()}
+          recipesFormExpanded={this.state.recipesFormExpanded}
+          toggleRecipeEditor={this.toggleRecipeEditor}
         />
+        <Brew sessions={this.state.sessions}/>
       </div>
     )
   }

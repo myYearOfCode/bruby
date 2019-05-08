@@ -1,6 +1,6 @@
 .homes{
   background-color: black;
-  background: url("https://s3.amazonaws.com/bruby/site_images/home_bkg.png") no-repeat center center fixed;
+  background: black url("https://s3.amazonaws.com/bruby/site_images/home_bkg.png") no-repeat center center fixed;
   color: white;
 }
 

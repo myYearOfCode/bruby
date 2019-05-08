@@ -1,7 +1,9 @@
 #app{
-  background-image: url("https://s3.amazonaws.com/bruby/site_images/durnk-122343262.jpg");
+  background: black url("https://s3.amazonaws.com/bruby/site_images/durnk-122343262.jpg") no-repeat fixed;
+  background-size: contain;
+  background-position: bottom;
   color: white;
-  background-color: black;
+  /* background-color: black; */
   font-color: white;
   width: 100%;
   height: 100%;
