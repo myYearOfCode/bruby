@@ -7,7 +7,6 @@ FactoryBot.define do
     password_confirmation { 'password' }
     machine { 1 }
     sequence(:username) { |n| "USER_#{n}#{n}#{n}#{n}#{n}#{n}#{n}"}
-    # brew
   end
 
   factory :brew_log do
@@ -24,9 +23,6 @@ FactoryBot.define do
   end
 
   factory :brew do
-    # recipe_id {1}
-    # user_id {1}
-
     recipe
     user
   end
