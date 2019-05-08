@@ -5,7 +5,10 @@ class RecipesContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
+      recipesWrapper: "recipesWrapper"
     }
+    this.toggleSelected = this.toggleSelected.bind(this);
+    // this.isBrewingNext = this.isBrewingNext.bind(this);
   }
 
   renderRecipes() {
@@ -19,6 +22,8 @@ class RecipesContainer extends Component {
             deleteRecipe={this.props.deleteRecipe}
             brewNextOnChangeHandler={this.props.brewNextOnChangeHandler}
             loadRecipeHandler={this.props.loadRecipeHandler}
+            recipeExpanded={this.props.recipeExpanded}
+            viewRecipeHandler={this.props.viewRecipeHandler}
           />
         )
       })
@@ -28,11 +33,29 @@ class RecipesContainer extends Component {
     }
   }
 
+  toggleSelected() {
+    if (this.state.recipesWrapper === "recipesWrapper" ) {
+      this.setState({recipesWrapper: "recipesWrapper is-active" })
+    } else {
+      this.setState({recipesWrapper: "recipesWrapper"})
+    }
+  }
+
   render () {
     return(
-      <div className="yourRecipes">
-        <h1 className="scriptHeader"> Your Recipes </h1>
-        <div className="recipesWrapper">
+      <div
+        id="yourRecipes"
+        className="yourRecipes"
+      >
+        <h1
+          className="scriptHeader"
+          onClick={this.toggleSelected}
+        >
+          Recipes
+        </h1>
+        <div
+          className={this.state.recipesWrapper}
+        >
           { this.renderRecipes() }
         </div>
       </div>

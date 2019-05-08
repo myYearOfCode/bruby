@@ -8,10 +8,16 @@
 .recipeOverview{
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 0 10px 0 10px;
   color: #FFF;
   text-shadow: 2px 2px #999;
+  transition: height 300ms;
+  height: 50px;
+}
+
+.recipeOverview.is-active {
+    height: 300px;
 }
 
 .recipeButtons {
@@ -20,12 +26,14 @@
   justify-content: space-between;
   align-content: center;
   flex-wrap:nowrap;
-  min-width: 40%
+  min-width: 40%;
+  max-width: 40%;
 }
+
 .recipeButton {
   align-self: center;
   margin:  .25rem;
-  min-width: 80px;
+  min-width: 90px;
   padding: 5px;
   background-color: #0c5188;
 }
@@ -34,19 +42,18 @@
   margin:  .25rem .25rem 0 .25rem;
   font-weight: 800;
   font-size: 2em;
-  min-width: 40%;
+  width: 100%;
   padding: 0 10px 0 10px;
+  font-family: 'Baloo Bhai', cursive;
 }
 
 .yourRecipes{
-  background-color: #e6e6e6;
-  /* box-shadow: 10px 10px 5px grey; */
-  padding: 0 10px 0 10px;
+  /* background-image: linear-gradient(90deg, black 0%, white 100%) */
+  background-image: linear-gradient(90deg, #717171 0%, #c3c3c3 100%)
 }
 
 .selectedRecipe{
   border-bottom: 1px solid black;
-  /* color: blue; */
   background-color: brown;
   text-shadow: 2px 2px 4px #000;
 }
@@ -55,8 +62,30 @@
   /* font-family: 'Yellowtail', cursive;
   font-family: 'Galada', cursive;
   font-family: 'Amita', cursive; */
-  font-family: 'Pacifico', cursive;
+  font-family: 'Baloo Bhai', cursive;
   font-size: 4em;
   color: #FFF;
   text-shadow: 2px 2px 3px #00000082;
+  padding: 0 0 0px 12px;
+  background-image: linear-gradient(90deg, #717171 0%, #c3c3c3 100%)
+}
+
+.recipesWrapper{
+  height: 0px;
+  transition: height 500ms;
+  overflow: scroll;
+}
+
+.recipesWrapper.is-active{
+  height: 30vh;
+}
+
+.recipesFormClass{
+  height: 0px;
+  transition: height 500ms;
+  overflow: scroll;
+}
+
+.recipesFormClass.is-active{
+  height: 60vh;
 }

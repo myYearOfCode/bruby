@@ -4,6 +4,10 @@ import RecipeStep from './RecipeStep'
 class RecipeForm extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      recipesFormClass: "recipesFormClass"
+    }
+    this.toggleSelected = this.toggleSelected.bind(this);
   }
 
   recipeSteps() {
@@ -22,6 +26,14 @@ class RecipeForm extends Component {
     })
   }
 
+  toggleSelected() {
+    if (this.state.recipesFormClass === "recipesFormClass" ) {
+      this.setState({recipesFormClass: "recipesFormClass is-active" })
+    } else {
+      this.setState({recipesFormClass: "recipesFormClass"})
+    }
+  }
+
   render () {
 
 
@@ -30,10 +42,14 @@ class RecipeForm extends Component {
       <div>
         <div id="form_container">
           <form onSubmit={this.props.recipe.editRecipe !== null ? this.props.updateRecipe : this.props.createRecipe }>
-            <div className="Recipe Builder">
-            <h1 className="scriptHeader">
-            Bruby Recipe Builder
+            <div
+              onClick={this.toggleSelected}
+            >
+            <h1               className="scriptHeader">
+              Recipe Builder
             </h1>
+            </div>
+            <div className={this.state.recipesFormClass}>
               <ul>
                 <div className="step_wrapper">
                   <label className="label" htmlFor="recipeName">Recipe Name </label>
@@ -48,22 +64,22 @@ class RecipeForm extends Component {
                 </div>
                 { this.recipeSteps() }
               </ul>
-            </div>
-            <div className="button-group">
-              <button
-                className="button"
-                type="submit"
-                value="Submit"
-              >
-                { this.props.recipe.editRecipe !== null ? "Update" : "Submit" }
-              </button>
-              <button
-                className="button"
-                onClick={this.props.clearForm}
-                value="Clear"
-              >
-              Clear
-              </button>
+              <div className="button-group">
+                <button
+                  className="button"
+                  type="submit"
+                  value="Submit"
+                >
+                  { this.props.recipe.editRecipe !== null ? "Update" : "Submit" }
+                </button>
+                <button
+                  className="button"
+                  onClick={this.props.clearForm}
+                  value="Clear"
+                >
+                Clear
+                </button>
+              </div>
             </div>
           </form>
         </div>
