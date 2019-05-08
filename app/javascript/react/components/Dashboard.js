@@ -34,7 +34,8 @@ class Dashboard extends Component {
       s9Temp: 0,
       s9Time: 0,
       s10Temp: 0,
-      s10Time: 0
+      s10Time: 0,
+      editRecipe: null
     }
     this.createRecipe = this.createRecipe.bind(this);
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
@@ -162,9 +163,6 @@ class Dashboard extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body.recipe)
-      console.log(`success`);
-      debugger
       this.setState({
         name:   body.recipe.name,
         s1Temp: body.recipe.s1Temp.toString(),
@@ -188,7 +186,6 @@ class Dashboard extends Component {
         s10Temp: body.recipe.s10Temp.toString(),
         s10Time: body.recipe.s10Time
       })
-      console.log(`success`);
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
 
@@ -292,8 +289,8 @@ class Dashboard extends Component {
 
   updateRecipe(event){
     event.preventDefault()
-    fetch(`/api/v1/recipes/${recipe_id}`, {
-      method: 'POST',
+    fetch(`/api/v1/recipes/${this.state.editRecipe}`, {
+      method: 'PUT',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -320,7 +317,7 @@ class Dashboard extends Component {
           s9Temp: this.state.s9Temp,
           s9Time: this.state.s9Time,
           s10Temp: this.state.s10Temp,
-          s10Time: this.state.s10Time
+          s10Time: this.state.s10Time,
         }
       })
     })
@@ -369,30 +366,30 @@ class Dashboard extends Component {
         s9Time: this.state.s9Time || 0,
         s10Temp: this.state.s10Temp || 0,
         s10Time: this.state.s10Time || 0,
-        // editRecipe: this.state.editRecipe
+        editRecipe: this.state.editRecipe
       }
     }
     return(
       <div className="userContent" >
         <div>
-          Welcome back, {this.state.user.username || ""}.
+          Welcome back{`, ${this.state.user.username}` || "!"}.
         </div>
         <div className="brewNext">
           Currently selected recipe: {this.state.user.brewNextName}
         </div>
-        <Link to="/dashboard/recipes">View Recipes</Link>-
-        <Link to="/dashboard/newRecipe">New Recipe</Link>
         <RecipesContainer
           loadRecipeHandler={this.loadRecipeHandler}
           recipes={this.state.recipes}
           deleteRecipe={this.deleteRecipe}
           brewNextOnChangeHandler={this.brewNextOnChangeHandler}
+          user={this.state.user}
         />
         <hr/>
         <RecipeForm
           clearForm={this.clearForm}
           createRecipe={this.createRecipe}
           recipeOnChangeHandler={this.recipeOnChangeHandler}
+          updateRecipe={this.updateRecipe}
           recipe={makePayload()}
         />
       </div>

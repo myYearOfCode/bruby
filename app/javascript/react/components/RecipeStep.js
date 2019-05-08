@@ -14,7 +14,7 @@ const RecipeStep = props => {
             name={`s${props.step_num}Time`}
             className="element text time digit_box medium"
             type="text"
-            defaultValue={props.time_val}
+            value={props.time_val}
             onChange={props.recipeOnChangeHandler}
           />
           <label className="label" htmlFor={`s${props.step_num}Temp`}>
@@ -25,7 +25,7 @@ const RecipeStep = props => {
             name={`s${props.step_num}Temp`}
             className="element text temp digit_box medium"
             type="text"
-            defaultValue={props.temp_val}
+            value={props.temp_val}
             onChange={props.recipeOnChangeHandler}
           />
         </div>

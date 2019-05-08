@@ -44,6 +44,44 @@ class Api::V1::RecipesController < ApplicationController
     end
   end
 
+  def update
+    if current_user
+      # binding.pry
+      # if current_user.recipes.include? recipe_params[:id]
+      recipe = Recipe.find(params[:id])
+      if recipe.update(
+        name:   recipe_params[:name],
+        s1Temp: recipe_params[:s1Temp],
+        s1Time: recipe_params[:s1Time],
+        s2Temp: recipe_params[:s2Temp],
+        s2Time: recipe_params[:s2Time],
+        s3Temp: recipe_params[:s3Temp],
+        s3Time: recipe_params[:s3Time],
+        s4Temp: recipe_params[:s4Temp],
+        s4Time: recipe_params[:s4Time],
+        s5Temp: recipe_params[:s5Temp],
+        s5Time: recipe_params[:s5Time],
+        s6Temp: recipe_params[:s6Temp],
+        s6Time: recipe_params[:s6Time],
+        s7Temp: recipe_params[:s7Temp],
+        s7Time: recipe_params[:s7Time],
+        s8Temp: recipe_params[:s8Temp],
+        s8Time: recipe_params[:s8Time],
+        s9Temp: recipe_params[:s9Temp],
+        s9Time: recipe_params[:s9Time],
+        s10Temp: recipe_params[:s10Temp],
+        s10Time: recipe_params[:s10Time]
+        )
+        render json: { recipes: current_user.recipes }
+      else
+        errors = recipe.errors.full_messages.join(', ❌').prepend('❌')
+        render json: { error: errors }
+      end
+    else
+      render json: {error: "you must be signed in to create a recipe."}
+    end
+  end
+
   def destroy
     if current_user
       if Recipe.find(destroy_params[:id]).delete
@@ -78,6 +116,11 @@ class Api::V1::RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, :s1Temp, :s1Time, :s2Temp, :s2Time, :s3Temp, :s3Time, :s4Temp, :s4Time, :s5Temp, :s5Time, :s6Temp, :s6Time, :s7Temp, :s7Time, :s8Temp, :s8Time, :s9Temp, :s9Time, :s10Temp, :s10Time)
   end
+
+  def update_params
+    params.require(:recipe).permit(:name, :s1Temp, :s1Time, :s2Temp, :s2Time, :s3Temp, :s3Time, :s4Temp, :s4Time, :s5Temp, :s5Time, :s6Temp, :s6Time, :s7Temp, :s7Time, :s8Temp, :s8Time, :s9Temp, :s9Time, :s10Temp, :s10Time)
+  end
+
   def show_params
     params.permit(:id)
   end

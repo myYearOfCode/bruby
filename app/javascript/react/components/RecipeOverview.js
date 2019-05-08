@@ -2,7 +2,7 @@ import React from 'react';
 
 const RecipeOverview = (props) => {
   return(
-    <div className="recipeOverview">
+    <div className={`recipeOverview ${props.user.brewNext == props.recipe.id ? "selectedRecipe" : ""}`}>
       <div className="recipeOverviewName">
         {props.recipe.name}
       </div>

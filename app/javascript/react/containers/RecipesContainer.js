@@ -13,6 +13,7 @@ class RecipesContainer extends Component {
       return this.props.recipes.map((recipe) => {
         return (
           <RecipeOverview
+            user={this.props.user}
             recipe={recipe}
             key={recipe.id}
             deleteRecipe={this.props.deleteRecipe}
