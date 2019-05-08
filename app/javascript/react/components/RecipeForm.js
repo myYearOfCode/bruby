@@ -43,12 +43,24 @@ class RecipeForm extends Component {
                     onChange={this.props.recipeOnChangeHandler}
                   />
                 </div>
-                {recipeSteps()}
+                { recipeSteps() }
               </ul>
             </div>
             <div className="button-group">
-              <button className="button" type="submit" value="Submit"> Submit </button>
-              <button className="button" onClick={this.props.clearForm} value="Clear">Clear</button>
+              <button
+                className="button"
+                type="submit"
+                value="Submit"
+              >
+
+              </button>
+              <button
+                className="button"
+                onClick={this.props.clearForm}
+                value="Clear"
+              >
+              Clear
+              </button>
             </div>
           </form>
         </div>
@@ -56,5 +68,5 @@ class RecipeForm extends Component {
     )
   }
 }
-
+                // { this.props.recipe.editRecipe ? "Update" : "Submit" }
 export default RecipeForm

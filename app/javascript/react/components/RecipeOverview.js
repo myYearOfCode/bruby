@@ -7,7 +7,13 @@ const RecipeOverview = (props) => {
         {props.recipe.name}
       </div>
       <div className='recipeButtons'>
-        <button className='recipeButton'>edit</button>
+        <button
+          className='recipeButton'
+          value={props.recipe.id}
+          onClick={props.loadRecipeHandler}
+        >
+          edit
+        </button>
         <button
           className='recipeButton'
           value={props.recipe.id}

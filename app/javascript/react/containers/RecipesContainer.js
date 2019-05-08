@@ -17,6 +17,7 @@ class RecipesContainer extends Component {
             key={recipe.id}
             deleteRecipe={this.props.deleteRecipe}
             brewNextOnChangeHandler={this.props.brewNextOnChangeHandler}
+            loadRecipeHandler={this.props.loadRecipeHandler}
           />
         )
       })
