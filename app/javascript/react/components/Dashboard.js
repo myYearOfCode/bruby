@@ -42,8 +42,9 @@ class Dashboard extends Component {
       recipeExpanded: 0,
       recipesFormExpanded: "recipesFormExpanded",
       userInfoExpanded: "userDashboard is-active",
-      nowBrewing: true,
+      nowBrewing: false,
       nowBrewingSesId: "",
+      nowBrewingSession: {},
     }
     this.createRecipe = this.createRecipe.bind(this);
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
@@ -55,6 +56,7 @@ class Dashboard extends Component {
     this.viewRecipeHandler = this.viewRecipeHandler.bind(this);
     this.toggleRecipeEditor = this.toggleRecipeEditor.bind(this);
     this.toggleUserExpanded = this.toggleUserExpanded.bind(this);
+    this.toggleNowBrewing = this.toggleNowBrewing.bind(this);
   }
 
   clearForm(event) {
@@ -106,7 +108,6 @@ class Dashboard extends Component {
       })
     })
     .then(response => {
-      console.log(response)
       if (response.ok) {
         return response;
       } else {
@@ -140,7 +141,6 @@ class Dashboard extends Component {
       })
     })
     .then(response => {
-      console.log(response)
       if (response.ok) {
         return response;
       } else {
@@ -237,7 +237,6 @@ class Dashboard extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body.user)
       this.setState({user: body.user})
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
@@ -271,7 +270,6 @@ class Dashboard extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({sessions: body})
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
@@ -312,7 +310,6 @@ class Dashboard extends Component {
       })
     })
     .then(response => {
-      console.log(response)
       if (response.ok) {
         return response;
       } else {
@@ -367,7 +364,6 @@ class Dashboard extends Component {
       })
     })
     .then(response => {
-      console.log(response)
       if (response.ok) {
         return response;
       } else {
@@ -392,6 +388,43 @@ class Dashboard extends Component {
       this.setState({recipesFormExpanded: "recipesFormExpanded is-active" })
     } else {
       this.setState({recipesFormExpanded: "recipesFormExpanded"})
+    }
+  }
+
+  toggleNowBrewing(event) {
+    event.preventDefault()
+    this.fetchNewestSession()
+    this.setState({nowBrewing: !this.state.nowBrewing})
+  }
+
+  fetchNewestSession(){
+    fetch('api/v1/sessions')
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText}) ,`
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      let sesId=Object.keys(body).pop()
+      this.setState({
+        nowBrewingSesId: sesId,
+        nowBrewingSession: body[sesId]
+      })
+    })
+    .catch(error => console.error( `Error in fetch: ${error.message}` ));
+  }
+
+  showNowBrewing() {
+    if (this.state.nowBrewing){
+      return <NowBrewing
+        nowBrewingSesId={this.state.nowBrewingSesId}
+        session={this.state.nowBrewingSession}
+      />
     }
   }
 
@@ -423,14 +456,11 @@ class Dashboard extends Component {
       }
     }
 
-    let showNowBrewing = () => {
-      if (this.state.nowBrewing){
-        return <NowBrewing />
-      }
-    }
     return(
       <div className="userContent" >
-        {showNowBrewing()}
+        <button onClick={this.toggleNowBrewing}>Show live stats</button>
+        {this.showNowBrewing()}
+
         <User
           userInfoExpanded={this.state.userInfoExpanded}
           toggleUserExpanded={this.toggleUserExpanded}
@@ -454,11 +484,11 @@ class Dashboard extends Component {
           recipesFormExpanded={this.state.recipesFormExpanded}
           toggleRecipeEditor={this.toggleRecipeEditor}
         />
-        <Brew sessions={this.state.sessions}/>
-        <NowBrewing />
       </div>
     )
   }
 }
+// <Brew sessions={this.state.sessions}/>
+// <NowBrewing />
 
 export default Dashboard;
