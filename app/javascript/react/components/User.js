@@ -10,41 +10,59 @@ class User extends Component {
   render () {
     return(
       <div className="userInfo">
-        <div
-          onClick={this.props.toggleUserExpanded}
-        >
+        <div onClick={this.props.toggleUserExpanded}>
           <h1 className="scriptHeader">
             User Info
           </h1>
         </div>
-          <div className={this.props.userInfoExpanded}
-        >
-        <div className="welcomeBackText">
-          Welcome back{`, ${this.props.user.username}!` || "!"}.
-        </div>
-          <ul>
-            <li>
-              this will have your stats using big numbers whenever possible.
-            </li>
-            <li>
-              # of brews
-            </li>
-            <li>
-              # of recipes
-            </li>
-            <li>
-              hours of brewing
-            </li>
-            <li>
-              gallons of beer
-            </li>
-            <div classname="statsWrapper">
-            <div classname="leftSide">
+        <div className={this.props.userInfoExpanded}>
+          <div className="welcomeBackText">
+            Welcome back{`, ${this.props.user.username}!` || "!"}.
+          </div>
+          <div className="statsWrapper">
+            <div className="leftSide">
+              <div className="upperLeft">
+                <div className="numBrews big">
+                  10
+                </div>
+                <div className="numBrews description">
+                  Brews
+                  </div>
+              </div>
+              <div className="upperRight">
+                <div className="numRecipes big">
+                  8
+                </div>
+                <div className="numRecipes description">
+                  recipes
+                </div>
+              </div>
+              <div className="bottomLeft">
+                <div className="numHours big">
+                  10
+                </div>
+                <div className="numBrews description">
+                  Hours Brewing
+                </div>
+              </div>
+              <div className="bottomRight">
+                <div className="numRecipes big">
+                  8
+                </div>
+                <div className="numRecipes description">
+                  Liters
+                </div>
+              </div>
             </div>
-            <div classname="rightSide">
+            <div className="rightSide">
+              <div className="numSomething big">
+                8
+              </div>
+              <div className="numSomething description">
+                Liters
+              </div>
             </div>
-            </div>
-          </ul>
+          </div>
         </div>
       </div>
     )

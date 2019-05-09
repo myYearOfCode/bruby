@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :recipes, only: [:index, :create, :update, :destroy, :show]
       resources :users, only: [:index, :update]
       resources :sessions, only: [:index, :show]
+      resources :geo, only: [:index]
     end
   end
 
