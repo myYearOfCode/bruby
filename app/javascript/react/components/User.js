@@ -8,6 +8,8 @@ class User extends Component {
   }
 
   render () {
+
+
     return(
       <div className="userInfo">
         <div onClick={this.props.toggleUserExpanded}>
@@ -15,6 +17,7 @@ class User extends Component {
             User Info
           </h1>
         </div>
+
         <div className={this.props.userInfoExpanded}>
           <div className="welcomeBackText">
             Welcome back{`, ${this.props.user.username}!` || "!"}.
