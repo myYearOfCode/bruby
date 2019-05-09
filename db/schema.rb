@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 2019_05_09_021805) do
     t.string "machine"
     t.integer "brewNext"
     t.string "brewNextName"
-    t.decimal "latitude", precision: 10, scale: 6
-    t.decimal "longitude", precision: 10, scale: 6
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lon", precision: 10, scale: 6
     t.string "ip_address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

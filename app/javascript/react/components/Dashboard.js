@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import RecipesContainer from '../containers/RecipesContainer'
 import Brew from './Brew'
 import User from './User'
+import NowBrewing from './NowBrewing'
 
 class Dashboard extends Component {
   constructor(props){
@@ -40,7 +41,9 @@ class Dashboard extends Component {
       editRecipe: null,
       recipeExpanded: 0,
       recipesFormExpanded: "recipesFormExpanded",
-      userInfoExpanded: "userDashboard is-active"
+      userInfoExpanded: "userDashboard is-active",
+      nowBrewing: true,
+      nowBrewingSesId: "",
     }
     this.createRecipe = this.createRecipe.bind(this);
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
@@ -391,6 +394,7 @@ class Dashboard extends Component {
       this.setState({recipesFormExpanded: "recipesFormExpanded"})
     }
   }
+
   render () {
     let makePayload = () => {
       return {
@@ -418,8 +422,15 @@ class Dashboard extends Component {
         editRecipe: this.state.editRecipe
       }
     }
+
+    let showNowBrewing = () => {
+      if (this.state.nowBrewing){
+        return <NowBrewing />
+      }
+    }
     return(
       <div className="userContent" >
+        {showNowBrewing()}
         <User
           userInfoExpanded={this.state.userInfoExpanded}
           toggleUserExpanded={this.toggleUserExpanded}
@@ -444,6 +455,7 @@ class Dashboard extends Component {
           toggleRecipeEditor={this.toggleRecipeEditor}
         />
         <Brew sessions={this.state.sessions}/>
+        <NowBrewing />
       </div>
     )
   }
