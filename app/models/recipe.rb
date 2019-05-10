@@ -23,4 +23,6 @@ class Recipe < ApplicationRecord
   validates :s9Time, presence: true, numericality: true
   validates :s10Temp, presence: true, numericality: true
   validates :s10Time, presence: true, numericality: true
+
+  mount_uploader :profile_photo, ProfilePhotoUploader
 end

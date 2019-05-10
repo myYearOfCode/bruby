@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import RecipeStep from './RecipeStep'
+import Dropzone from 'react-dropzone';
 
 class RecipeForm extends Component {
   constructor(props){
     super(props);
     this.state = {
-      // recipesFormClass: "recipesFormClass"
+      file: []
     }
     // this.toggleSelected = this.toggleSelected.bind(this);
   }
@@ -33,10 +34,17 @@ class RecipeForm extends Component {
   //     this.setState({recipesFormClass: "recipesFormClass"})
   //   }
   // }
+  onDrop(file) {
+    if(file.length == 1) {
+      this.setState({ file: file })
+    } else {
+      this.setState({ message: 'You can only upload one photo per board game.'})
+    }
+  }
 
   render () {
 
-
+  console.log(this.state)
 
     return (
       <div className="recipeBuilder">
@@ -64,6 +72,7 @@ class RecipeForm extends Component {
                 </div>
                 { this.recipeSteps() }
               </ul>
+
               <div className="button-group">
                 <button
                   className="button"
@@ -89,3 +98,20 @@ class RecipeForm extends Component {
 }
 
 export default RecipeForm
+
+//
+// <section>
+//   <div className="dropzone">
+//     <Dropzone onDrop={this.onDrop}>
+//       <p>Try dropping some files here, or click to select files to upload.</p>
+//     </Dropzone>
+//   </div>
+//   <aside>
+//     <h2>Dropped files</h2>
+//     <ul>
+//       {
+//         this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+//       }
+//     </ul>
+//   </aside>
+// </section>

@@ -7,12 +7,13 @@ import RecipesContainer from './RecipesContainer'
 
 export const App = (props) => {
   return (
-  <Router history={browserHistory}>
-    <Route path="/dashboard" component={Dashboard}/>
-    <Route path="/dashboard/recipes" component={RecipesContainer}/>
-    <Route path="/dashboard/newRecipe" component={RecipeForm}/>
-  </Router>
+    <Dashboard />
   )
 }
 
+// <Router history={browserHistory}>
+//   <Route path="/dashboard" component={Dashboard}/>
+//   <Route path="/dashboard/recipes" component={RecipesContainer}/>
+//   <Route path="/dashboard/newRecipe" component={RecipeForm}/>
+// </Router>
 export default App
