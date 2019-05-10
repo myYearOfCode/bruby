@@ -1,7 +1,8 @@
 class BrewLogController < ApplicationController
   def index
     newLog = BrewLog.new(brew_log_params)
-    newLog[:brew_id] = current_user.brewNext
+    user = User.where(machine: brew_log_params[:uid])
+    newLog[:brew_id] = user.brewNext
     newLog.save
     render plain: "##"
   end
