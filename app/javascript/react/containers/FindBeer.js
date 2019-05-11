@@ -45,7 +45,7 @@ class findBrewery extends Component {
     return(
       <div>
         <form>
-          <input name="state" > <input/>
+          <input name="state" > </input>
         </form>
       </div>
     )
