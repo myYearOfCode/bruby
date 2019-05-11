@@ -20,6 +20,15 @@
     height: 300px;
 }
 
+.thumbnail{
+  width: 100px;
+  height:100px;
+}
+
+.recipeThumbnail{
+  max-width:100%;
+  max-height:100%;
+}
 .recipeButtons {
   display: flex;
   flex-direction: row;

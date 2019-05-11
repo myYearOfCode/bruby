@@ -1,6 +1,13 @@
 import React from 'react';
 
 const RecipeOverview = (props) => {
+  let showImage = () => {
+    if (props.recipe.profile_photo){
+      return <div className="thumbnail">
+        <img className="recipeThumbnail" src={props.recipe.profile_photo}/>
+      </div>
+    }
+  }
   return(
     <div className={`recipeOverview ${props.recipeExpanded == props.recipe.id ? "selectedRecipe is-active" : ""}`}>
       <div
@@ -9,9 +16,12 @@ const RecipeOverview = (props) => {
         value={props.recipe.id}
         name={props.recipe.id}
       >
-        {props.recipe.name}
-        {props.recipe.style}
+        <div>
+          {props.recipe.name} • ({props.recipe.style || "uncategorized"})
+        </div>
       </div>
+      {showImage()}
+      <div>description:{props.recipe.description}</div>
       <div className='recipeRightRide'>
         <div className='recipeButtons'>
           <button

@@ -27,6 +27,7 @@ class Api::V1::RecipesController < ApplicationController
   def create
     if current_user
       newRecipe = Recipe.new(recipe_params)
+      binding.pry
       if newRecipe.save
         newBrew = Brew.new(recipe: newRecipe, user: current_user)
         if newBrew.save
@@ -70,7 +71,10 @@ class Api::V1::RecipesController < ApplicationController
         s9Temp: recipe_params[:s9Temp],
         s9Time: recipe_params[:s9Time],
         s10Temp: recipe_params[:s10Temp],
-        s10Time: recipe_params[:s10Time]
+        s10Time: recipe_params[:s10Time],
+        description: recipe_params[:description],
+        style: recipe_params[:style],
+        yeast: recipe_params[:yeast]
         )
         render json: { recipes: current_user.recipes }
       else
@@ -114,11 +118,11 @@ class Api::V1::RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :s1Temp, :s1Time, :s2Temp, :s2Time, :s3Temp, :s3Time, :s4Temp, :s4Time, :s5Temp, :s5Time, :s6Temp, :s6Time, :s7Temp, :s7Time, :s8Temp, :s8Time, :s9Temp, :s9Time, :s10Temp, :s10Time)
+    params.require(:recipe).permit(:name, :s1Temp, :s1Time, :s2Temp, :s2Time, :s3Temp, :s3Time, :s4Temp, :s4Time, :s5Temp, :s5Time, :s6Temp, :s6Time, :s7Temp, :s7Time, :s8Temp, :s8Time, :s9Temp, :s9Time, :s10Temp, :s10Time, :description, :yeast, :style)
   end
 
   def update_params
-    params.require(:recipe).permit(:name, :s1Temp, :s1Time, :s2Temp, :s2Time, :s3Temp, :s3Time, :s4Temp, :s4Time, :s5Temp, :s5Time, :s6Temp, :s6Time, :s7Temp, :s7Time, :s8Temp, :s8Time, :s9Temp, :s9Time, :s10Temp, :s10Time)
+    params.require(:recipe).permit(:name, :s1Temp, :s1Time, :s2Temp, :s2Time, :s3Temp, :s3Time, :s4Temp, :s4Time, :s5Temp, :s5Time, :s6Temp, :s6Time, :s7Temp, :s7Time, :s8Temp, :s8Time, :s9Temp, :s9Time, :s10Temp, :s10Time, :description, :yeast, :style)
   end
 
   def show_params
