@@ -8,6 +8,10 @@ input {
   max-width: 200px;
 }
 
+.text_input{
+  width: 100%;
+}
+
 .stepName {
   font-size: 2em;
   margin-bottom: 0;

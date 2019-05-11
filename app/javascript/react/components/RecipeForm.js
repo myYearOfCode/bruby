@@ -14,6 +14,7 @@ class RecipeForm extends Component {
     let recipeStepNames = ["Preparing to Brew","Heating","Dough In","Mash 1","Mash 2","Mash Out","Hops 1","Hops 2","Hops 3","Hops 4"]
     return recipeStepNames.map((stepName, index) => {
       return (
+
         <RecipeStep
           stepName={stepName}
           recipeOnChangeHandler={this.props.recipeOnChangeHandler}
@@ -22,6 +23,7 @@ class RecipeForm extends Component {
           temp_val={this.props.recipe[`s${index+1}Temp`] || 0}
           key={`step${index+1}`}
         />
+
       )
     })
   }
@@ -35,16 +37,11 @@ class RecipeForm extends Component {
   // }
 
   render () {
-
-
-
     return (
       <div className="recipeBuilder">
         <div id="form_container">
-          <form onSubmit={this.props.recipe.editRecipe !== null ? this.props.updateRecipe : this.props.createRecipe }>
-            <div
-              onClick={this.props.toggleRecipeEditor}
-            >
+          <form onSubmit={this.props.editRecipe !== null ? this.props.updateRecipe : this.props.createRecipe }>
+            <div onClick={this.props.toggleRecipeEditor}>
             <h3 className="scriptHeader">
               Recipe Builder
             </h3>
@@ -52,15 +49,57 @@ class RecipeForm extends Component {
             <div className={this.props.recipesFormExpanded}>
               <ul>
                 <div className="step_wrapper">
-                  <label className="label" htmlFor="recipeName">Recipe Name </label>
-                  <input
-                    id="name"
-                    name="name"
+                  <div className="text_input">
+                    <label className="label" htmlFor="recipeName">Recipe Name </label>
+                    <input
+                      id="name"
+                      name="name"
+                      className="element text medium"
+                      type="text"
+                      value={this.props.recipe.name || ""}
+                      onChange={this.props.recipeOnChangeHandler}
+                    />
+                  </div>
+                </div>
+                <div className="step_wrapper">
+                  <div className="text_input">
+                    <label className="label" htmlFor="style">Style </label>
+                    <input
+                      id="style"
+                      name="style"
+                      className="element text medium"
+                      type="text"
+                      value={this.props.recipe.style || ""}
+                      onChange={this.props.recipeOnChangeHandler}
+                    />
+                  </div>
+                </div>
+                <div className="step_wrapper">
+                  <div className="text_input">
+                    <label className="label" htmlFor="yeast">Yeast </label>
+                    <input
+                      id="yeast"
+                      name="yeast"
+                      className="element text medium"
+                      type="text"
+                      value={this.props.recipe.yeast || ""}
+                      onChange={this.props.recipeOnChangeHandler}
+                    />
+                  </div>
+                </div>
+                <div className="step_wrapper">
+                  <div className="text_input">
+                    <label className="label" htmlFor="description">Description </label>
+                    <textarea
+                    rows="4"
+                    id="description"
+                    name="description"
                     className="element text medium"
                     type="text"
-                    value={this.props.recipe.name || ""}
+                    value={this.props.recipe.description || ""}
                     onChange={this.props.recipeOnChangeHandler}
-                  />
+                    />
+                  </div>
                 </div>
                 { this.recipeSteps() }
               </ul>
@@ -70,7 +109,7 @@ class RecipeForm extends Component {
                   type="submit"
                   value="Submit"
                 >
-                  { this.props.recipe.editRecipe !== null ? "Update" : "Submit" }
+                  { this.props.editRecipe !== null ? "Update" : "Submit" }
                 </button>
                 <button
                   className="button"

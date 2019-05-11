@@ -85,6 +85,9 @@ class Dashboard extends Component {
       s9Time: 0,
       s10Temp: 0,
       s10Time: 0,
+      description: "",
+      yeast: "",
+      style: "",
       editRecipe: null
     })
   }
@@ -192,36 +195,32 @@ class Dashboard extends Component {
     .then(body => {
       this.setState({
         name:   body.recipe.name,
-        s1Temp: body.recipe.s1Temp.toString(),
-        s1Time: body.recipe.s1Time.toString(),
-        s2Temp: body.recipe.s2Temp.toString(),
-        s2Time: body.recipe.s2Time.toString(),
-        s3Temp: body.recipe.s3Temp.toString(),
-        s3Time: body.recipe.s3Time.toString(),
-        s4Temp: body.recipe.s4Temp.toString(),
-        s4Time: body.recipe.s4Time.toString(),
-        s5Temp: body.recipe.s5Temp.toString(),
-        s5Time: body.recipe.s5Time.toString(),
-        s6Temp: body.recipe.s6Temp.toString(),
-        s6Time: body.recipe.s6Time.toString(),
-        s7Temp: body.recipe.s7Temp.toString(),
-        s7Time: body.recipe.s7Time.toString(),
-        s8Temp: body.recipe.s8Temp.toString(),
-        s8Time: body.recipe.s8Time.toString(),
-        s9Temp: body.recipe.s9Temp.toString(),
-        s9Time: body.recipe.s9Time.toString(),
-        s10Temp: body.recipe.s10Temp.toString(),
-        s10Time: body.recipe.s10Time
+        s1Temp: body.recipe.s1Temp,
+        s1Time: body.recipe.s1Time,
+        s2Temp: body.recipe.s2Temp,
+        s2Time: body.recipe.s2Time,
+        s3Temp: body.recipe.s3Temp,
+        s3Time: body.recipe.s3Time,
+        s4Temp: body.recipe.s4Temp,
+        s4Time: body.recipe.s4Time,
+        s5Temp: body.recipe.s5Temp,
+        s5Time: body.recipe.s5Time,
+        s6Temp: body.recipe.s6Temp,
+        s6Time: body.recipe.s6Time,
+        s7Temp: body.recipe.s7Temp,
+        s7Time: body.recipe.s7Time,
+        s8Temp: body.recipe.s8Temp,
+        s8Time: body.recipe.s8Time,
+        s9Temp: body.recipe.s9Temp,
+        s9Time: body.recipe.s9Time,
+        s10Temp: body.recipe.s10Temp,
+        s10Time: body.recipe.s10Time,
+        description: body.recipe.description,
+        style: body.recipe.style,
+        yeast: body.recipe.yeast
       })
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
-
-    // X api call for recipe.
-    // X set state to all recipe steps
-    // change 'submit' button in form to 'update'
-    // set updateRecipe to the onClick for the update button
-    // change interface somehow as well.
-    // use updateRecipe()
   }
 
   componentDidMount(){
@@ -283,31 +282,7 @@ class Dashboard extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        recipe: {
-          name:   this.state.name,
-          s1Temp: this.state.s1Temp,
-          s1Time: this.state.s1Time,
-          s2Temp: this.state.s2Temp,
-          s2Time: this.state.s2Time,
-          s3Temp: this.state.s3Temp,
-          s3Time: this.state.s3Time,
-          s4Temp: this.state.s4Temp,
-          s4Time: this.state.s4Time,
-          s5Temp: this.state.s5Temp,
-          s5Time: this.state.s5Time,
-          s6Temp: this.state.s6Temp,
-          s6Time: this.state.s6Time,
-          s7Temp: this.state.s7Temp,
-          s7Time: this.state.s7Time,
-          s8Temp: this.state.s8Temp,
-          s8Time: this.state.s8Time,
-          s9Temp: this.state.s9Temp,
-          s9Time: this.state.s9Time,
-          s10Temp: this.state.s10Temp,
-          s10Time: this.state.s10Time
-        }
-      })
+      body: JSON.stringify(this.stateToRecipeObject())
     })
     .then(response => {
       if (response.ok) {
@@ -329,6 +304,37 @@ class Dashboard extends Component {
     });
   }
 
+  stateToRecipeObject(){
+    return {
+      recipe: {
+        name:   this.state.name || 0,
+        s1Temp: this.state.s1Temp || 0,
+        s1Time: this.state.s1Time || 0,
+        s2Temp: this.state.s2Temp || 0,
+        s2Time: this.state.s2Time || 0,
+        s3Temp: this.state.s3Temp || 0,
+        s3Time: this.state.s3Time || 0,
+        s4Temp: this.state.s4Temp || 0,
+        s4Time: this.state.s4Time || 0,
+        s5Temp: this.state.s5Temp || 0,
+        s5Time: this.state.s5Time || 0,
+        s6Temp: this.state.s6Temp || 0,
+        s6Time: this.state.s6Time || 0,
+        s7Temp: this.state.s7Temp || 0,
+        s7Time: this.state.s7Time || 0,
+        s8Temp: this.state.s8Temp || 0,
+        s8Time: this.state.s8Time || 0,
+        s9Temp: this.state.s9Temp || 0,
+        s9Time: this.state.s9Time || 0,
+        s10Temp: this.state.s10Temp || 0,
+        s10Time: this.state.s10Time || 0,
+        description: this.state.description || "",
+        style: this.state.style || "",
+        yeast: this.state.yeast || "",
+      }
+    }
+  }
+
   updateRecipe(event){
     event.preventDefault()
     fetch(`/api/v1/recipes/${this.state.editRecipe}`, {
@@ -337,31 +343,7 @@ class Dashboard extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        recipe: {
-          name:   this.state.name,
-          s1Temp: this.state.s1Temp,
-          s1Time: this.state.s1Time,
-          s2Temp: this.state.s2Temp,
-          s2Time: this.state.s2Time,
-          s3Temp: this.state.s3Temp,
-          s3Time: this.state.s3Time,
-          s4Temp: this.state.s4Temp,
-          s4Time: this.state.s4Time,
-          s5Temp: this.state.s5Temp,
-          s5Time: this.state.s5Time,
-          s6Temp: this.state.s6Temp,
-          s6Time: this.state.s6Time,
-          s7Temp: this.state.s7Temp,
-          s7Time: this.state.s7Time,
-          s8Temp: this.state.s8Temp,
-          s8Time: this.state.s8Time,
-          s9Temp: this.state.s9Temp,
-          s9Time: this.state.s9Time,
-          s10Temp: this.state.s10Temp,
-          s10Time: this.state.s10Time,
-        }
-      })
+      body: JSON.stringify(this.stateToRecipeObject())
     })
     .then(response => {
       if (response.ok) {
@@ -397,6 +379,15 @@ class Dashboard extends Component {
     this.setState({nowBrewing: !this.state.nowBrewing})
   }
 
+  showNowBrewing() {
+    if (this.state.nowBrewing){
+      return <NowBrewing
+        nowBrewingSesId={this.state.nowBrewingSesId}
+        session={this.state.nowBrewingSession}
+      />
+    }
+  }
+
   fetchNewestSession(){
     fetch('api/v1/sessions')
     .then(response => {
@@ -419,43 +410,7 @@ class Dashboard extends Component {
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
   }
 
-  showNowBrewing() {
-    if (this.state.nowBrewing){
-      return <NowBrewing
-        nowBrewingSesId={this.state.nowBrewingSesId}
-        session={this.state.nowBrewingSession}
-      />
-    }
-  }
-
   render () {
-    let makePayload = () => {
-      return {
-        name:   this.state.name || 0,
-        s1Temp: this.state.s1Temp || 0,
-        s1Time: this.state.s1Time || 0,
-        s2Temp: this.state.s2Temp || 0,
-        s2Time: this.state.s2Time || 0,
-        s3Temp: this.state.s3Temp || 0,
-        s3Time: this.state.s3Time || 0,
-        s4Temp: this.state.s4Temp || 0,
-        s4Time: this.state.s4Time || 0,
-        s5Temp: this.state.s5Temp || 0,
-        s5Time: this.state.s5Time || 0,
-        s6Temp: this.state.s6Temp || 0,
-        s6Time: this.state.s6Time || 0,
-        s7Temp: this.state.s7Temp || 0,
-        s7Time: this.state.s7Time || 0,
-        s8Temp: this.state.s8Temp || 0,
-        s8Time: this.state.s8Time || 0,
-        s9Temp: this.state.s9Temp || 0,
-        s9Time: this.state.s9Time || 0,
-        s10Temp: this.state.s10Temp || 0,
-        s10Time: this.state.s10Time || 0,
-        editRecipe: this.state.editRecipe
-      }
-    }
-
     return(
       <div className="userContent" >
         <button onClick={this.toggleNowBrewing}>Show live stats</button>
@@ -480,7 +435,8 @@ class Dashboard extends Component {
           createRecipe={this.createRecipe}
           recipeOnChangeHandler={this.recipeOnChangeHandler}
           updateRecipe={this.updateRecipe}
-          recipe={makePayload()}
+          recipe={this.stateToRecipeObject().recipe}
+          editRecipe={this.state.editRecipe}
           recipesFormExpanded={this.state.recipesFormExpanded}
           toggleRecipeEditor={this.toggleRecipeEditor}
         />
