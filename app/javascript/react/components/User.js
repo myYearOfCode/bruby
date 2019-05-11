@@ -18,7 +18,7 @@ class User extends Component {
           </h1>
         </div>
 
-        <div className={this.props.userInfoExpanded}>
+        <div>
           <div className="welcomeBackText">
             Welcome back{`, ${this.props.user.username}!` || "!"}.
           </div>

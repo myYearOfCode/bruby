@@ -1,18 +1,22 @@
-import React from 'react'
-import { Router, browserHistory, Route, IndexRoute } from 'react-router';
+import React from "react";
+// import { Router, browserHistory, Route, IndexRoute } from 'react-router';
+import { render } from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import Dashboard from '../components/Dashboard'
-import RecipeForm from '../components/RecipeForm'
-import RecipesContainer from './RecipesContainer'
+import Dashboard from "../components/Dashboard";
+import RecipeForm from "../components/RecipeForm";
+import RecipesContainer from "./RecipesContainer";
 
-export const App = (props) => {
+import Header from "./Header"
+import ContentContainer from "./ContentContainer"
+
+export const App = props => {
   return (
-  <Router history={browserHistory}>
-    <Route path="/dashboard" component={Dashboard}/>
-    <Route path="/dashboard/recipes" component={RecipesContainer}/>
-    <Route path="/dashboard/newRecipe" component={RecipeForm}/>
-  </Router>
-  )
-}
+    <Router>
+      <Header />
+      <ContentContainer />
+    </Router>
+  );
+};
 
-export default App
+export default App;

@@ -41,12 +41,12 @@ class RecipeForm extends Component {
       <div className="recipeBuilder">
         <div id="form_container">
           <form onSubmit={this.props.editRecipe !== null ? this.props.updateRecipe : this.props.createRecipe }>
-            <div onClick={this.props.toggleRecipeEditor}>
+            <div >
             <h3 className="scriptHeader">
               Recipe Builder
             </h3>
             </div>
-            <div className={this.props.recipesFormExpanded}>
+            <div>
               <ul>
                 <div className="step_wrapper">
                   <div className="text_input">
