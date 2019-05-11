@@ -23,15 +23,15 @@
 //autocomplete
 //https://api.openbrewerydb.org/breweries/autocomplete?query=dog
 
-how it work
-enter in state. enable geolocation
-or do it based on ip.
-// https://github.com/alexreisner/geocoder
-crawl the db in the bkg. however I can. save it to json.
-if the state isn't in the db then start crawling the State
-make an entry for every brewery found.
-run a search for the city targeted in the geolocation first.
-calculate
+// how it work
+// enter in state. enable geolocation
+// or do it based on ip.
+// // https://github.com/alexreisner/geocoder
+// crawl the db in the bkg. however I can. save it to json.
+// if the state isn't in the db then start crawling the State
+// make an entry for every brewery found.
+// run a search for the city targeted in the geolocation first.
+// calculate
 import React, { Component } from 'react';
 
 class findBrewery extends Component {
@@ -45,7 +45,7 @@ class findBrewery extends Component {
     return(
       <div>
         <form>
-          <input name="state">
+          <input name="state" > </input>
         </form>
       </div>
     )
