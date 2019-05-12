@@ -1,6 +1,7 @@
 {
   "name": "bruby",
   "private": true,
+  "proxy": "http://localhost:3000/",
   "engines": {
     "node": ">=6.0.0",
     "yarn": ">=0.25.2"
@@ -9,14 +10,17 @@
     "@rails/webpacker": "3.5",
     "babel-preset-react": "~6.24.1",
     "prop-types": "~15.6.0",
-    "react": "~15.4.2",
-    "react-dom": "~15.4.2",
-    "react-router": "3.2.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-transition-group": "^4.0.1",
     "redbox-react": "1.6.0"
   },
   "devDependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
-    "enzyme": "~2.9.1",
+    "enzyme": "^2.9.1",
+    "enzyme-adapter-react-16": "^1.12.1",
     "fetch-mock": "5",
     "fetch-ponyfill": "^6.0.2",
     "jasmine-core": "~2.4.1",
