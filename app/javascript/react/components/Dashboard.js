@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router'
+
 import RecipeForm from './RecipeForm'
-import { Link } from 'react-router'
 import RecipesContainer from '../containers/RecipesContainer'
 import Brew from './Brew'
 import User from './User'
@@ -54,9 +55,57 @@ class Dashboard extends Component {
     this.loadRecipeHandler = this.loadRecipeHandler.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this);
     this.viewRecipeHandler = this.viewRecipeHandler.bind(this);
-    this.toggleRecipeEditor = this.toggleRecipeEditor.bind(this);
-    this.toggleUserExpanded = this.toggleUserExpanded.bind(this);
     this.toggleNowBrewing = this.toggleNowBrewing.bind(this);
+  }
+  componentDidMount(){
+    fetch('api/v1/users')
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText}) ,`
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({user: body.user})
+    })
+    .catch(error => console.error( `Error in fetch: ${error.message}` ));
+
+    fetch('/api/v1/recipes')
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText}) ,`
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+
+      this.setState({recipes: body.recipes})
+    })
+    .catch(error => console.error( `Error in fetch: ${error.message}` ));
+
+    fetch('api/v1/sessions')
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText}) ,`
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({sessions: body})
+    })
+    .catch(error => console.error( `Error in fetch: ${error.message}` ));
   }
 
   clearForm(event) {
@@ -170,14 +219,6 @@ class Dashboard extends Component {
     }
   }
 
-  toggleUserExpanded() {
-    if (this.state.userInfoExpanded === "userDashboard" ) {
-      this.setState({userInfoExpanded: "userDashboard is-active" })
-    } else {
-      this.setState({userInfoExpanded: "userDashboard"})
-    }
-  }
-
   loadRecipeHandler(event){
     this.setState({editRecipe: event.target.value})
     // X set editRecipe to recipe id
@@ -223,56 +264,6 @@ class Dashboard extends Component {
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
   }
 
-  componentDidMount(){
-    fetch('api/v1/users')
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText}) ,`
-        let error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-      this.setState({user: body.user})
-    })
-    .catch(error => console.error( `Error in fetch: ${error.message}` ));
-
-    fetch('/api/v1/recipes')
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText}) ,`
-        let error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-
-      this.setState({recipes: body.recipes})
-    })
-    .catch(error => console.error( `Error in fetch: ${error.message}` ));
-
-    fetch('api/v1/sessions')
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText}) ,`
-        let error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-      this.setState({sessions: body})
-    })
-    .catch(error => console.error( `Error in fetch: ${error.message}` ));
-  }
 
   createRecipe(event){
     event.preventDefault()
@@ -441,6 +432,14 @@ class Dashboard extends Component {
           toggleRecipeEditor={this.toggleRecipeEditor}
         />
       </div>
+
+      // <Switch>
+      //   <Route exact path="/" component={Dashboard} />
+      //   <Route path="/Dashboard/first" component={() => <div>Test1</div>} />
+      //   <Route path="/Dashboard/second" component={() => <div>Test2</div>} />
+      //   <Route path="/Dashboard/recipeForm" component={RecipeForm} />
+      // </Switch>
+
     )
   }
 }

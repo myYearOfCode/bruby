@@ -79,21 +79,9 @@
 }
 
 .recipesWrapper{
-  height: 0px;
-  transition: height 500ms;
   overflow: scroll;
-}
-
-.recipesWrapper.is-active{
-  height: 30vh;
 }
 
 .recipesFormExpanded{
-  height: 0px;
-  transition: height 500ms;
   overflow: scroll;
-}
-
-.recipesFormExpanded.is-active{
-  height: 60vh;
 }

@@ -5,7 +5,7 @@ class RecipesContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      recipesWrapper: "recipesWrapper"
+      recipesWrapper: "recipesWrapper is-active"
     }
     this.toggleSelected = this.toggleSelected.bind(this);
     // this.isBrewingNext = this.isBrewingNext.bind(this);
@@ -49,7 +49,6 @@ class RecipesContainer extends Component {
       >
         <h1
           className="scriptHeader"
-          onClick={this.toggleSelected}
         >
           Recipes
         </h1>

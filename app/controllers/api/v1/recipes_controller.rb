@@ -27,7 +27,6 @@ class Api::V1::RecipesController < ApplicationController
   def create
     if current_user
       newRecipe = Recipe.new(recipe_params)
-      binding.pry
       if newRecipe.save
         newBrew = Brew.new(recipe: newRecipe, user: current_user)
         if newBrew.save
