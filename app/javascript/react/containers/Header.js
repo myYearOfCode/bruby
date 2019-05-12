@@ -1,16 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 
-class Header extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      recipeName: ''
-    }
-  }
-  render () {
-    return(
-      <nav className="top-bar">
+const Header = (props) => {
+  return(
+    <nav className="top-bar">
+      <div className="full-width">
         <div className="links-section">
           <section className="top-bar-section">
             <ul className="center">
@@ -30,27 +24,8 @@ class Header extends Component {
             </ul>
           </section>
         </div>
-      </nav>
-    )
-  }
+      </div>
+    </nav>
+  )
 }
-// <div>
-//   <ul>
-//     <li>
-//       <Link to="/">Home</Link>
-//     </li>
-//     <li>
-//       <Link to="/dashboard/first">First</Link>
-//     </li>
-//     <li>
-//       <Link to="/dashboard/second">Second</Link>
-//     </li>
-//     <li>
-//       <Link to="/dashboard/third">Third</Link>
-//     </li>
-//     <li>
-//       <Link to="/dashboard/fourth">Fourth</Link>
-//     </li>
-//   </ul>
-// </div>
 export default Header;
