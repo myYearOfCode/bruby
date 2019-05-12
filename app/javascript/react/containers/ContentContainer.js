@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Dashboard from "../components/Dashboard";
 import RecipeForm from '../components/RecipeForm'
 import RecipesContainer from './RecipesContainer'
-// import Brew from '../components/Brew'
+import Brew from '../components/Brew'
 import User from '../components/User'
 import NowBrewing from '../components/NowBrewing'
 
@@ -218,12 +218,7 @@ class ContentContainer extends Component {
     }
 
     componentDidMount(){
-      fetch('/api/v1/users', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
-      })
+      fetch('/api/v1/users')
       .then(response => {
         if (response.ok) {
           return response;
@@ -233,14 +228,14 @@ class ContentContainer extends Component {
           throw(error);
         }
       })
-      .then(response => {
-        response.json()
-      })
+      .then(response => response.json())
       .then(body => {
+        console.log('user returned ok')
         console.log(body)
         this.setState({user: body.user})
       })
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
+
 
       fetch('/api/v1/recipes')
       .then(response => {
@@ -254,7 +249,8 @@ class ContentContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-
+        console.log('recipes returned ok')
+        console.log(body)
         this.setState({recipes: body.recipes})
       })
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
@@ -271,6 +267,7 @@ class ContentContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
+        console.log('sessions returned ok')
         console.log(body)
         this.setState({sessions: body})
       })
@@ -384,7 +381,7 @@ class ContentContainer extends Component {
     }
 
     fetchNewestSession(){
-      fetch('api/v1/sessions')
+      fetch('/api/v1/sessions')
       .then(response => {
         if (response.ok) {
           return response;
@@ -402,11 +399,13 @@ class ContentContainer extends Component {
           nowBrewingSession: body[sesId]
         })
       })
+      .then(() => this.state.nowBrewingSession)
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
     }
 
 
   render () {
+    this.fetchNewestSession()
     return(
       <Switch>
         <Route exact path="/" component={Dashboard} />
@@ -447,14 +446,18 @@ class ContentContainer extends Component {
         />
         <Route
           path='/dashboard/nowBrewing'
+          onEnter={() => this.fetchNewestSession()}
           render={() =>
-            <NowBrewing />
+            <NowBrewing
+              nowBrewingSesId = {this.state.nowBrewingSesId}
+              nowBrewingSession = {this.state.nowBrewingSession}
+            />
           }
         />
         <Route
-          path='/dashboard/dashboard'
+          path='/dashboard/brews'
           render={() =>
-            <Dashboard />
+            <Brew sessions = {this.state.sessions}/>
           }
         />
 

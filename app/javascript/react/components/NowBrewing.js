@@ -26,8 +26,8 @@ class NowBrewing extends Component {
   }
 
   getData() {
-    console.log(`api/v1/sessions/${this.props.nowBrewingSesId}`)
-    fetch(`api/v1/sessions/${this.props.nowBrewingSesId}`)
+    console.log(`/api/v1/sessions/${this.props.nowBrewingSesId}`)
+    fetch(`/api/v1/sessions/${this.props.nowBrewingSesId}`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -37,7 +37,9 @@ class NowBrewing extends Component {
         throw(error);
       }
     })
-    .then(response => response.json())
+    .then(response => {
+      return response.json()
+    })
     .then(body => {
       this.setState({session: body[this.props.nowBrewingSesId]})
     })

@@ -5,7 +5,7 @@ class Brew extends Component {
     super(props);
     this.state = {
       session: {},
-      graphTarget: "0454356aec4a80"
+      graphTarget: ""
     }
     this.changeGraphTarget = this.changeGraphTarget.bind(this);
   }
@@ -19,14 +19,15 @@ class Brew extends Component {
           value={session}
           key={session}
           id={session}
-        >
-          {session}
+          >
+          {session == this.state.graphTarget ? `•${session}` : session}
         </div>
       })
     }
   }
+
   componentDidMount(){
-    fetch('api/v1/sessions')
+    fetch('/api/v1/sessions')
     .then(response => {
       if (response.ok) {
         return response;
@@ -49,10 +50,9 @@ class Brew extends Component {
 
   render () {
 
-    if (Object.keys(this.state.session).length > 0){
+    if ((Object.keys(this.state.session).length > 0)&&(this.state.graphTarget !== "")){
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
-      let sesId = Object.keys(this.state.session)[0]
       let graphTarget = this.state.graphTarget
       let currentSession = this.state.session[graphTarget]
       let header = [["time", "wort temp", "steam temp"]]
@@ -69,7 +69,7 @@ class Brew extends Component {
       function drawChart() {
         var data = google.visualization.arrayToDataTable(graphReadyData);
         var options = {
-          title: `${sesId} - brewed on ${date} at ${time.split('.')[0]}`,
+          title: `${graphTarget} - brewed on ${date} at ${time.split('.')[0]}`,
           curveType: 'function',
           chartArea:{width:'90%',height:'80%'},
           legend: { position: 'in' },
@@ -78,7 +78,6 @@ class Brew extends Component {
             duration: 2000,
             easing: 'inAndOut'}
         };
-
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
         chart.draw(data, options);
       }
@@ -86,9 +85,9 @@ class Brew extends Component {
 
     return(
       <div>
-      {this.makeList()}
-      <div id="curve_chart"></div>
-        Brew log
+        Brew log - select a brew to see more.
+        {this.makeList()}
+        <div id="curve_chart"></div>
       </div>
     )
   }
