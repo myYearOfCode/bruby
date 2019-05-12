@@ -22,6 +22,9 @@ const Header = (props) => {
             <ul className="center">
                 <li><Link to="/dashboard/newRecipe">New Recipe</Link></li>
             </ul>
+            <ul className="center">
+                <li><Link to="/dashboard/findBeer">Find Beer</Link></li>
+            </ul>
           </section>
         </div>
       </div>
