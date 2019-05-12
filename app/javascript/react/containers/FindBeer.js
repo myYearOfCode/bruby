@@ -61,7 +61,11 @@ class findBrewery extends Component {
     return(
       <div>
         <form onSubmit={this.props.paginateStateBreweries}>
-          <input name="state" onChange={this.props.setBrewerState}></input>
+          <input
+            name="state"
+            onChange={this.props.setBrewerState}
+            placeholder="enter your state"
+           ></input>
         </form>
         {this.breweriesCount()}
         {this.showBreweries()}
