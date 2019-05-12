@@ -13,7 +13,6 @@ class Api::V1::SessionsController < ApplicationController
       end
       render json: response
     else
-      binding.pry
       render json: {error: "you are not signed in"}
     end
   end
