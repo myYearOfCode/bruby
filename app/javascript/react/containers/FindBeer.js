@@ -40,12 +40,31 @@ class findBrewery extends Component {
     this.state = {
     }
   }
+  showBreweries() {
+    let breweries = this.props.breweries
+    if (this.props.breweries){
+      return Object.keys(this.props.breweries).map(brewery => {
+        return <div key={`${breweries[brewery].id}_${breweries[brewery].name}_${breweries[brewery].updated_at}`}>{breweries[brewery].name}</div>
+      })
+    }
+  }
+  breweriesCount(){
+    if (this.props.breweries && Object.keys(this.props.breweries).length > 0){
+      return(
+        <div>
+          {Object.keys(this.props.breweries).length} total breweries found.
+        </div>
+      )
+    }
+  }
   render () {
     return(
       <div>
-        <form onSubmit={this.props.getStateBreweries}>
+        <form onSubmit={this.props.paginateStateBreweries}>
           <input name="state" onChange={this.props.setBrewerState}></input>
         </form>
+        {this.breweriesCount()}
+        {this.showBreweries()}
       </div>
     )
   }

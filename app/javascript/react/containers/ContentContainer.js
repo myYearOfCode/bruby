@@ -49,6 +49,7 @@ class ContentContainer extends Component {
       nowBrewing: false,
       nowBrewingSesId: "",
       nowBrewingSession: {},
+      breweries: {}
     }
     this.createRecipe = this.createRecipe.bind(this);
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
@@ -61,6 +62,7 @@ class ContentContainer extends Component {
     this.toggleNowBrewing = this.toggleNowBrewing.bind(this);
     this.getStateBreweries = this.getStateBreweries.bind(this);
     this.setBrewerState = this.setBrewerState.bind(this);
+    this.paginateStateBreweries = this.paginateStateBreweries.bind(this);
   }
 
 
@@ -397,6 +399,9 @@ class ContentContainer extends Component {
       .then(response => response.json())
       .then(body => {
         let sesId=Object.keys(body).pop()
+        if (
+          (sesId !== this.state.nowBrewingSesId) ||
+          (body[sesId] !== this.state.nowBrewingSession))
         this.setState({
           nowBrewingSesId: sesId,
           nowBrewingSession: body[sesId]
@@ -405,28 +410,58 @@ class ContentContainer extends Component {
       .then(() => this.state.nowBrewingSession)
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
     }
-    getStateBreweries(event){
-      //fetch call to openbrewerydb api here
-      // I need to unpaginate these calls and get all breweries from a state
+
+    getStateBreweries(){
+      if (!this.state.breweriesListComplete) {
+        console.log(`getting https://api.openbrewerydb.org/breweries?by_state=${this.state.brewerState}&page=${this.state.breweriesPageCount}&per_page=50`)
+        fetch(`https://api.openbrewerydb.org/breweries?by_state=${this.state.brewerState}&page=${this.state.breweriesPageCount}&per_page=50`)
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText}) ,`
+            let error = new Error(errorMessage);
+            throw(error);
+          }
+        })
+        .then(response => response.json())
+        .then(body => {
+          if (body.length === 0){
+            this.setState({breweriesListComplete: true})
+            clearInterval(this.timer)
+            this.timer = null;
+          } else {
+            let masterBreweriesList = this.state.breweries || {}
+            body.map(brewery => {
+              if (!(brewery.id in masterBreweriesList)){
+                masterBreweriesList[brewery.id] = brewery
+              }
+            })
+            if (masterBreweriesList !== this.state.breweries){
+              this.setState({
+                breweries: masterBreweriesList,
+                breweriesPageCount: (this.state.breweriesPageCount + 1)
+              })
+            } else {
+              this.setState({
+                breweriesPageCount: (this.state.breweriesPageCount + 1)
+              })
+            }
+          }
+        })
+        .catch(error => console.error( `Error in fetch: ${error.message}` ));
+      }
+    }
+
+    paginateStateBreweries(event){
       event.preventDefault()
-      fetch(`https://api.openbrewerydb.org/breweries?by_state=${this.state.brewerState}&page=1&per_page=50`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText}) ,`
-          let error = new Error(errorMessage);
-          throw(error);
-        }
+      this.timer = setInterval(()=> this.getStateBreweries(), 1100);
+      this.setState({
+        breweriesPageCount: 0,
+        breweries: 0,
+        breweriesListComplete: false
       })
-      .then(response => response.json())
-      .then(body => {
-        let breweries = this.state.breweries || []
-        breweries = breweries.concat(body)
-        console.log(breweries)
-        this.setState({breweries: breweries})
-      })
-      .catch(error => console.error( `Error in fetch: ${error.message}` ));
+      this.getStateBreweries()
     }
 
     setBrewerState(event){
@@ -434,7 +469,6 @@ class ContentContainer extends Component {
     }
 
   render () {
-    this.fetchNewestSession()
     return(
       <Switch>
         <Route exact path="/" component={Dashboard} />
@@ -493,8 +527,9 @@ class ContentContainer extends Component {
           path='/dashboard/findBeer'
           render={() =>
             <FindBeer
-              getStateBreweries={this.getStateBreweries}
+              paginateStateBreweries={this.paginateStateBreweries}
               setBrewerState={this.setBrewerState}
+              breweries={this.state.breweries}
             />
           }
         />
@@ -505,24 +540,4 @@ class ContentContainer extends Component {
   }
 }
 
-// <Route
-//   path='/dashboard/brews'
-//   render={() =>
-//     <Brew
-//     sessions={this.state.sessions}/>
-//   }
-// />
-//
-// <Route path="/Dashboard/recipes" render={() => <Test1 name={"recipes"}/>} />
-// <Route path="/Dashboard/brews" render={() => <Test2 name={"brews"}/>} />
-// <Route path="/Dashboard/nowBrewing" render={() => <Test3 name={"nowBrewing"}/>} />
-// <Route
-//   path='/dashboard/newRecipe'
-//   render={() =>
-//     <Test4
-//       name="newRecipe"
-//       isAuthed={true}
-//     />
-//   }
-// /
 export default ContentContainer;
