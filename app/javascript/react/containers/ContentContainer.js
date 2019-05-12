@@ -6,6 +6,7 @@ import RecipeForm from '../components/RecipeForm'
 import RecipesContainer from './RecipesContainer'
 import Brew from '../components/Brew'
 import User from '../components/User'
+import FindBeer from './FindBeer'
 import NowBrewing from '../components/NowBrewing'
 
 
@@ -58,6 +59,8 @@ class ContentContainer extends Component {
     this.updateRecipe = this.updateRecipe.bind(this);
     this.viewRecipeHandler = this.viewRecipeHandler.bind(this);
     this.toggleNowBrewing = this.toggleNowBrewing.bind(this);
+    this.getStateBreweries = this.getStateBreweries.bind(this);
+    this.setBrewerState = this.setBrewerState.bind(this);
   }
 
 
@@ -402,7 +405,33 @@ class ContentContainer extends Component {
       .then(() => this.state.nowBrewingSession)
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
     }
+    getStateBreweries(event){
+      //fetch call to openbrewerydb api here
+      // I need to unpaginate these calls and get all breweries from a state
+      event.preventDefault()
+      fetch(`https://api.openbrewerydb.org/breweries?by_state=${this.state.brewerState}&page=1&per_page=50`)
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText}) ,`
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        let breweries = this.state.breweries || []
+        breweries = breweries.concat(body)
+        console.log(breweries)
+        this.setState({breweries: breweries})
+      })
+      .catch(error => console.error( `Error in fetch: ${error.message}` ));
+    }
 
+    setBrewerState(event){
+      this.setState({brewerState: event.target.value})
+    }
 
   render () {
     this.fetchNewestSession()
@@ -458,6 +487,15 @@ class ContentContainer extends Component {
           path='/dashboard/brews'
           render={() =>
             <Brew sessions = {this.state.sessions}/>
+          }
+        />
+        <Route
+          path='/dashboard/findBeer'
+          render={() =>
+            <FindBeer
+              getStateBreweries={this.getStateBreweries}
+              setBrewerState={this.setBrewerState}
+            />
           }
         />
 
