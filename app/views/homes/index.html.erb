@@ -27,6 +27,9 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div class="wrapper">
+      <div class="topThird">
+        Bruby
+      </div>
       <div class="darkBar">
         <div class="centerMessage">
           <%- if current_user %>
@@ -34,7 +37,7 @@
               Welcome back <%= current_user.username %>!
             </p>
             <p class="welcomeBody">
-              would you like to see <%= link_to 'your dashboard?', dashboard_path %>
+              would you like to see <%= link_to 'your dashboard?', 'dashboard/home' %>
             <p/>
           <%- else -%>
             <p class="welcomeTitle">
@@ -42,7 +45,9 @@
             </p>
             <p class="welcomeBody">
               Bruby is your path to brewing insights. We will help you get more reliability, data, and features out of your homebrewing appliance.
-              <%= link_to 'Sign Up', new_user_registration_path %> in order to start brewing!
+            </p>
+            <p class="welcomeBody">
+              <%= link_to 'Sign up now in order to start brewing', new_user_registration_path %> 🍺
             <p/>
           <%- end -%>
         </div>

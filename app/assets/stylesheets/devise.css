@@ -13,7 +13,7 @@
 }
 
 body.deviseBackground {
-  background: url("https://s3.amazonaws.com/bruby/site_images/beer_drinking.jpg") no-repeat;
+  background: black url("https://s3.amazonaws.com/bruby/site_images/beer_drinking.jpg") no-repeat;
   color: white;
   font-color: white;
 }
