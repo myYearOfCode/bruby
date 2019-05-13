@@ -64,6 +64,7 @@ class ContentContainer extends Component {
     this.setBrewerState = this.setBrewerState.bind(this);
     this.paginateStateBreweries = this.paginateStateBreweries.bind(this);
     this.fetchNewestSession = this.fetchNewestSession.bind(this);
+    this.setGeoBrewerState = this.setGeoBrewerState.bind(this);
   }
 
 
@@ -310,6 +311,36 @@ class ContentContainer extends Component {
       });
     }
 
+    updateRecipe(event){
+      event.preventDefault()
+      fetch(`/api/v1/recipes/${this.state.editRecipe}`, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.stateToRecipeObject())
+      })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText}) ,`
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.clearForm()
+        this.setState({recipes: body.recipes, error: ""})
+      })
+      .catch(error => {
+        console.error( `Error in fetch: ${error.message}`)
+        this.setState({error: error.message})
+      });
+    }
+
     stateToRecipeObject(){
       return {
         recipe: {
@@ -339,36 +370,6 @@ class ContentContainer extends Component {
           yeast: this.state.yeast || "",
         }
       }
-    }
-
-    updateRecipe(event){
-      event.preventDefault()
-      fetch(`/api/v1/recipes/${this.state.editRecipe}`, {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.stateToRecipeObject())
-      })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText}) ,`
-          let error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.clearForm()
-        this.setState({recipes: body.recipes, error: ""})
-      })
-      .catch(error => {
-        console.error( `Error in fetch: ${error.message}`)
-        this.setState({error: error.message})
-      });
     }
 
     toggleNowBrewing(event) {
@@ -471,6 +472,11 @@ class ContentContainer extends Component {
       this.setState({brewerState: event.target.value})
     }
 
+    setGeoBrewerState(state){
+      this.setState({brewerState: state})
+      this.getStateBreweries()
+    }
+
   render () {
     return(
       <Switch>
@@ -534,6 +540,8 @@ class ContentContainer extends Component {
               paginateStateBreweries={this.paginateStateBreweries}
               setBrewerState={this.setBrewerState}
               breweries={this.state.breweries}
+              geoBrewerState={this.setGeoBrewerState}
+              brewerState={this.state.brewerState}
             />
           }
         />
