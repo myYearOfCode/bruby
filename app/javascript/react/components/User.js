@@ -20,50 +20,48 @@ class User extends Component {
           </div>
           <div>
             <div className="welcomeBackText">
-              Welcome back{`, ${this.props.user.username}!` || "!"}.
+              Welcome back{`, ${this.props.user.username}!` || "!"}
             </div>
             <div className="statsWrapper">
-              <div className="leftSide">
-                <div className="upperLeft">
-                  <div className="numBrews big">
-                    10
-                  </div>
-                  <div className="numBrews description">
-                    Brews
-                    </div>
+              <div className="numBrewsWrapper">
+                <div className="numBrews big">
+                  10
                 </div>
-                <div className="upperRight">
-                  <div className="numRecipes big">
-                    8
+                <div className="numBrews description">
+                  Brews
                   </div>
-                  <div className="numRecipes description">
-                    recipes
-                  </div>
-                </div>
-                <div className="bottomLeft">
-                  <div className="numHours big">
-                    10
-                  </div>
-                  <div className="numBrews description">
-                    Hours Brewing
-                  </div>
-                </div>
-                <div className="bottomRight">
-                  <div className="numRecipes big">
-                    8
-                  </div>
-                  <div className="numRecipes description">
-                    Liters
-                  </div>
-                </div>
               </div>
-              <div className="rightSide">
-                <div className="numSomething big">
+              <div className="numRecipesWrapper">
+                <div className="numRecipes big">
                   8
                 </div>
-                <div className="numSomething description">
+                <div className="numRecipes description">
+                  recipes
+                </div>
+              </div>
+              <div className="numHoursWrapper">
+                <div className="numHours big">
+                  10
+                </div>
+                <div className="numBrews description">
+                  Hours Brewing
+                </div>
+              </div>
+              <div className="numRecipesWrapper">
+                <div className="numRecipes big">
+                  8
+                </div>
+                <div className="numRecipes description">
                   Liters
                 </div>
+              </div>
+            </div>
+            <div className="numSomethingWrapper">
+              <div className="numSomething big">
+                8
+              </div>
+              <div className="numSomething description">
+                Liters
               </div>
             </div>
           </div>
