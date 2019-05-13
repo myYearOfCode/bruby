@@ -40,14 +40,15 @@ class RecipeForm extends Component {
     return (
       <div className="recipeBuilder">
         <div id="form_container">
-          <form onSubmit={this.props.editRecipe !== null ? this.props.updateRecipe : this.props.createRecipe }>
+          <form
+          className="newRecipeForm"
+          onSubmit={this.props.editRecipe !== null ? this.props.updateRecipe : this.props.createRecipe }>
             <div >
             <h3 className="scriptHeader">
               Recipe Builder
             </h3>
             </div>
-            <div>
-              <ul>
+            <div className="formElements">
                 <div className="step_wrapper">
                   <div className="text_input">
                     <label className="label" htmlFor="recipeName">Recipe Name </label>
@@ -102,7 +103,6 @@ class RecipeForm extends Component {
                   </div>
                 </div>
                 { this.recipeSteps() }
-              </ul>
               <div className="button-group">
                 <button
                   className="button"

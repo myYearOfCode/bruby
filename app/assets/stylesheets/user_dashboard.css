@@ -2,21 +2,34 @@
   overflow: scroll;
 }
 
-.userInfo{
-  background-color: rgba(0,0,0,.25);
-  min-height: 100%;
+.userInfoBody{
+  display:flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 100%;
+  background: black url("https://s3.amazonaws.com/bruby/site_images/hazybeer.jpg") no-repeat fixed;
+  background-size: cover;
+}
+
+.userInfoWrapper{
+  background-color: rgba(0,0,0,.5);
+  border-right: 1px solid #8080804d;
+  border-left: 1px solid #8080804d;
+  width: 70vw;
+  max-width: 800px;
+  min-width: 450px;
 }
 
 .welcomeBackText{
   text-align: center;
   text-shadow: 5px 5px 5px black;
-  font-size: 80px;
-  /* font-family: 'Pacifico', cursive; */
+  font-size: 4vw;
 }
 
 .statsWrapper{
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: nowrap;
+  flex-direction: column;
   border: 1px solid black;
   width: 100%;
   height: 100%;
@@ -24,7 +37,7 @@
 }
 
 .leftSide{
-  min-width: 400px;
+  width: 20vw;
   display: flex;
   flex-wrap:wrap;
   height: 100%;
@@ -32,11 +45,9 @@
 }
 
 .rightSide{
-  width:50%;
   height: 100%;
   border: 1px solid black;
 }
-
 
 .upperLeft{
   width: 50%;
@@ -62,8 +73,10 @@
   font-size: 6em;
   text-align: center;
   height: 110px;
+  width: 20vw;
 }
 
 .description{
   text-align: center;
+  width: 20vw;
 }

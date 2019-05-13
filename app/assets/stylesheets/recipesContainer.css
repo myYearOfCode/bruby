@@ -1,8 +1,8 @@
 .recipeOverview:nth-child(even) {
-  background: #BBB
+  /* background: #BBB */
 }
 .recipeOverview:nth-child(odd) {
-  background: #DDD
+  background: rgba(0,0,0,.25)
 }
 
 .recipeOverview{
@@ -18,6 +18,11 @@
 
 .recipeOverview.is-active {
     height: 300px;
+}
+
+.recipeDescription{
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .thumbnail{
@@ -36,6 +41,7 @@
   align-content: center;
   flex-wrap:nowrap;
   max-width: 300px;
+  padding-left: 10px;
 }
 
 .recipeButton {
@@ -56,12 +62,16 @@
 }
 
 .yourRecipes{
-  background-image: linear-gradient(90deg, #717171 0%, #c3c3c3 100%)
+  /* background-image: linear-gradient(90deg, #717171 0%, #c3c3c3 100%); */
+  background: black url("https://s3.amazonaws.com/bruby/site_images/413078.jpg") no-repeat fixed;
+  width: 100%;
+  display:flex;
+  justify-content: center;
 }
 
 .selectedRecipe{
   border-bottom: 1px solid black;
-  background-color: brown;
+  background-color: rgba(0,0,0,.5);
   text-shadow: 2px 2px 4px #000;
 }
 
@@ -80,6 +90,12 @@
 
 .recipesWrapper{
   overflow: scroll;
+  background-color: rgba(0,0,0,.5);
+  border-right: 1px solid #8080804d;
+  border-left: 1px solid #8080804d;
+  width: 70vw;
+  max-width: 800px;
+  min-width: 450px;
 }
 
 .recipesFormExpanded{

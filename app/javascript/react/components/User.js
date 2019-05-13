@@ -11,20 +11,19 @@ class User extends Component {
 
 
     return(
-      <div className="userInfo">
-        <div onClick={this.props.toggleUserExpanded}>
-          <h1 className="scriptHeader">
-            User Info
-          </h1>
-        </div>
-
-        <div>
-          <div className="welcomeBackText">
-            Welcome back{`, ${this.props.user.username}!` || "!"}.
+      <div className="userInfoBody">
+        <div className="userInfoWrapper">
+          <div onClick={this.props.toggleUserExpanded}>
+            <h1 className="scriptHeader">
+              User Info
+            </h1>
           </div>
-          <div className="statsWrapper">
-            <div className="leftSide">
-              <div className="upperLeft">
+          <div>
+            <div className="welcomeBackText">
+              Welcome back{`, ${this.props.user.username}!` || "!"}
+            </div>
+            <div className="statsWrapper">
+              <div className="numBrewsWrapper">
                 <div className="numBrews big">
                   10
                 </div>
@@ -32,7 +31,7 @@ class User extends Component {
                   Brews
                   </div>
               </div>
-              <div className="upperRight">
+              <div className="numRecipesWrapper">
                 <div className="numRecipes big">
                   8
                 </div>
@@ -40,7 +39,7 @@ class User extends Component {
                   recipes
                 </div>
               </div>
-              <div className="bottomLeft">
+              <div className="numHoursWrapper">
                 <div className="numHours big">
                   10
                 </div>
@@ -48,7 +47,7 @@ class User extends Component {
                   Hours Brewing
                 </div>
               </div>
-              <div className="bottomRight">
+              <div className="numRecipesWrapper">
                 <div className="numRecipes big">
                   8
                 </div>
@@ -57,7 +56,7 @@ class User extends Component {
                 </div>
               </div>
             </div>
-            <div className="rightSide">
+            <div className="numSomethingWrapper">
               <div className="numSomething big">
                 8
               </div>

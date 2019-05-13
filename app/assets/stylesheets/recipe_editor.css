@@ -1,13 +1,46 @@
 input {
-     width:10px;
+     /* width:10px; */
      display:block
 }
 
+.step_wrapper:nth-child(even) {
+  /* background: rgba(255,255,255,.15) */
+}
+.step_wrapper:nth-child(odd) {
+  background: rgba(0,0,0,.25)
+}
+
 .time {
-  padding: 25px 25px;
+  padding: 0 25px 0 25px;
   max-width: 200px;
 }
 
+.Time {
+  padding: 0 25px 0 25px;
+}
+
+#form_container{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: black url("https://s3.amazonaws.com/bruby/site_images/437743.jpg") no-repeat fixed;
+  background-size: cover;
+}
+
+.newRecipeForm{
+  background-color: rgba(0,0,0,.5);
+  width: 70vw;
+  max-width: 800px;
+  min-width: 450px;
+  border-right: 1px solid #8080804d;
+  border-left: 1px solid #8080804d;
+}
+
+.step_values{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
 .text_input{
   width: 100%;
 }
@@ -34,7 +67,6 @@ input {
   display: flex;
   padding: 0 25px 0 25px;
   margin-top: 0;
-  max-width: 550px;
   justify-content: space-between;
 }
 

@@ -84,10 +84,12 @@ class Brew extends Component {
     }
 
     return(
-      <div>
-        Brew log - select a brew to see more.
-        {this.makeList()}
-        <div id="curve_chart"></div>
+      <div className="brewBody">
+        <div className="brewWrapper">
+          Brew log - select a brew to see more.
+          {this.makeList()}
+          <div id="curve_chart"></div>
+        </div>
       </div>
     )
   }

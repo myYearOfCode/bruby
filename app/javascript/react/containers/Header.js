@@ -28,6 +28,11 @@ const Header = (props) => {
           </section>
         </div>
       </div>
+      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/hazybeer.jpg"/>
+      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/437743.jpg"/>
+      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/413078.jpg"/>
+      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/homebrew_bottles.jpg"/>
+      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/Cooper-River-Brewery.jpg"/>
     </nav>
   )
 }

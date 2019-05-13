@@ -20,8 +20,12 @@ const RecipeOverview = (props) => {
           {props.recipe.name} • ({props.recipe.style || "uncategorized"})
         </div>
       </div>
-      {showImage()}
-      <div>description:{props.recipe.description}</div>
+      <div className="recipeDescription">
+        {showImage()}
+        <div>
+          Description:{props.recipe.description}
+        </div>
+      </div>
       <div className='recipeRightRide'>
         <div className='recipeButtons'>
           <button
