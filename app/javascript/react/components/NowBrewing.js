@@ -17,6 +17,7 @@ class NowBrewing extends Component {
   // web sockets seems like the right way to do this.
   componentDidMount() {
     this.timer = setInterval(()=> this.getData(), 20000);
+    this.props.fetchNewestSession()
     this.getData()
   }
 
@@ -93,27 +94,33 @@ class NowBrewing extends Component {
   render () {
     this.chartWrapper()
     return(
-      <div>
-      <div className = "brewStatHeader">
-        Current Wort Temp: {this.getSessionValues('wort')}°F
+      <div className="nowBrewingBody">
+        <div className="nowBrewingWrapper">
+          <div className = "brewStatHeader">
+            Current Wort Temp: {this.getSessionValues('wort')}°F
+          </div>
+          <div className = "brewStatHeader">
+            Current Steam Temp: {this.getSessionValues('therm')}°F
+          </div>
+          <div className = "brewStatHeader">
+            Time Remaining: {(this.getSessionValues('timeLeft')/60).toFixed()} minutes
+          </div>
+          <div className = "brewStatHeader">
+            Percent Complete: {this.getPercentComplete()}%
+          </div>
+          <div className = "brewStatHeader">
+            Current Step: {this.getSessionValues('step')}
+          </div>
+          <div className = "brewStatHeader">
+            Boiler Scale: {this.getSessionValues('shutScale')}
+          </div>
+          <div id="curve_chart">
+          </div>
+        </div>
       </div>
-      <div className = "brewStatHeader">
-        Current Steam Temp: {this.getSessionValues('therm')}°F
-      </div>
-      <div className = "brewStatHeader">
-        Time Remaining: {(this.getSessionValues('timeLeft')/60).toFixed()} minutes
-      </div>
-      <div className = "brewStatHeader">
-        Percent Complete: {this.getPercentComplete()}%
-      </div>
-      <div className = "brewStatHeader">
-        Current Step: {this.getSessionValues('step')}
-      </div>
-      <div className = "brewStatHeader">
-        Boiler Scale: {this.getSessionValues('shutScale')}
-      </div>
-        <div id="curve_chart"></div>
-      </div>
+
+
+
     )
   }
 }

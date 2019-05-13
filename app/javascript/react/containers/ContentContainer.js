@@ -63,6 +63,7 @@ class ContentContainer extends Component {
     this.getStateBreweries = this.getStateBreweries.bind(this);
     this.setBrewerState = this.setBrewerState.bind(this);
     this.paginateStateBreweries = this.paginateStateBreweries.bind(this);
+    this.fetchNewestSession = this.fetchNewestSession.bind(this);
   }
 
 
@@ -399,9 +400,10 @@ class ContentContainer extends Component {
       .then(response => response.json())
       .then(body => {
         let sesId=Object.keys(body).pop()
-        if (
-          (sesId !== this.state.nowBrewingSesId) ||
-          (body[sesId] !== this.state.nowBrewingSession))
+        console.log(`hello`);
+        // if (
+        //   (sesId !== this.state.nowBrewingSesId) ||
+        //   (body[sesId] !== this.state.nowBrewingSession))
         this.setState({
           nowBrewingSesId: sesId,
           nowBrewingSession: body[sesId]
@@ -409,6 +411,7 @@ class ContentContainer extends Component {
       })
       .then(() => this.state.nowBrewingSession)
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
+      console.log(this.state.nowBrewingSesId)
     }
 
     getStateBreweries(){
@@ -514,6 +517,7 @@ class ContentContainer extends Component {
             <NowBrewing
               nowBrewingSesId = {this.state.nowBrewingSesId}
               nowBrewingSession = {this.state.nowBrewingSession}
+              fetchNewestSession = {this.fetchNewestSession}
             />
           }
         />

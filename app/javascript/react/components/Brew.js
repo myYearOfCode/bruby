@@ -9,7 +9,6 @@ class Brew extends Component {
     }
     this.changeGraphTarget = this.changeGraphTarget.bind(this);
   }
-  // http://localhost:3000/api/v1/sessions
 
   makeList() {
     if (this.props.sessions ){
