@@ -9,12 +9,9 @@ class NowBrewing extends Component {
       nowBrewingSesId: this.props.nowBrewingSesId,
     }
     this.chartWrapper = this.chartWrapper.bind(this);
+    this.drawChart = this.drawChart.bind(this);
   }
-  // when mounted this component starts grabbing data
-  // build the api
-  // graph and show data nicely
-  // fetch call in front end somehow refreshes api call every 25 sec
-  // web sockets seems like the right way to do this.
+
   componentDidMount() {
     this.timer = setInterval(()=> this.getData(), 20000);
     this.props.fetchNewestSession()
@@ -91,8 +88,28 @@ class NowBrewing extends Component {
     }
   }
 
+  drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Label', 'Value'],
+      ['Wort', this.getSessionValues('wort')],
+      ['Steam', this.getSessionValues('therm')],
+    ]);
+
+    var options = {
+      width: 400, height: 120,
+      redFrom: 90, redTo: 100,
+      yellowFrom:75, yellowTo: 90,
+      minorTicks: 5,
+    };
+
+    var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+
   render () {
     this.chartWrapper()
+    google.charts.load('current', {'packages':['gauge']});
+    google.charts.setOnLoadCallback(this.drawChart);
     return(
       <div className="nowBrewingBody">
         <div className="nowBrewingWrapper">
@@ -114,6 +131,7 @@ class NowBrewing extends Component {
           <div className = "brewStatHeader">
             Boiler Scale: {this.getSessionValues('shutScale')}
           </div>
+          <div id="chart_div" className="wortGauge"></div>
           <div id="curve_chart">
           </div>
         </div>
