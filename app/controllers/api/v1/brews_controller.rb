@@ -19,7 +19,30 @@ class Api::V1::BrewsController < ApplicationController
     }
   end
 
+  def update
+    if current_user
+      # binding.pry
+      # if current_user.recipes.include? recipe_params[:id]
+      brew = Brew.find(params[:id])
+      if brew.update(
+        description: update_params[:description],
+        rating: update_params[:rating]
+        )
+        render json: brew
+      else
+        errors = brew.errors.full_messages.join(', ❌').prepend('❌')
+        render json: { error: errors }
+      end
+    else
+      render json: {error: "you must be signed in to edit a brew."}
+    end
+  end
+
   private
+
+  def update_params
+    params.require(:brew).permit(:description, :rating)
+  end
 
   def show_params
     params.permit(:id)

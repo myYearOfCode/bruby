@@ -8,15 +8,19 @@ class Brew extends Component {
       recipeName: ""
     }
     this.changeGraphTarget = this.changeGraphTarget.bind(this);
+    this.updateBrew = this.updateBrew.bind(this);
+    this.setDescription = this.setDescription.bind(this);
+    this.setRating = this.setRating.bind(this);
   }
 
 
   componentDidMount(){
-    this.getRecipeFromBrew(this.props.sessions[this.props.session][0].sesId)
+    this.getRecipeFromBrew(this.props.you[0].sesId)
+    // this.getRecipeFromBrew(this.props.sessions[this.props.session][0].sesId)
   }
 
   getRecipeFromBrew(){
-    fetch(`/api/v1/brews/${this.props.sessions[this.props.session][0].brew_id}`)
+    fetch(`/api/v1/brews/${this.props.you[0].brew_id}`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -28,9 +32,43 @@ class Brew extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({session: body.brew, recipe: body.recipe})
+      this.setState({brew: body.brew, recipe: body.recipe})
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
+  }
+
+
+  updateBrew(event){
+    event.preventDefault()
+    console.log(`/api/v1/brews/${this.state.brew.id}`)
+
+    fetch(`/api/v1/brews/${this.state.brew.id}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({brew: {description: this.state.description, rating: this.state.rating}})
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText}) ,`
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      // debugger
+      console.log(body)
+      // this.setState({recipes: body.recipes, error: ""})
+    })
+    .catch(error => {
+      console.error( `Error in fetch: ${error.message}`)
+      this.setState({error: error.message})
+    });
   }
 
   changeGraphTarget(event){
@@ -44,8 +82,8 @@ class Brew extends Component {
   }
 
   showDescription(){
-    if (this.state.recipe && this.state.recipe.description){
-      return this.state.recipe.description
+    if (this.state.brew && this.state.brew.description){
+      return this.state.brew.description
     }
   }
 
@@ -55,30 +93,52 @@ class Brew extends Component {
     }
   }
 
+  setDescription(event){
+    this.setState({description: event.target.value})
+  }
+
+  setRating(event){
+    this.setState({rating: event.target.value})
+  }
+
+  getDescription(){
+    if (this.state.brew && this.state.brew.description){
+      return this.state.brew.description
+    }
+  }
+
+  getRating(){
+    if (this.state.brew && this.state.brew.rating){
+      return "⭐".repeat(this.state.brew.rating)
+    }
+  }
+
   render () {
     return(
       <div className="brewBody">
         <div className="brewWrapper">
           <div>
-            {`${this.showName()} - Brewed on ${this.formatDate()} - ⭐⭐⭐⭐⭐`}
+            {`${this.showName()} - Brewed on ${this.formatDate()} - ${this.getRating()}`}
           </div>
           <div className="showReview">
             {this.showDescription()}
           </div>
-          <form>
+          <form onSubmit={this.updateBrew}>
             <div className="text_input">
               <label className="label" htmlFor="style">Review </label>
               <textarea
+              onChange={this.setDescription}
                 rows="4"
                 id="review"
                 name="review"
                 className="element text medium"
                 type="text"
+                value={this.getDescription()}
               />
             </div>
             <div className="text_input">
               <label className="label" htmlFor="style">Rating </label>
-              <select>
+              <select onChange={this.setRating}>
                  <option value="1">1</option>
                  <option value="2">2</option>
                  <option value="3">3</option>

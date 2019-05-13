@@ -17,7 +17,8 @@ class BrewContainer extends Component {
         return <Brew
           sessions={this.props.sessions}
           key={session}
-          session={session}
+          sessionId={session}
+          you={this.props.sessions[session]}
           />
       })
     }
