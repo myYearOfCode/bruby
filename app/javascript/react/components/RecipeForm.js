@@ -5,9 +5,7 @@ class RecipeForm extends Component {
   constructor(props){
     super(props);
     this.state = {
-      // recipesFormClass: "recipesFormClass"
     }
-    // this.toggleSelected = this.toggleSelected.bind(this);
   }
 
   recipeSteps() {

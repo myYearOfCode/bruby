@@ -17,7 +17,7 @@ const RecipeOverview = (props) => {
         name={props.recipe.id}
       >
         <div>
-          {props.recipe.name} • ({props.recipe.style || "uncategorized"})
+          {props.recipe.name} • {props.recipe.style || ""}
         </div>
       </div>
       <div className="recipeDescription">
@@ -33,21 +33,21 @@ const RecipeOverview = (props) => {
             value={props.recipe.id}
             onClick={props.loadRecipeHandler}
           >
-            edit
+            Edit
           </button>
           <button
             className='recipeButton'
             value={props.recipe.id}
             onClick={props.brewNextOnChangeHandler}
           >
-            brew next
+            Brew Next
           </button>
           <button
             className='recipeButton'
             value={props.recipe.id}
             onClick={props.deleteRecipe}
           >
-            delete
+            Delete
           </button>
         </div>
       </div>

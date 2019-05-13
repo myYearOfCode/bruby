@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Dashboard from "../components/Dashboard";
 import RecipeForm from '../components/RecipeForm'
@@ -8,7 +8,6 @@ import BrewContainer from './BrewContainer'
 import User from '../components/User'
 import FindBeer from './FindBeer'
 import NowBrewing from '../components/NowBrewing'
-
 
 class ContentContainer extends Component {
   constructor(props){
@@ -49,7 +48,8 @@ class ContentContainer extends Component {
       nowBrewing: false,
       nowBrewingSesId: "",
       nowBrewingSession: {},
-      breweries: {}
+      breweries: {},
+      redirect: null
     }
     this.createRecipe = this.createRecipe.bind(this);
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
@@ -180,9 +180,7 @@ class ContentContainer extends Component {
     }
 
     loadRecipeHandler(event){
-      this.setState({editRecipe: event.target.value})
-      // X set editRecipe to recipe id
-      fetch(`api/v1/recipes/${event.target.value}`)
+      fetch(`/api/v1/recipes/${event.target.value}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -222,6 +220,7 @@ class ContentContainer extends Component {
         })
       })
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
+      this.setState({editRecipe: event.target.value, redirect: "/dashboard/newRecipe"})
     }
 
     componentDidMount(){
@@ -478,6 +477,12 @@ class ContentContainer extends Component {
     }
 
   render () {
+    if (this.state.redirect) {
+      let goTo = this.state.redirect
+      this.setState({redirect: null})
+      return <Redirect to={goTo}/>;
+    }
+
     return(
       <Switch>
         <Route exact path="/" component={Dashboard} />
