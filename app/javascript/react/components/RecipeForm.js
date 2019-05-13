@@ -28,14 +28,6 @@ class RecipeForm extends Component {
     })
   }
 
-  // toggleSelected() {
-  //   if (this.state.recipesFormClass === "recipesFormClass" ) {
-  //     this.setState({recipesFormClass: "recipesFormClass is-active" })
-  //   } else {
-  //     this.setState({recipesFormClass: "recipesFormClass"})
-  //   }
-  // }
-
   render () {
     return (
       <div className="recipeBuilder">

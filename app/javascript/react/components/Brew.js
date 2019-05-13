@@ -117,8 +117,16 @@ class Brew extends Component {
     return(
       <div className="brewBody">
         <div className="brewWrapper">
-          <div>
-            {`${this.showName()} - Brewed on ${this.formatDate()} - ${this.getRating()}`}
+          <div className="brewTitleBar">
+            <div className="brewRecipeName">
+              {this.showName()}
+            </div>
+            <div>
+              Brewed on {this.formatDate()}
+            </div>
+            <div>
+              {this.getRating()}
+            </div>
           </div>
           <div className="showReview">
             {this.showDescription()}
@@ -146,21 +154,13 @@ class Brew extends Component {
                  <option value="5">5</option>
                </select>
             </div>
-            <div className="button-group">
-
+            <div className="button-box">
               <button
                 className="button"
                 type="submit"
                 value="Submit"
               >
                 { this.props.editRecipe !== null ? "Update" : "Submit" }
-              </button>
-              <button
-                className="button"
-                onClick={this.props.clearForm}
-                value="Clear"
-              >
-              Clear
               </button>
             </div>
           </form>

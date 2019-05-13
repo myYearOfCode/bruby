@@ -1,8 +1,21 @@
 .recipeOverview:nth-child(even) {
-  /* background: #BBB */
+  background-color: rgba(0,0,0,0);
+  -webkit-transition: background-color 300ms linear;
+  -ms-transition: background-color 300ms linear;
+  transition: background-color 300ms linear;
 }
 .recipeOverview:nth-child(odd) {
-  background: rgba(0,0,0,.25)
+  background-color: rgba(0,0,0,.25);
+  -webkit-transition: background-color 300ms linear;
+  -ms-transition: background-color 300ms linear;
+  transition: background-color 300ms linear;
+}
+
+.recipeOverview:hover {
+  background: rgba(0,0,0,.85);
+  -webkit-transition: background-color 300ms linear;
+  -ms-transition: background-color 300ms linear;
+  transition: background-color 300ms linear;
 }
 
 .recipeOverview{
