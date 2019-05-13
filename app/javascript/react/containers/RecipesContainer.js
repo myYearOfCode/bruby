@@ -47,14 +47,14 @@ class RecipesContainer extends Component {
         id="yourRecipes"
         className="yourRecipes"
       >
-        <h1
-          className="scriptHeader"
-        >
-          Recipes
-        </h1>
         <div
           className={this.state.recipesWrapper}
         >
+          <h1
+          className="scriptHeader"
+          >
+          Recipes
+          </h1>
           { this.renderRecipes() }
         </div>
       </div>
