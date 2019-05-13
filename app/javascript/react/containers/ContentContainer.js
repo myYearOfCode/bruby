@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Dashboard from "../components/Dashboard";
 import RecipeForm from '../components/RecipeForm'
 import RecipesContainer from './RecipesContainer'
-import Brew from '../components/Brew'
+import BrewContainer from './BrewContainer'
 import User from '../components/User'
 import FindBeer from './FindBeer'
 import NowBrewing from '../components/NowBrewing'
@@ -530,7 +530,7 @@ class ContentContainer extends Component {
         <Route
           path='/dashboard/brews'
           render={() =>
-            <Brew sessions = {this.state.sessions}/>
+            <BrewContainer sessions = {this.state.sessions}/>
           }
         />
         <Route

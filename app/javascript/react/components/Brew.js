@@ -5,28 +5,18 @@ class Brew extends Component {
     super(props);
     this.state = {
       session: {},
-      graphTarget: ""
+      recipeName: ""
     }
     this.changeGraphTarget = this.changeGraphTarget.bind(this);
   }
 
-  makeList() {
-    if (this.props.sessions ){
-      return Object.keys(this.props.sessions).map(session => {
-        return <div
-          onClick={this.changeGraphTarget}
-          value={session}
-          key={session}
-          id={session}
-          >
-          {session == this.state.graphTarget ? `•${session}` : session}
-        </div>
-      })
-    }
-  }
 
   componentDidMount(){
-    fetch('/api/v1/sessions')
+    this.getRecipeFromBrew(this.props.sessions[this.props.session][0].sesId)
+  }
+
+  getRecipeFromBrew(){
+    fetch(`/api/v1/brews/${this.props.sessions[this.props.session][0].brew_id}`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -38,7 +28,7 @@ class Brew extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({session: body})
+      this.setState({session: body.brew, recipe: body.recipe})
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
   }
@@ -47,51 +37,80 @@ class Brew extends Component {
     this.setState({graphTarget: event.target.id})
   }
 
-  render () {
-
-    if ((Object.keys(this.state.session).length > 0)&&(this.state.graphTarget !== "")){
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      let graphTarget = this.state.graphTarget
-      let currentSession = this.state.session[graphTarget]
-      let header = [["time", "wort temp", "steam temp"]]
-      let body = currentSession.map(point => {
-        return  [
-          point["created_at"].split('T')[1].split('.')[0],
-          point["wort"],
-          point["therm"]
-        ]
-      })
-      let [date, time] = currentSession[0]["created_at"].split('T')
-      let graphReadyData = header.concat(body)
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable(graphReadyData);
-        var options = {
-          title: `${graphTarget} - brewed on ${date} at ${time.split('.')[0]}`,
-          curveType: 'function',
-          chartArea:{width:'90%',height:'80%'},
-          legend: { position: 'in' },
-          animation: {
-            startup: 'true',
-            duration: 2000,
-            easing: 'inAndOut'}
-        };
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-        chart.draw(data, options);
-      }
+  showName(){
+    if (this.state.recipe && this.state.recipe.name){
+      return this.state.recipe.name
     }
+  }
 
+  showDescription(){
+    if (this.state.recipe && this.state.recipe.description){
+      return this.state.recipe.description
+    }
+  }
+
+  formatDate(){
+    if (this.state.session && this.state.session.created_at){
+      return this.state.session.created_at.split('T')[0]
+    }
+  }
+
+  render () {
     return(
       <div className="brewBody">
         <div className="brewWrapper">
-          Brew log - select a brew to see more.
-          {this.makeList()}
-          <div id="curve_chart"></div>
+          <div>
+            {`${this.showName()} - Brewed on ${this.formatDate()} - ⭐⭐⭐⭐⭐`}
+          </div>
+          <div className="showReview">
+            {this.showDescription()}
+          </div>
+          <form>
+            <div className="text_input">
+              <label className="label" htmlFor="style">Review </label>
+              <textarea
+                rows="4"
+                id="review"
+                name="review"
+                className="element text medium"
+                type="text"
+              />
+            </div>
+            <div className="text_input">
+              <label className="label" htmlFor="style">Rating </label>
+              <select>
+                 <option value="1">1</option>
+                 <option value="2">2</option>
+                 <option value="3">3</option>
+                 <option value="4">4</option>
+                 <option value="5">5</option>
+               </select>
+            </div>
+            <div className="button-group">
+
+              <button
+                className="button"
+                type="submit"
+                value="Submit"
+              >
+                { this.props.editRecipe !== null ? "Update" : "Submit" }
+              </button>
+              <button
+                className="button"
+                onClick={this.props.clearForm}
+                value="Clear"
+              >
+              Clear
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     )
   }
 }
+
+// {this.props.sessions}
+// <div id="curve_chart"></div>
 
 export default Brew;
