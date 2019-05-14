@@ -32,7 +32,6 @@ class SimpleMap extends Component {
           />)
       }
     })
-
     return labels
   }
 
@@ -45,11 +44,6 @@ class SimpleMap extends Component {
           defaultCenter={this.createDefaultcenter()}
           defaultZoom={12}
         >
-          <MyLabelComponent
-            lat={this.createDefaultcenter().lat}
-            lng={this.createDefaultcenter().lng}
-            text="You Are Here"
-          />
           {this.createBreweriesLabels()}
         </GoogleMapReact>
       </div>
