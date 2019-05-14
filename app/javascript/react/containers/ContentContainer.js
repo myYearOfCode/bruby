@@ -475,25 +475,24 @@ class ContentContainer extends Component {
     }
 
     sortBreweriesByDistance(){
-      let sortedArray = []
+      let sortedHash = {}
       Object.keys(this.state.breweries).map(brewery => {
         let breweryLat = this.state.breweries[brewery].latitude
         let breweryLon = this.state.breweries[brewery].longitude
         if ((breweryLat)&&(breweryLon)&&(this.state.brewerLocation.latitude)&&(this.state.brewerLocation.latitude)){
-          // console.log(breweryLat, breweryLon)
           let brewerLat=this.state.brewerLocation.latitude
           let brewerLon=this.state.brewerLocation.longitude
-          this.calcDistance(brewerLat, brewerLon, breweryLat, breweryLon)
+          let distance = this.calcDistance(brewerLat, brewerLon, breweryLat, breweryLon)
+          sortedHash[distance] = this.state.breweries[brewery]
         }
       })
+      this.setState({distanceSortedBreweries: sortedHash})
     }
 
     calcDistance(brewerLat, brewerLon, breweryLat, breweryLon){
-  		let distance = Math.sqrt(
+  		return distance = Math.sqrt(
   			Math.pow(brewerLat - breweryLat, 2) + Math.pow(brewerLon - breweryLon, 2)
   		);
-      return distance
-    	// console.log(distance);
     }
 
     setGeoBrewerState(location){
@@ -576,10 +575,11 @@ class ContentContainer extends Component {
             <FindBeer
               paginateStateBreweries={this.paginateStateBreweries}
               setBrewerState={this.setBrewerState}
-              breweries={this.state.breweries}
+              breweries={this.state.breweries || {}}
               geoBrewerState={this.setGeoBrewerState}
               brewerState={this.state.brewerState}
               brewerLocation={this.state.brewerLocation}
+              distanceSortedBreweries={this.state.distanceSortedBreweries || null}
             />
           }
         />
