@@ -22,7 +22,6 @@
 
 .welcomeBackText{
   text-align: center;
-  text-shadow: 5px 5px 5px black;
   font-size: 4vw;
 }
 
@@ -30,9 +29,17 @@
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 22vw;
   color: white;
+  margin: 20px;
+}
+
+.userContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .statsContainer{
@@ -40,14 +47,33 @@
   flex-direction: row;
   justify-content: center;
 }
+
 .big{
-  font-size: 6em;
+  font-size: 9em;
   text-align: center;
-  height: 110px;
-  width: 20vw;
+  height: 130px;
+  border-bottom: 5px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .description{
   text-align: center;
-  width: 20vw;
+  font-size: 1.5em;
+  padding-bottom: 10px;
+}
+
+.brewingRecap{
+  font-size: 2em;
+}
+
+.recapContainer{
+  width: 55vw;
+  text-align:left;
+}
+
+.beerName{
+  font-style: oblique;
+  text-align:left;
 }
