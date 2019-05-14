@@ -49,7 +49,9 @@ class ContentContainer extends Component {
       nowBrewingSesId: "",
       nowBrewingSession: {},
       breweries: {},
-      redirect: null
+      redirect: null,
+      breweriesPageCount: 0,
+      brewerLocation: {},
     }
     this.createRecipe = this.createRecipe.bind(this);
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
@@ -433,6 +435,7 @@ class ContentContainer extends Component {
             this.setState({breweriesListComplete: true})
             clearInterval(this.timer)
             this.timer = null;
+            this.sortBreweriesByDistance()
           } else {
             let masterBreweriesList = this.state.breweries || {}
             body.map(brewery => {
@@ -471,8 +474,36 @@ class ContentContainer extends Component {
       this.setState({brewerState: event.target.value})
     }
 
-    setGeoBrewerState(state){
-      this.setState({brewerState: state})
+    sortBreweriesByDistance(){
+      let sortedArray = []
+      Object.keys(this.state.breweries).map(brewery => {
+        let breweryLat = this.state.breweries[brewery].latitude
+        let breweryLon = this.state.breweries[brewery].longitude
+        if ((breweryLat)&&(breweryLon)&&(this.state.brewerLocation.latitude)&&(this.state.brewerLocation.latitude)){
+          // console.log(breweryLat, breweryLon)
+          let brewerLat=this.state.brewerLocation.latitude
+          let brewerLon=this.state.brewerLocation.longitude
+          this.calcDistance(brewerLat, brewerLon, breweryLat, breweryLon)
+        }
+      })
+    }
+
+    calcDistance(brewerLat, brewerLon, breweryLat, breweryLon){
+  		let distance = Math.sqrt(
+  			Math.pow(brewerLat - breweryLat, 2) + Math.pow(brewerLon - breweryLon, 2)
+  		);
+    	// console.log(distance);
+    }
+
+    setGeoBrewerState(location){
+      this.timer = setInterval(()=> this.getStateBreweries(), 1100);
+      this.setState({
+        breweriesPageCount: 0,
+        breweries: 0,
+        breweriesListComplete: false,
+        brewerState: location.region_name,
+        brewerLocation: location
+      })
       this.getStateBreweries()
     }
 
@@ -547,6 +578,7 @@ class ContentContainer extends Component {
               breweries={this.state.breweries}
               geoBrewerState={this.setGeoBrewerState}
               brewerState={this.state.brewerState}
+              brewerLocation={this.state.brewerLocation}
             />
           }
         />

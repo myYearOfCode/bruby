@@ -49,15 +49,15 @@ class Brewery extends PureComponent {
                 <span className="font-bold">{name}</span>
                 <span> ({brewery_type})</span>
               </div>
-              { street !== '' ? <div>{street}</div> : '' }
-              <div>
+              <div className="breweryInfo">
+                { street !== '' ? <div>{street}</div> : '' }
                 { city !== '' ? <span>{city}, </span> : '' }
                 { state !== '' ? <span>{state}, </span> : '' }
                 { postal_code !== '' ? <span>{postal_code}, </span> : '' }
                 { country !== '' ? <span>{country} </span> : '' }
-              </div>
-              <div>
-                Geo Coordinates: {latitude}/{longitude}
+                { latitude ? <div>
+                  Geo Coordinates: {latitude} / {longitude}
+                </div> : '' }
               </div>
             </address>
             { address ?
