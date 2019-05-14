@@ -106,8 +106,33 @@ class NowBrewing extends Component {
     chart.draw(data, options);
   }
 
+  drawPie() {
+    var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      ['Finished',     90],
+      ['Unfinished',      10],
+
+    ]);
+
+    var options = {
+      legend: '% completed',
+      pieSliceText: 'none',
+      pieStartAngle: 0,
+      slices: {
+        0: { color: 'blue' },
+        1: { color: 'transparent' }
+      },
+      pieHole: 0.6,
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    chart.draw(data, options);
+  }
+
   render () {
     this.chartWrapper()
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(this.drawPie);
     google.charts.load('current', {'packages':['gauge']});
     google.charts.setOnLoadCallback(this.drawChart);
     return(
@@ -131,7 +156,10 @@ class NowBrewing extends Component {
           <div className = "brewStatHeader">
             Boiler Scale: {this.getSessionValues('shutScale')}
           </div>
-          <div id="chart_div" className="wortGauge"></div>
+          <div className="gaugesWrapper">
+            <div id="donutchart"></div>
+            <div id="chart_div" className="wortGauge"></div>
+          </div>
           <div id="curve_chart">
           </div>
         </div>
