@@ -16,6 +16,15 @@
   min-width: 450px;
 }
 
+.breweriesCount{
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+
+.breweryInfo{
+  padding-left: 20px;
+}
+
 .bg-grey-light {
   background-color: #dae1e7;
 }

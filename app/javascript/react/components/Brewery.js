@@ -31,13 +31,13 @@ class Brewery extends PureComponent {
       case 'micro':
       case 'regional':
       case 'large':
-        bgColor = 'bg-green text-white'
+        bgColor = 'bg-red text-white'
         break
       case 'brewpub':
         bgColor = 'bg-orange text-white'
         break
       default:
-        bgColor = 'bg-grey-light text-grey'
+        bgColor = 'bg-blue text-grey'
     }
 
     return (
@@ -49,15 +49,15 @@ class Brewery extends PureComponent {
                 <span className="font-bold">{name}</span>
                 <span> ({brewery_type})</span>
               </div>
-              { street !== '' ? <div>{street}</div> : '' }
-              <div>
+              <div className="breweryInfo">
+                { street !== '' ? <div>{street}</div> : '' }
                 { city !== '' ? <span>{city}, </span> : '' }
                 { state !== '' ? <span>{state}, </span> : '' }
                 { postal_code !== '' ? <span>{postal_code}, </span> : '' }
                 { country !== '' ? <span>{country} </span> : '' }
-              </div>
-              <div>
-                Geo Coordinates: {latitude}/{longitude}
+                { latitude ? <div>
+                  Geo Coordinates: {latitude} / {longitude}
+                </div> : '' }
               </div>
             </address>
             { address ?
