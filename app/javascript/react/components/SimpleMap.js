@@ -23,7 +23,7 @@ class SimpleMap extends Component {
     let labels = []
     Object.keys(this.props.breweries).forEach(brewery => {
       if ((this.props.breweries[brewery].latitude) && (this.props.breweries[brewery].longitude)){
-        console.log(labels)
+        // console.log(labels)
         labels.push(
           <MyLabelComponent
             lat={this.props.breweries[brewery].latitude}
