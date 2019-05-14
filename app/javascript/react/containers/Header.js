@@ -31,8 +31,9 @@ const Header = (props) => {
       <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/hazybeer.jpg"/>
       <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/437743.jpg"/>
       <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/413078.jpg"/>
-      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/homebrew_bottles.jpg"/>
+      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/boilingWort.png"/>
       <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/Cooper-River-Brewery.jpg"/>
+      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/beer_bottles_homebrew.jpg"/>
     </nav>
   )
 }

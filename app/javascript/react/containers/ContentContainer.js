@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Dashboard from "../components/Dashboard";
 import RecipeForm from '../components/RecipeForm'
 import RecipesContainer from './RecipesContainer'
-import Brew from '../components/Brew'
+import BrewContainer from './BrewContainer'
 import User from '../components/User'
 import FindBeer from './FindBeer'
 import NowBrewing from '../components/NowBrewing'
-
 
 class ContentContainer extends Component {
   constructor(props){
@@ -49,7 +48,8 @@ class ContentContainer extends Component {
       nowBrewing: false,
       nowBrewingSesId: "",
       nowBrewingSession: {},
-      breweries: {}
+      breweries: {},
+      redirect: null
     }
     this.createRecipe = this.createRecipe.bind(this);
     this.recipeOnChangeHandler = this.recipeOnChangeHandler.bind(this);
@@ -63,6 +63,8 @@ class ContentContainer extends Component {
     this.getStateBreweries = this.getStateBreweries.bind(this);
     this.setBrewerState = this.setBrewerState.bind(this);
     this.paginateStateBreweries = this.paginateStateBreweries.bind(this);
+    this.fetchNewestSession = this.fetchNewestSession.bind(this);
+    this.setGeoBrewerState = this.setGeoBrewerState.bind(this);
   }
 
 
@@ -178,9 +180,7 @@ class ContentContainer extends Component {
     }
 
     loadRecipeHandler(event){
-      this.setState({editRecipe: event.target.value})
-      // X set editRecipe to recipe id
-      fetch(`api/v1/recipes/${event.target.value}`)
+      fetch(`/api/v1/recipes/${event.target.value}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -220,6 +220,7 @@ class ContentContainer extends Component {
         })
       })
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
+      this.setState({editRecipe: event.target.value, redirect: "/dashboard/newRecipe"})
     }
 
     componentDidMount(){
@@ -309,6 +310,36 @@ class ContentContainer extends Component {
       });
     }
 
+    updateRecipe(event){
+      event.preventDefault()
+      fetch(`/api/v1/recipes/${this.state.editRecipe}`, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.stateToRecipeObject())
+      })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText}) ,`
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.clearForm()
+        this.setState({recipes: body.recipes, error: ""})
+      })
+      .catch(error => {
+        console.error( `Error in fetch: ${error.message}`)
+        this.setState({error: error.message})
+      });
+    }
+
     stateToRecipeObject(){
       return {
         recipe: {
@@ -340,36 +371,6 @@ class ContentContainer extends Component {
       }
     }
 
-    updateRecipe(event){
-      event.preventDefault()
-      fetch(`/api/v1/recipes/${this.state.editRecipe}`, {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.stateToRecipeObject())
-      })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText}) ,`
-          let error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.clearForm()
-        this.setState({recipes: body.recipes, error: ""})
-      })
-      .catch(error => {
-        console.error( `Error in fetch: ${error.message}`)
-        this.setState({error: error.message})
-      });
-    }
-
     toggleNowBrewing(event) {
       event.preventDefault()
       this.fetchNewestSession()
@@ -399,9 +400,10 @@ class ContentContainer extends Component {
       .then(response => response.json())
       .then(body => {
         let sesId=Object.keys(body).pop()
-        if (
-          (sesId !== this.state.nowBrewingSesId) ||
-          (body[sesId] !== this.state.nowBrewingSession))
+        console.log(`hello`);
+        // if (
+        //   (sesId !== this.state.nowBrewingSesId) ||
+        //   (body[sesId] !== this.state.nowBrewingSession))
         this.setState({
           nowBrewingSesId: sesId,
           nowBrewingSession: body[sesId]
@@ -409,6 +411,7 @@ class ContentContainer extends Component {
       })
       .then(() => this.state.nowBrewingSession)
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
+      console.log(this.state.nowBrewingSesId)
     }
 
     getStateBreweries(){
@@ -468,7 +471,18 @@ class ContentContainer extends Component {
       this.setState({brewerState: event.target.value})
     }
 
+    setGeoBrewerState(state){
+      this.setState({brewerState: state})
+      this.getStateBreweries()
+    }
+
   render () {
+    if (this.state.redirect) {
+      let goTo = this.state.redirect
+      this.setState({redirect: null})
+      return <Redirect to={goTo}/>;
+    }
+
     return(
       <Switch>
         <Route exact path="/" component={Dashboard} />
@@ -514,13 +528,14 @@ class ContentContainer extends Component {
             <NowBrewing
               nowBrewingSesId = {this.state.nowBrewingSesId}
               nowBrewingSession = {this.state.nowBrewingSession}
+              fetchNewestSession = {this.fetchNewestSession}
             />
           }
         />
         <Route
           path='/dashboard/brews'
           render={() =>
-            <Brew sessions = {this.state.sessions}/>
+            <BrewContainer sessions = {this.state.sessions}/>
           }
         />
         <Route
@@ -530,6 +545,8 @@ class ContentContainer extends Component {
               paginateStateBreweries={this.paginateStateBreweries}
               setBrewerState={this.setBrewerState}
               breweries={this.state.breweries}
+              geoBrewerState={this.setGeoBrewerState}
+              brewerState={this.state.brewerState}
             />
           }
         />

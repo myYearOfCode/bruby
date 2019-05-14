@@ -1,0 +1,22 @@
+.nowBrewingBody{
+  display:flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 100%;
+  background: black url("https://s3.amazonaws.com/bruby/site_images/boilingWort.png") no-repeat fixed;
+  background-size: cover;
+}
+
+.nowBrewingWrapper{
+  background-color: rgba(0,0,0,.5);
+  border-right: 1px solid #8080804d;
+  border-left: 1px solid #8080804d;
+  width: 70vw;
+  max-width: 800px;
+  min-width: 450px;
+  padding: 20px;
+}
+
+#curve_chart{
+  width:100%
+}

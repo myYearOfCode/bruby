@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :update]
       resources :sessions, only: [:index, :show]
       resources :geo, only: [:index]
+      resources :brews, only: [:show, :update]
     end
   end
 
