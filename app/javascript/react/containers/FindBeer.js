@@ -33,6 +33,9 @@
 // run a search for the city targeted in the geolocation first.
 // calculate
 import React, { Component } from 'react';
+
+import Brewery from '../components/Brewery'
+
 class findBrewery extends Component {
   constructor(props){
     super(props);
@@ -62,7 +65,8 @@ class findBrewery extends Component {
     let breweries = this.props.breweries
     if (this.props.breweries){
       return Object.keys(this.props.breweries).map(brewery => {
-        return <div key={`${breweries[brewery].id}_${breweries[brewery].name}_${breweries[brewery].updated_at}`}>{breweries[brewery].name}</div>
+        return <Brewery brewery={this.props.breweries[brewery]} />
+        // <div key={`${breweries[brewery].id}_${breweries[brewery].name}_${breweries[brewery].updated_at}`}>{breweries[brewery].name}</div>
       })
     }
   }
