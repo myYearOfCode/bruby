@@ -28,11 +28,17 @@ class findBrewery extends Component {
   }
 
   showBreweries() {
-    let breweries = this.props.breweries
-    if (this.props.breweries){
-      return Object.keys(this.props.breweries).map(brewery => {
+    let breweries = {}
+    if (this.props.distanceSortedBreweries !== null){
+      breweries = this.props.distanceSortedBreweries
+    } else {
+      breweries = this.props.breweries
+    }
+    if (Object.keys(breweries).length > 0){
+      let sorted = Object.keys(breweries).sort()
+      return sorted.map(brewery => {
         return <Brewery
-          key={this.props.breweries[brewery].id} brewery={this.props.breweries[brewery]}
+          key={breweries[brewery].id} brewery={breweries[brewery]}
         />
       })
     }
