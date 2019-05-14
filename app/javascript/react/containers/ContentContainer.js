@@ -492,6 +492,7 @@ class ContentContainer extends Component {
   		let distance = Math.sqrt(
   			Math.pow(brewerLat - breweryLat, 2) + Math.pow(brewerLon - breweryLon, 2)
   		);
+      return distance
     	// console.log(distance);
     }
 
