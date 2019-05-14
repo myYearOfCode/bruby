@@ -1,45 +1,54 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => <div classname="breweryLabel">{text}</div>;
+const MyLabelComponent = ({ text }) => <div className="breweryLabel">{text}</div>;
 
 class SimpleMap extends Component {
 
-  static defaultProps = {
-    center: {
-      lat: 42.3819723,
-      lng: -71.1062676
-    },
-    zoom: 13
-  };
-
-  createBreweriesLabels(){
-    let labels = []
-    if (this.props.breweries){
-      return Object.keys(this.props.breweries).map(brewery => {
-        if ((this.props.breweries[brewery].latitude) && (this.props.breweries[brewery].longitude)){
-          return    <AnyReactComponent
-                      lat={this.props.breweries[brewery].latitude}
-                      lng={this.props.breweries[brewery].longitude}
-                      text={this.props.breweries[brewery].name}
-                    />
+  createDefaultcenter(){
+    if (this.props && this.props.brewerLat && this.props.brewerLon){
+      return {
+          lat: this.props.brewerLat,
+          lng: this.props.brewerLon
         }
-      })
+    } else {
+      return {
+          lat: 59.95,
+          lng: 30.33
+      }
     }
   }
 
+  createBreweriesLabels(){
+    let labels = []
+    Object.keys(this.props.breweries).forEach(brewery => {
+      if ((this.props.breweries[brewery].latitude) && (this.props.breweries[brewery].longitude)){
+        console.log(labels)
+        labels.push(
+          <MyLabelComponent
+            lat={this.props.breweries[brewery].latitude}
+            lng={this.props.breweries[brewery].longitude}
+            text={this.props.breweries[brewery].name}
+          />)
+      }
+    })
+
+    return labels
+  }
+
   render() {
+    console.log(this.props)
     return (
       <div style={{ height: '30vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyBzvVjZQzuICeFkBiz4Cv7LWkv4qfAhsjM" }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
+          defaultCenter={this.createDefaultcenter()}
+          defaultZoom={12}
         >
-          <AnyReactComponent
-            lat={this.props.latitude}
-            lng={this.props.longitude}
-            text="My Marker"
+          <MyLabelComponent
+            lat={this.createDefaultcenter().lat}
+            lng={this.createDefaultcenter().lng}
+            text="You Are Here"
           />
           {this.createBreweriesLabels()}
         </GoogleMapReact>

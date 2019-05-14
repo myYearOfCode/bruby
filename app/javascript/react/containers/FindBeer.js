@@ -62,6 +62,7 @@ simpleMapWrapper(){
     return <SimpleMap
       brewerLon={brewerLon || 42.3572211}
       brewerLat={brewerLat || -71.0577151}
+      breweries={this.props.breweries}
     />
   }
   console.log(this.props)
