@@ -31,13 +31,13 @@ class Brewery extends PureComponent {
       case 'micro':
       case 'regional':
       case 'large':
-        bgColor = 'bg-green text-white'
+        bgColor = 'bg-red text-white'
         break
       case 'brewpub':
         bgColor = 'bg-orange text-white'
         break
       default:
-        bgColor = 'bg-grey-light text-grey'
+        bgColor = 'bg-blue text-grey'
     }
 
     return (
