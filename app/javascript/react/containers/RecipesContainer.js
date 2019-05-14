@@ -50,11 +50,11 @@ class RecipesContainer extends Component {
         <div
           className={this.state.recipesWrapper}
         >
-          <h1
+          <div
           className="scriptHeader"
           >
           Recipes
-          </h1>
+          </div>
           { this.renderRecipes() }
         </div>
       </div>

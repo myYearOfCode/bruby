@@ -14,9 +14,9 @@ class User extends Component {
       <div className="userInfoBody">
         <div className="userInfoWrapper">
           <div onClick={this.props.toggleUserExpanded}>
-            <h1 className="scriptHeader">
+            <div className="scriptHeader">
               User Info
-            </h1>
+            </div>
           </div>
           <div>
             <div className="welcomeBackText">

@@ -84,7 +84,9 @@ class BrewContainer extends Component {
     return(
       <div className="brewsBody">
         <div className="brewsWrapper">
-          Brew log - select a brew to see more.
+        <div className="scriptHeader">
+          Brew Logs
+        </div>
           {this.makeList()}
           <div id="curve_chart"></div>
         </div>

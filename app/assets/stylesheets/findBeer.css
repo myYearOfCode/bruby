@@ -1,6 +1,6 @@
 .findBeerBody{
   width:100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   background: black url("https://s3.amazonaws.com/bruby/site_images/Cooper-River-Brewery.jpg") no-repeat fixed;

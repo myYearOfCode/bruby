@@ -81,6 +81,9 @@ class findBrewery extends Component {
     return(
       <div className="findBeerBody">
         <div className="findBeerWrapper">
+          <div className="scriptHeader">
+            Find Beer
+          </div>
           <form onSubmit={this.props.paginateStateBreweries}>
             <input
               name="state"

@@ -26,8 +26,31 @@ class NowBrewing extends Component {
     this.timer = null;
   }
 
+
+  getRecipeFromBrew(nowBrewingSesId){
+      fetch(`/api/v1/brews/${nowBrewingSesId}`)
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText}) ,`
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        console.log(body.recipe)
+        return ({recipe: body.recipe})
+      })
+      .catch(error => console.error( `Error in fetch: ${error.message}` ));
+  }
+
   getData() {
     console.log(`/api/v1/sessions/${this.props.nowBrewingSesId}`)
+    if (this.state.recipe){
+      this.getRecipeFromBrew(this.props.nowBrewingSesId)
+    }
     fetch(`/api/v1/sessions/${this.props.nowBrewingSesId}`)
     .then(response => {
       if (response.ok) {
@@ -84,6 +107,7 @@ class NowBrewing extends Component {
       }
   }
 
+
   getPercentComplete(){
     if (this.state.session && this.state.session.length > 0){
       let percent = this.state.session[0]['timeLeft']/(this.state.session[0]['timeLeft']-this.state.session[this.state.session.length-1]['timeLeft'])
@@ -96,6 +120,9 @@ class NowBrewing extends Component {
     return(
       <div className="nowBrewingBody">
         <div className="nowBrewingWrapper">
+        <div className="scriptHeader">
+          Now Brewing
+        </div>
           <div className = "brewStatHeader">
             Current Wort Temp: {this.getSessionValues('wort')}°F
           </div>
