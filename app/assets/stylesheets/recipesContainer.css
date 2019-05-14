@@ -24,7 +24,7 @@
   flex-direction: column;
   justify-content: space-between;
   color: #FFF;
-  text-shadow: 2px 2px #999;
+  /* text-shadow: 2px 2px #999; */
   transition: height 300ms;
   height: 50px;
 }
@@ -67,17 +67,19 @@
 
 .recipeOverviewName {
   margin:  .25rem .25rem 0 .25rem;
-  font-weight: 800;
+  font-weight: 100;
   font-size: 2em;
   width: 100%;
   padding: 0 10px 0 10px;
-  font-family: 'Baloo Bhai', cursive;
+  /* font-family: 'Baloo Bhai', cursive; */
+  font-family: 'Montserrat', sans-serif;
 }
 
 .yourRecipes{
   /* background-image: linear-gradient(90deg, #717171 0%, #c3c3c3 100%); */
   background: black url("https://s3.amazonaws.com/bruby/site_images/413078.jpg") no-repeat fixed;
   width: 100%;
+  height: 100vh;
   display:flex;
   justify-content: center;
 }
@@ -89,14 +91,10 @@
 }
 
 .scriptHeader{
-  /* font-family: 'Yellowtail', cursive; */
-  /* font-family: 'Galada', cursive; */
-  font-family: 'Alfa Slab One', cursive;
-  /* font-family: 'Amita', cursive;  */
-  /* font-family: 'Baloo Bhai', cursive; */
+  font-family: 'Montserrat', sans-serif;
   font-size: 2.5em;
   color: #FFF;
-  text-shadow: 2px 2px 3px #00000082;
+  /* text-shadow: 2px 2px 3px #00000082; */
   padding: 0 0 0px 12px;
   background-image: linear-gradient(90deg, #717171 0%, #c3c3c3 100%)
 }

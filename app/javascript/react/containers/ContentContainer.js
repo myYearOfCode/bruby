@@ -523,7 +523,7 @@ class ContentContainer extends Component {
         />
         <Route
           path='/dashboard/nowBrewing'
-          onEnter={() => this.fetchNewestSession()}
+          // onEnter={() => this.fetchNewestSession()}
           render={() =>
             <NowBrewing
               nowBrewingSesId = {this.state.nowBrewingSesId}
