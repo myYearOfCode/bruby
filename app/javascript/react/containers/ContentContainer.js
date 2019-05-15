@@ -303,6 +303,7 @@ class ContentContainer extends Component {
         console.error( `Error in fetch: ${error.message}`)
         this.setState({error: error.message})
       });
+      this.setState({editRecipe: event.target.value, redirect: "/dashboard/recipes"})
     }
 
     updateRecipe(event){
@@ -333,6 +334,7 @@ class ContentContainer extends Component {
         console.error( `Error in fetch: ${error.message}`)
         this.setState({error: error.message})
       });
+      this.setState({editRecipe: event.target.value, redirect: "/dashboard/recipes"})
     }
 
     stateToRecipeObject(){
