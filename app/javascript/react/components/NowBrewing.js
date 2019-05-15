@@ -104,7 +104,6 @@ class NowBrewing extends Component {
       }
   }
 
-
   getPercentComplete(){
     if (this.state.session && this.state.session.length > 0){
       let percent = this.state.session[0]['timeLeft']/(this.state.session[0]['timeLeft']-this.state.session[this.state.session.length-1]['timeLeft'])
@@ -146,33 +145,22 @@ class NowBrewing extends Component {
     )
   }
 
-  // drawPie() {
-  //   var data = google.visualization.arrayToDataTable([
-  //     ['Task', 'Hours per Day'],
-  //     ['Finished',     90],
-  //     ['Unfinished',      10],
-  //
-  //   ]);
-  //
-  //   var options = {
-  //     legend: '% completed',
-  //     pieSliceText: 'none',
-  //     pieStartAngle: 0,
-  //     slices: {
-  //       0: { color: 'blue' },
-  //       1: { color: 'transparent' }
-  //     },
-  //     pieHole: 0.6,
-  //   };
-  //
-  //   var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-  //   chart.draw(data, options);
-  // }
+  makeProgressBar(){
+    const progress = {
+      width: `${this.getPercentComplete()}%`,
+    };
+    return (
+      <div className="progressWrapper">
+        <div className="progressBar" style={progress}>
+        </div>
+      </div>
+    )
+  }
 
   render () {
     this.chartWrapper()
-    google.charts.load('current', {'packages':['gauge']});
-    google.charts.setOnLoadCallback(this.drawChart);
+    // google.charts.load('current', {'packages':['gauge']});
+    // google.charts.setOnLoadCallback(this.drawChart);
     return(
       <div className="nowBrewingBody">
         <div className="nowBrewingWrapper">
@@ -190,14 +178,7 @@ class NowBrewing extends Component {
               {this.makeBigType("Step:", this.getSessionValues('step'), "" )}
               {this.makeBigType("Boiler Scale:", this.getSessionValues('shutScale'), "" )}
               <div className="progressWrapper">
-
-              </div>
-            </div>
-            <div className="gaugesWrapper">
-              <div
-                id="chart_div"
-                className="wortGauge"
-              >
+                {this.makeProgressBar()}
               </div>
             </div>
             <div id="curve_chart">
@@ -207,5 +188,5 @@ class NowBrewing extends Component {
     )
   }
 }
-// <div id="donutchart"></div>
+
 export default NowBrewing;
