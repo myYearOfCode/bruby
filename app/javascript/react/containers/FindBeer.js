@@ -54,25 +54,23 @@ class findBrewery extends Component {
     }
   }
 
-simpleMapWrapper(){
-  // debugger
-  let brewerLat;
-  let brewerLon;
-  if (this.props.brewerLocation && this.props.brewerLocation.latitude){
-    brewerLat=this.props.brewerLocation.latitude
+  simpleMapWrapper(){
+    let brewerLat;
+    let brewerLon;
+    if (this.props.brewerLocation && this.props.brewerLocation.latitude){
+      brewerLat=this.props.brewerLocation.latitude
+    }
+    if (this.props.brewerLocation && this.props.brewerLocation.longitude){
+      brewerLon=this.props.brewerLocation.longitude
+    }
+    if (brewerLat && brewerLon){
+      return <SimpleMap
+        brewerLon={brewerLon || 42.3572211}
+        brewerLat={brewerLat || -71.0577151}
+        breweries={this.props.breweries}
+      />
+    }
   }
-  if (this.props.brewerLocation && this.props.brewerLocation.longitude){
-    brewerLon=this.props.brewerLocation.longitude
-  }
-  if (brewerLat && brewerLon){
-    return <SimpleMap
-      brewerLon={brewerLon || 42.3572211}
-      brewerLat={brewerLat || -71.0577151}
-      breweries={this.props.breweries}
-    />
-  }
-  console.log(this.props)
-}
 
   render () {
     return(
