@@ -8,6 +8,8 @@ import BrewContainer from './BrewContainer'
 import User from '../components/User'
 import FindBeer from './FindBeer'
 import NowBrewing from '../components/NowBrewing'
+import { Progress } from 'react-sweet-progress';
+import "react-sweet-progress/lib/style.css";
 
 class ContentContainer extends Component {
   constructor(props){

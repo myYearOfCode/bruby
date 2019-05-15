@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Progress } from 'react-sweet-progress';
 
 class NowBrewing extends Component {
   constructor(props){
@@ -186,6 +187,9 @@ class NowBrewing extends Component {
             </div>
             <div className = "brewStatHeader">
               Boiler Scale: {this.getSessionValues('shutScale')}
+            </div>
+            <div className="progressWrapper">
+              <Progress percent={this.getPercentComplete()} />
             </div>
           </div>
           <div className="gaugesWrapper">
