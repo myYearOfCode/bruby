@@ -69,11 +69,12 @@
 }
 
 .recapContainer{
-  width: 55vw;
+  width:47vw;
   text-align:left;
 }
 
 .beerName{
-  font-style: oblique;
-  text-align:left;
+  text-align: left;
+  font-weight: 900;
+  padding-left: 25px;
 }
