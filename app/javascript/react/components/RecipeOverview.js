@@ -23,7 +23,7 @@ const RecipeOverview = (props) => {
       <div className="recipeDescription">
         {showImage()}
         <div>
-          Description:{props.recipe.description}
+          {`Description: ${props.recipe.description}`}
         </div>
       </div>
       <div className='recipeRightRide'>

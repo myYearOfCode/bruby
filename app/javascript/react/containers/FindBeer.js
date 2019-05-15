@@ -48,7 +48,7 @@ class findBrewery extends Component {
     if (this.props.breweries && Object.keys(this.props.breweries).length > 0){
       return(
         <div className="breweriesCount">
-          {Object.keys(this.props.breweries).length} total breweries found.
+          {Object.keys(this.props.breweries).length} breweries found.
         </div>
       )
     }
@@ -79,7 +79,9 @@ class findBrewery extends Component {
           <div className="scriptHeader">
             Find Beer
           </div>
-          {this.simpleMapWrapper()}
+          <div className="mapWrapper">
+            {this.simpleMapWrapper()}
+          </div>
           <form onSubmit={this.props.paginateStateBreweries}>
             <input
               name="state"
