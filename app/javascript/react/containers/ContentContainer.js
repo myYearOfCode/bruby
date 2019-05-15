@@ -69,6 +69,55 @@ class ContentContainer extends Component {
     this.setGeoBrewerState = this.setGeoBrewerState.bind(this);
   }
 
+    componentDidMount(){
+      fetch('/api/v1/users')
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText}) ,`
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({user: body.user})
+      })
+      .catch(error => console.error( `Error in fetch: ${error.message}` ));
+
+      fetch('/api/v1/recipes')
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText}) ,`
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({recipes: body.recipes})
+      })
+      .catch(error => console.error( `Error in fetch: ${error.message}` ));
+
+      fetch('/api/v1/sessions')
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText}) ,`
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({sessions: body})
+      })
+      .catch(error => console.error( `Error in fetch: ${error.message}` ));
+    }
 
     clearForm(event) {
       if (event){
@@ -223,56 +272,6 @@ class ContentContainer extends Component {
       })
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
       this.setState({editRecipe: event.target.value, redirect: "/dashboard/newRecipe"})
-    }
-
-    componentDidMount(){
-      fetch('/api/v1/users')
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText}) ,`
-          let error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({user: body.user})
-      })
-      .catch(error => console.error( `Error in fetch: ${error.message}` ));
-
-      fetch('/api/v1/recipes')
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText}) ,`
-          let error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({recipes: body.recipes})
-      })
-      .catch(error => console.error( `Error in fetch: ${error.message}` ));
-
-      fetch('/api/v1/sessions')
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText}) ,`
-          let error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({sessions: body})
-      })
-      .catch(error => console.error( `Error in fetch: ${error.message}` ));
     }
 
     createRecipe(event){
@@ -527,6 +526,7 @@ class ContentContainer extends Component {
               recipes={this.state.recipes}
               user={this.state.user}
               recipeExpanded={this.state.recipeExpanded}
+              brewNext={this.state.user.brewNext}
             />
           }
         />
