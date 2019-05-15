@@ -28,6 +28,7 @@ class SimpleMap extends Component {
           <MyLabelComponent
             lat={this.props.breweries[brewery].latitude}
             lng={this.props.breweries[brewery].longitude}
+            key={this.props.breweries[brewery].id}
             text={this.props.breweries[brewery].name}
           />)
       }
@@ -36,7 +37,6 @@ class SimpleMap extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div style={{ height: '30vh', width: '100%' }}>
         <GoogleMapReact

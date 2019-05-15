@@ -238,12 +238,9 @@ class ContentContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        console.log('user returned ok')
-        console.log(body)
         this.setState({user: body.user})
       })
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
-
 
       fetch('/api/v1/recipes')
       .then(response => {
@@ -257,8 +254,6 @@ class ContentContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        console.log('recipes returned ok')
-        console.log(body)
         this.setState({recipes: body.recipes})
       })
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
@@ -275,8 +270,6 @@ class ContentContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        console.log('sessions returned ok')
-        console.log(body)
         this.setState({sessions: body})
       })
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
@@ -402,10 +395,6 @@ class ContentContainer extends Component {
       .then(response => response.json())
       .then(body => {
         let sesId=Object.keys(body).pop()
-        console.log(`hello`);
-        // if (
-        //   (sesId !== this.state.nowBrewingSesId) ||
-        //   (body[sesId] !== this.state.nowBrewingSession))
         this.setState({
           nowBrewingSesId: sesId,
           nowBrewingSession: body[sesId]
@@ -413,13 +402,13 @@ class ContentContainer extends Component {
       })
       .then(() => this.state.nowBrewingSession)
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
-      console.log(this.state.nowBrewingSesId)
     }
 
     getStateBreweries(){
       if (!this.state.breweriesListComplete) {
-        console.log(`getting https://api.openbrewerydb.org/breweries?by_state=${this.state.brewerState}&page=${this.state.breweriesPageCount}&per_page=50`)
-        fetch(`https://api.openbrewerydb.org/breweries?by_state=${this.state.brewerState}&page=${this.state.breweriesPageCount}&per_page=50`)
+        let url = `https://api.openbrewerydb.org/breweries?by_state=${this.state.brewerState}&page=${this.state.breweriesPageCount}&per_page=50`
+        console.log(url)
+        fetch(url)
         .then(response => {
           if (response.ok) {
             return response;
@@ -490,7 +479,7 @@ class ContentContainer extends Component {
     }
 
     calcDistance(brewerLat, brewerLon, breweryLat, breweryLon){
-  		return distance = Math.sqrt(
+  		return Math.sqrt(
   			Math.pow(brewerLat - breweryLat, 2) + Math.pow(brewerLon - breweryLon, 2)
   		);
     }
