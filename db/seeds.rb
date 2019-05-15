@@ -23,6 +23,90 @@ recipe = Recipe.create!(
   s9Time: 1,
   s10Temp: 90,
   s10Time: 1,
+  description: "A deep, dark stout with a lot of alcohol. This will surprise you when you drink two or three. This makes a great beer to give as gifts.",
+  yeast: "us-05",
+  style: "Stout"
+)
+
+recipe2 = Recipe.create!(
+  name: "American Pale Ale",
+  s1Temp: 90,
+  s1Time: 1,
+  s2Temp: 90,
+  s2Time: 1,
+  s3Temp: 90,
+  s3Time: 1,
+  s4Temp: 90,
+  s4Time: 1,
+  s5Temp: 90,
+  s5Time: 1,
+  s6Temp: 90,
+  s6Time: 1,
+  s7Temp: 90,
+  s7Time: 1,
+  s8Temp: 90,
+  s8Time: 1,
+  s9Temp: 90,
+  s9Time: 1,
+  s10Temp: 90,
+  s10Time: 1,
+  description: "This is a light tasty brew that goes well with sunshine and sand. Brew it twice - or you'll be sad that you ran out.",
+  yeast: "safale 132",
+  style: "American Pale Ale"
+)
+
+recipe3 = Recipe.create!(
+  name: "Brown Ale",
+  s1Temp: 90,
+  s1Time: 1,
+  s2Temp: 90,
+  s2Time: 1,
+  s3Temp: 90,
+  s3Time: 1,
+  s4Temp: 90,
+  s4Time: 1,
+  s5Temp: 90,
+  s5Time: 1,
+  s6Temp: 90,
+  s6Time: 1,
+  s7Temp: 90,
+  s7Time: 1,
+  s8Temp: 90,
+  s8Time: 1,
+  s9Temp: 90,
+  s9Time: 1,
+  s10Temp: 90,
+  s10Time: 1,
+  description: "A traditional english brew. Look for hints of chestnut in both the color and aroma.",
+  yeast: "us-05",
+  style: "Brown Ale"
+)
+
+recipe4 = Recipe.create!(
+  name: "Porter Square Porter",
+  s1Temp: 90,
+  s1Time: 1,
+  s2Temp: 90,
+  s2Time: 1,
+  s3Temp: 90,
+  s3Time: 1,
+  s4Temp: 90,
+  s4Time: 1,
+  s5Temp: 90,
+  s5Time: 1,
+  s6Temp: 90,
+  s6Time: 1,
+  s7Temp: 90,
+  s7Time: 1,
+  s8Temp: 90,
+  s8Time: 1,
+  s9Temp: 90,
+  s9Time: 1,
+  s10Temp: 90,
+  s10Time: 1,
+  description: "A cousin to the stout, this beer is lighter but no less tasty. It pairs well with creamy desserts and charred meat.",
+  yeast: "us-05",
+  style: "Porter"
 )
 
 user = User.create!(
@@ -35,7 +119,30 @@ user = User.create!(
 
 Brew.create!(
   user: user,
-  recipe: recipe
+  recipe: recipe,
+  rating: 5,
+  review: "This came out perfectly. Make more, and save some for Wally next time."
+)
+
+Brew.create!(
+  user: user,
+  recipe: recipe2,
+  rating: 3,
+  review: "This tasted weak and watery. Maybe up the grains or add some extract to goose the sugars up."
+)
+
+Brew.create!(
+  user: user,
+  recipe: recipe3,
+  rating: 3,
+  review: "This beer my mom LOVED! I'm going to brew some wuickly so she can have a 6 pack  for her birthday."
+)
+
+Brew.create!(
+  user: user,
+  recipe: recipe4,
+  rating: 3,
+  review: "This is going into my basement for 6 mos. I'll report back."
 )
 
 BrewLog.create!(uid: "f91dc3e8cfa484a6d37911d951ac0a72", sesId: "0454356aec4a80", wort: "107", therm: "276", step: "Preparing to Brew", event:"Preparing to Brew", error: "0", sesType: "0", timeLeft: "0", shutScale: "0.24", brew: Brew.last)
