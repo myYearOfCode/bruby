@@ -159,8 +159,6 @@ class NowBrewing extends Component {
 
   render () {
     this.chartWrapper()
-    // google.charts.load('current', {'packages':['gauge']});
-    // google.charts.setOnLoadCallback(this.drawChart);
     return(
       <div className="nowBrewingBody">
         <div className="nowBrewingWrapper">
@@ -169,7 +167,7 @@ class NowBrewing extends Component {
           </div>
             <div className = "brewStatWrapper">
               <div className = "brewNextName">
-                Brewing: {this.props.brewNextName}
+                {this.props.brewNextName}
               </div>
               {this.makeBigType("Current Wort Temp:", this.getSessionValues('wort'),"°F" )}
               {this.makeBigType("Current Steam Temp:", this.getSessionValues('therm'),"°F" )}
@@ -182,11 +180,11 @@ class NowBrewing extends Component {
               </div>
             </div>
             <div id="curve_chart">
+            </div>
           </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
-}
 
 export default NowBrewing;
