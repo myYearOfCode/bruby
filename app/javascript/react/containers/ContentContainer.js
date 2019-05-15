@@ -549,6 +549,7 @@ class ContentContainer extends Component {
               nowBrewingSesId = {this.state.nowBrewingSesId}
               nowBrewingSession = {this.state.nowBrewingSession}
               fetchNewestSession = {this.fetchNewestSession}
+              brewNextName={this.state.user.brewNextName}
             />
           }
         />

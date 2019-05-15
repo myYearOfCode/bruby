@@ -16,6 +16,19 @@
   min-width: 450px;
 }
 
+.brewNextName{
+  font-size: 2em;
+  font-weight: 900;
+}
+
+.brewStatWrapper{
+  padding: 20px;
+}
+
+.brewStatHeader{
+  padding-left: 20px;
+}
+
 #curve_chart{
   width:100%
 }
