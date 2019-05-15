@@ -12,7 +12,8 @@ class Brewery extends PureComponent {
       country,
       longitude,
       latitude,
-      brewery_type
+      brewery_type,
+      website_url
     } = brewery
     let bgColor
     let address
@@ -57,6 +58,9 @@ class Brewery extends PureComponent {
                 { country !== '' ? <span>{country} </span> : '' }
                 { latitude ? <div>
                   Geo Coordinates: {latitude} / {longitude}
+                </div> : '' }
+                { website_url !== '' ? <div className="breweryUrl">
+                  <a href={`${website_url}`}> Web Site </a>
                 </div> : '' }
               </div>
             </address>
