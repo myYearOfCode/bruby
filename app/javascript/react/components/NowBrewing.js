@@ -163,47 +163,48 @@ class NowBrewing extends Component {
     return(
       <div className="nowBrewingBody">
         <div className="nowBrewingWrapper">
-        <div className="scriptHeader">
-          Now Brewing
-        </div>
-          <div className = "brewStatWrapper">
-            <div className = "brewNextName">
-              Brewing: {this.props.brewNextName}
-            </div>
-            <div className = "brewStatHeader">
-              Current Wort Temp: {this.getSessionValues('wort')}°F
-            </div>
-            <div className = "brewStatHeader">
-              Current Steam Temp: {this.getSessionValues('therm')}°F
-            </div>
-            <div className = "brewStatHeader">
-              Time Remaining: {(this.getSessionValues('timeLeft')/60).toFixed()} minutes
-            </div>
-            <div className = "brewStatHeader">
-              Percent Complete: {this.getPercentComplete()}%
-            </div>
-            <div className = "brewStatHeader">
-              Current Step: {this.getSessionValues('step')}
-            </div>
-            <div className = "brewStatHeader">
-              Boiler Scale: {this.getSessionValues('shutScale')}
-            </div>
-            <div className="progressWrapper">
-              <Progress percent={this.getPercentComplete()} />
-            </div>
+          <div className="scriptHeader">
+            Now Brewing
           </div>
-          <div className="gaugesWrapper">
-            <div id="donutchart"></div>
-            <div id="chart_div" className="wortGauge"></div>
-          </div>
-          <div id="curve_chart">
+            <div className = "brewStatWrapper">
+              <div className = "brewNextName">
+                Brewing: {this.props.brewNextName}
+              </div>
+              <div className = "brewStatHeader">
+                Current Wort Temp: {this.getSessionValues('wort')}°F
+              </div>
+              <div className = "brewStatHeader">
+                Current Steam Temp: {this.getSessionValues('therm')}°F
+              </div>
+              <div className = "brewStatHeader">
+                Time Remaining: {(this.getSessionValues('timeLeft')/60).toFixed()} minutes
+              </div>
+              <div className = "brewStatHeader">
+                Percent Complete: {this.getPercentComplete()}%
+              </div>
+              <div className = "brewStatHeader">
+                Current Step: {this.getSessionValues('step')}
+              </div>
+              <div className = "brewStatHeader">
+                Boiler Scale: {this.getSessionValues('shutScale')}
+              </div>
+              <div className="progressWrapper">
+                <Progress percent={this.getPercentComplete()} />
+              </div>
+            </div>
+            <div className="gaugesWrapper">
+              <div
+                id="chart_div"
+                className="wortGauge"
+              >
+              </div>
+            </div>
+            <div id="curve_chart">
           </div>
         </div>
       </div>
-
-
-
     )
   }
 }
+// <div id="donutchart"></div>
 export default NowBrewing;
