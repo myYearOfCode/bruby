@@ -19,6 +19,7 @@
 .brewNextName{
   font-size: 2em;
   font-weight: 900;
+  padding: 0 0 10px 0;
 }
 
 .brewStatWrapper{
@@ -26,11 +27,11 @@
 }
 
 .brewStatHeader{
-  padding-left: 20px;
+  padding-left: 60px;
   display: flex;
   align-items: baseline;
+  margin: -34;
 }
-
 
 .brewStatLabel{
   font-size: 2em;
@@ -38,7 +39,7 @@
 }
 
 .brewStatDigit{
-  font-size: 4em;
+  font-size: 3em;
 }
 
 #curve_chart{
@@ -46,12 +47,10 @@
 }
 
 .wortGauge{
-  /* width: 400px; */
   height: 120px;
 }
 
 .donutChart{
-  /* width: 500px; */
   height: 500px;
 }
 

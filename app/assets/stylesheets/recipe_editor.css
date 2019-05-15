@@ -23,6 +23,7 @@ input {
   display: flex;
   justify-content: center;
   width: 100%;
+  min-height: 100vh;
   background: black url("https://s3.amazonaws.com/bruby/site_images/437743.jpg") no-repeat fixed;
   background-size: cover;
 }
@@ -41,6 +42,7 @@ input {
   justify-content: center;
   align-content: center;
 }
+
 .text_input{
   width: 100%;
 }

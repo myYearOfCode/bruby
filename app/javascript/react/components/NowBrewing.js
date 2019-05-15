@@ -184,52 +184,16 @@ class NowBrewing extends Component {
           </div>
             <div className = "brewStatWrapper">
               <div className = "brewNextName">
-                <div className="brewStatLabel">
-                  Brewing: {this.props.brewNextName}
-                </div>
-                <div className = "brewStatHeader">
-                  Current Wort Temp:
-                </div>
-                <div className="brewStatDigit">
-                {this.getSessionValues('wort')}
-                °F
+                Brewing: {this.props.brewNextName}
               </div>
-              </div>
-              <div className = "brewStatHeader">
-                Current Steam Temp:
-                </div>
-                <div className="brewStatDigit">
-                {this.getSessionValues('therm')}°F
-              </div>
+              {this.makeBigType("Current Wort Temp:", this.getSessionValues('wort'),"°F" )}
+              {this.makeBigType("Current Steam Temp:", this.getSessionValues('therm'),"°F" )}
               {this.makeBigType("Time Left:", (this.getSessionValues('timeLeft')/60).toFixed(),"minutes" )}
-              <div className = "brewStatHeader">
-                <div className="brewStatLabel">
-                  Time Left:
-                </div>
-                <div className="brewStatDigit">
-                  {(this.getSessionValues('timeLeft')/60).toFixed()}
-                </div>
-                <div className="brewStatLabel">
-                  minutes
-                </div>
-              </div>
-              <div className = "brewStatHeader">
-                Percent Complete:
-                </div>
-                <div className="brewStatDigit">
-                {this.getPercentComplete()}%
-              </div>
-              <div className = "brewStatHeader">
-                Current Step: {this.getSessionValues('step')}
-              </div>
-              <div className = "brewStatHeader">
-                Boiler Scale:
-                </div>
-                <div className="brewStatDigit">
-                {this.getSessionValues('shutScale')}
-              </div>
+              {this.makeBigType("Percent Complete:", this.getPercentComplete(),"%" )}
+              {this.makeBigType("Step:", this.getSessionValues('step'), "" )}
+              {this.makeBigType("Boiler Scale:", this.getSessionValues('shutScale'), "" )}
               <div className="progressWrapper">
-                <Progress percent={this.getPercentComplete()} />
+                
               </div>
             </div>
             <div className="gaugesWrapper">

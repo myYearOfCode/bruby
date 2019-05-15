@@ -29,11 +29,17 @@ const Header = (props) => {
         </div>
       </div>
       <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/hazybeer.jpg"/>
+      <img src="https://s3.amazonaws.com/bruby/site_images/hazybeer.jpg" width="1" height="1" />
       <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/437743.jpg"/>
+      <img src="https://s3.amazonaws.com/bruby/site_images/437743.jpg" width="1" height="1" />
       <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/413078.jpg"/>
+      <img src="https://s3.amazonaws.com/bruby/site_images/413078.jpg" width="1" height="1" />
       <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/boilingWort.png"/>
+      <img src="https://s3.amazonaws.com/bruby/site_images/boilingWort.png" width="1" height="1" />
       <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/Cooper-River-Brewery.jpg"/>
+      <img src="https://s3.amazonaws.com/bruby/site_images/Cooper-River-Brewery.jpg" width="1" height="1" />
       <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/beer_bottles_homebrew.jpg"/>
+      <img src="https://s3.amazonaws.com/bruby/site_images/beer_bottles_homebrew.jpg" width="1" height="1" />
     </nav>
   )
 }
