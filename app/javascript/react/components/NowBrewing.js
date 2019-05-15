@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Progress } from 'react-sweet-progress';
 
 class NowBrewing extends Component {
   constructor(props){
