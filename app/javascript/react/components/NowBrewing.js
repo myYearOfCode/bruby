@@ -147,10 +147,10 @@ class NowBrewing extends Component {
 
   makeProgressBar(){
     const progress = {
-      width: `${this.getPercentComplete()}%`,
+      width: `${this.getPercentComplete()}%`
     };
     return (
-      <div className="progressWrapper">
+      <div className="progressWrapper"  title={`${this.getPercentComplete()}% complete`}>
         <div className="progressBar" style={progress}>
         </div>
       </div>
