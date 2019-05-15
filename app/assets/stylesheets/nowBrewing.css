@@ -27,6 +27,18 @@
 
 .brewStatHeader{
   padding-left: 20px;
+  display: flex;
+  align-items: baseline;
+}
+
+
+.brewStatLabel{
+  font-size: 2em;
+  padding: 0 5px 0 5px
+}
+
+.brewStatDigit{
+  font-size: 4em;
 }
 
 #curve_chart{

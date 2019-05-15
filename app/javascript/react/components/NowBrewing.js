@@ -131,6 +131,22 @@ class NowBrewing extends Component {
     chart.draw(data, options);
   }
 
+  makeBigType(label, number, extension){
+    return (
+      <div className = "brewStatHeader">
+        <div className="brewStatLabel">
+          {label}
+        </div>
+        <div className="brewStatDigit">
+          {number}
+        </div>
+        <div className="brewStatLabel">
+          {extension}
+        </div>
+      </div>
+    )
+  }
+
   drawPie() {
     var data = google.visualization.arrayToDataTable([
       ['Task', 'Hours per Day'],
@@ -168,25 +184,49 @@ class NowBrewing extends Component {
           </div>
             <div className = "brewStatWrapper">
               <div className = "brewNextName">
-                Brewing: {this.props.brewNextName}
+                <div className="brewStatLabel">
+                  Brewing: {this.props.brewNextName}
+                </div>
+                <div className = "brewStatHeader">
+                  Current Wort Temp:
+                </div>
+                <div className="brewStatDigit">
+                {this.getSessionValues('wort')}
+                °F
+              </div>
               </div>
               <div className = "brewStatHeader">
-                Current Wort Temp: {this.getSessionValues('wort')}°F
+                Current Steam Temp:
+                </div>
+                <div className="brewStatDigit">
+                {this.getSessionValues('therm')}°F
+              </div>
+              {this.makeBigType("Time Left:", (this.getSessionValues('timeLeft')/60).toFixed(),"minutes" )}
+              <div className = "brewStatHeader">
+                <div className="brewStatLabel">
+                  Time Left:
+                </div>
+                <div className="brewStatDigit">
+                  {(this.getSessionValues('timeLeft')/60).toFixed()}
+                </div>
+                <div className="brewStatLabel">
+                  minutes
+                </div>
               </div>
               <div className = "brewStatHeader">
-                Current Steam Temp: {this.getSessionValues('therm')}°F
-              </div>
-              <div className = "brewStatHeader">
-                Time Remaining: {(this.getSessionValues('timeLeft')/60).toFixed()} minutes
-              </div>
-              <div className = "brewStatHeader">
-                Percent Complete: {this.getPercentComplete()}%
+                Percent Complete:
+                </div>
+                <div className="brewStatDigit">
+                {this.getPercentComplete()}%
               </div>
               <div className = "brewStatHeader">
                 Current Step: {this.getSessionValues('step')}
               </div>
               <div className = "brewStatHeader">
-                Boiler Scale: {this.getSessionValues('shutScale')}
+                Boiler Scale:
+                </div>
+                <div className="brewStatDigit">
+                {this.getSessionValues('shutScale')}
               </div>
               <div className="progressWrapper">
                 <Progress percent={this.getPercentComplete()} />
