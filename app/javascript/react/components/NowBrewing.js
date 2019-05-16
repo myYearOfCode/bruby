@@ -21,26 +21,15 @@ class NowBrewing extends Component {
     gauge3,
     gauge4,
     gauge5
-
   }
 
   componentDidMount() {
-    const initialLoad = async () => {
-      await this.props.fetchNewestSession()
+      this.props.fetchNewestSession()
       this.getData()
       this.timer = setInterval(()=> this.refreshDataViz(), 5000);
       this.d3LiquidGauge()
       this.refreshDataViz()
     }
-
-makeRequest()
-
-    this.props.fetchNewestSession()
-    this.getData()
-    this.timer = setInterval(()=> this.refreshDataViz(), 5000);
-    this.d3LiquidGauge()
-    this.refreshDataViz()
-  }
 
   refreshDataViz(){
     this.getData()
@@ -157,29 +146,6 @@ makeRequest()
     };
 
     let chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-    chart.draw(data, options);
-  }
-
-  drawPie() {
-    let data = google.visualization.arrayToDataTable([
-      ['Task', 'Hours per Day'],
-      ['Finished',     90],
-      ['Unfinished',      10],
-
-    ]);
-
-    let options = {
-      legend: '% completed',
-      pieSliceText: 'none',
-      pieStartAngle: 0,
-      slices: {
-        0: { color: 'blue' },
-        1: { color: 'transparent' }
-      },
-      pieHole: 0.6,
-    };
-
-    let chart = new google.visualization.PieChart(document.getElementById('donutchart'));
     chart.draw(data, options);
   }
 

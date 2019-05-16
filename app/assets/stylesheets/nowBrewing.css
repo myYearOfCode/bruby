@@ -37,7 +37,9 @@
   color: black;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   font-size: 2em;
+  flex-wrap: wrap;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -46,11 +48,12 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  min-width: 300px;
 }
 
 .brewNextName{
   font-family: 'Quicksand', sans-serif;
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 900;
   color: black;
 }
