@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import * as d3 from "d3";
+import BarChart from './BarChart';
 
 class NowBrewing extends Component {
   constructor(props){
@@ -166,6 +168,7 @@ class NowBrewing extends Component {
           Now Brewing
         </div>
           <div className = "brewStatWrapper">
+            <BarChart />
             <div className = "brewNextName">
               Brewing: {this.props.brewNextName}
             </div>
