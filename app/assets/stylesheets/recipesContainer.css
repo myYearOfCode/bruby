@@ -24,9 +24,13 @@
   flex-direction: column;
   justify-content: space-between;
   color: #FFF;
-  /* text-shadow: 2px 2px #999; */
   transition: height 300ms;
   height: 50px;
+}
+
+.recipeCategory{
+  font-weight: 800;
+  text-decoration: underline;
 }
 
 .recipeOverview.is-active {
