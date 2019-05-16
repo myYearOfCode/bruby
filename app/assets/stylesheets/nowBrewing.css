@@ -22,9 +22,9 @@
    font-family: Helvetica; font-weight: bold;
  }
 
- .gaugeBlock{
+.gaugeBlock{
   width: 100%
- }
+}
 
 #fillGauge1{
   display: flex;
@@ -40,13 +40,19 @@
   font-size: 2em;
   font-family: 'Quicksand', sans-serif;
 }
+
 .gaugeLabel{
-  width: 50%
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .brewNextName{
+  font-family: 'Quicksand', sans-serif;
   font-size: 2em;
   font-weight: 900;
+  color: black;
 }
 
 .brewStatWrapper{

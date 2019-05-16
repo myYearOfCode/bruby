@@ -25,6 +25,16 @@ class NowBrewing extends Component {
   }
 
   componentDidMount() {
+    const initialLoad = async () => {
+      await this.props.fetchNewestSession()
+      this.getData()
+      this.timer = setInterval(()=> this.refreshDataViz(), 5000);
+      this.d3LiquidGauge()
+      this.refreshDataViz()
+    }
+
+makeRequest()
+
     this.props.fetchNewestSession()
     this.getData()
     this.timer = setInterval(()=> this.refreshDataViz(), 5000);
@@ -105,13 +115,13 @@ class NowBrewing extends Component {
       let graphReadyData = header.concat(body)
 
       function drawChart(date,time) {
-        var data = google.visualization.arrayToDataTable(graphReadyData);
-        var options = {
+        let data = google.visualization.arrayToDataTable(graphReadyData);
+        let options = {
           curveType: 'function',
           chartArea:{width:'90%',height:'80%'},
           legend: { position: 'in' },
         };
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        let chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
         chart.draw(data, options);
       }
     }
@@ -133,32 +143,32 @@ class NowBrewing extends Component {
   }
 
   drawChart() {
-    var data = google.visualization.arrayToDataTable([
+    let data = google.visualization.arrayToDataTable([
       ['Label', 'Value'],
       ['Wort', this.getSessionValues('wort')],
       ['Steam', this.getSessionValues('therm')],
     ]);
 
-    var options = {
+    let options = {
       width: 400, height: 120,
       redFrom: 90, redTo: 100,
       yellowFrom:75, yellowTo: 90,
       minorTicks: 5,
     };
 
-    var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+    let chart = new google.visualization.Gauge(document.getElementById('chart_div'));
     chart.draw(data, options);
   }
 
   drawPie() {
-    var data = google.visualization.arrayToDataTable([
+    let data = google.visualization.arrayToDataTable([
       ['Task', 'Hours per Day'],
       ['Finished',     90],
       ['Unfinished',      10],
 
     ]);
 
-    var options = {
+    let options = {
       legend: '% completed',
       pieSliceText: 'none',
       pieStartAngle: 0,
@@ -169,13 +179,12 @@ class NowBrewing extends Component {
       pieHole: 0.6,
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    let chart = new google.visualization.PieChart(document.getElementById('donutchart'));
     chart.draw(data, options);
   }
 
-
   d3LiquidGauge(){
-    var config1 = liquidFillGaugeDefaultSettings();
+    let config1 = liquidFillGaugeDefaultSettings();
     config1.circleColor = "#0000ff";
     config1.textColor = "#4444ff";
     config1.waveTextColor = "#0000cc";
@@ -184,7 +193,7 @@ class NowBrewing extends Component {
     config1.textVertPosition = 0.2;
     config1.waveAnimateTime = 1000;
     gauge1 = loadLiquidFillGauge("fillgauge1", this.state.percentComplete, config1);
-    var config2 = liquidFillGaugeDefaultSettings();
+    let config2 = liquidFillGaugeDefaultSettings();
     config2.circleColor = "#FF7777";
     config2.textColor = "#FF4444";
     config2.waveTextColor = "#FFAAAA";
@@ -195,7 +204,7 @@ class NowBrewing extends Component {
     config2.displayDegree = false;
     config2.displayPercent = false;
     gauge2 = loadLiquidFillGauge("fillgauge2", 28, config2);
-    var config3 = liquidFillGaugeDefaultSettings();
+    let config3 = liquidFillGaugeDefaultSettings();
     config3.circleColor = "#D4AB6A";
     config3.textColor = "#553300";
     config3.waveTextColor = "#805615";
@@ -211,7 +220,7 @@ class NowBrewing extends Component {
     config3.minValue = 70;
     config3.maxValue = 220;
     gauge3 = loadLiquidFillGauge("fillgauge3", 60.1, config3);
-    var config5 = liquidFillGaugeDefaultSettings();
+    let config5 = liquidFillGaugeDefaultSettings();
     config5.circleThickness = 0.15;
     config5.circleColor = "#808015";
     config5.textColor = "#555500";
@@ -231,7 +240,7 @@ class NowBrewing extends Component {
     config5.minValue = 70;
     config5.maxValue = 350;
     gauge5 = loadLiquidFillGauge("fillgauge5", 60.44, config5);
-    var config6 = liquidFillGaugeDefaultSettings();
+    let config6 = liquidFillGaugeDefaultSettings();
     config6.circleThickness = 0.4;
     config6.circleColor = "#6DA398";
     config6.textColor = "#0E5144";
@@ -253,7 +262,6 @@ class NowBrewing extends Component {
 
   updateD3LiquidGauge(){
     gauge1.update(this.state.percentComplete)
-    console.log((this.getSessionValues('timeLeft')/60).toFixed());
     gauge2.update((this.getSessionValues('timeLeft')/60))
     gauge3.update(this.getSessionValues('wort'))
     gauge5.update(this.getSessionValues('therm'))
@@ -268,29 +276,10 @@ class NowBrewing extends Component {
         <div className="scriptHeader">
           Now Brewing
         </div>
-          <div className = "brewStatWrapper">
-            <div className = "brewNextName">
-              Brewing: {this.props.brewNextName}
-            </div>
-            <div className = "brewStatHeader">
-              Current Wort Temp: {this.getSessionValues('wort')}°F
-            </div>
-            <div className = "brewStatHeader">
-              Current Steam Temp: {this.getSessionValues('therm')}°F
-            </div>
-            <div className = "brewStatHeader">
-              Time Remaining: {(this.getSessionValues('timeLeft')/60).toFixed()} minutes
-            </div>
-            <div className = "brewStatHeader">
-              Percent Complete: {this.getPercentComplete()}%
-            </div>
-
-            <div className = "brewStatHeader">
-              Boiler Scale: {this.getSessionValues('shutScale')}
-            </div>
-          </div>
           <div className="gaugesWrapper">
-
+              <div className = "brewNextName">
+                {this.props.brewNextName}
+              </div>
               <div className="gaugeLabels">
                 <div className="gaugeLabel">
                   Percent Complete
@@ -321,7 +310,6 @@ class NowBrewing extends Component {
             <div className="gaugeLabels">
               Current Step: {this.getSessionValues('step')}
             </div>
-
           </div>
           <div id="curve_chart">
           </div>
