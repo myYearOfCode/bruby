@@ -7,7 +7,6 @@ class Brew extends Component {
       session: {},
       recipeName: ""
     }
-    this.changeGraphTarget = this.changeGraphTarget.bind(this);
     this.updateBrew = this.updateBrew.bind(this);
     this.setDescription = this.setDescription.bind(this);
     this.setRating = this.setRating.bind(this);
@@ -16,7 +15,6 @@ class Brew extends Component {
 
   componentDidMount(){
     this.getRecipeFromBrew(this.props.you[0].sesId)
-    // this.getRecipeFromBrew(this.props.sessions[this.props.session][0].sesId)
   }
 
   getRecipeFromBrew(){
@@ -36,7 +34,6 @@ class Brew extends Component {
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
   }
-
 
   updateBrew(event){
     event.preventDefault()
@@ -59,18 +56,17 @@ class Brew extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      // debugger
-      // console.log(body)
-      this.setState({recipes: body.recipes, error: ""})
+      this.setState({
+        description: body.recipe.description,
+        rating: body.recipe.rating,
+        error: ""
+      })
     })
     .catch(error => {
       console.error( `Error in fetch: ${error.message}`)
       this.setState({error: error.message})
     });
-  }
-
-  changeGraphTarget(event){
-    this.setState({graphTarget: event.target.id})
+    this.props.setRedirect('/dashboard/brews')
   }
 
   showName(){
@@ -95,19 +91,25 @@ class Brew extends Component {
     this.setState({description: event.target.value})
   }
 
+  getDescription(){
+    if (this.state.description){
+      return this.state.description
+    }
+  }
+
   setRating(event){
     this.setState({rating: event.target.value})
   }
 
-  getDescription(){
-    if (this.state.brew && this.state.brew.description){
-      return this.state.brew.description
+  showRating(){
+    if (this.state.rating){
+      return "⭐".repeat(this.state.rating)
     }
   }
 
   getRating(){
-    if (this.state.brew && this.state.brew.rating){
-      return "⭐".repeat(this.state.brew.rating)
+    if (this.state.rating){
+      return "⭐".repeat(this.state.rating)
     }
   }
 
@@ -133,7 +135,7 @@ class Brew extends Component {
             <div className="text_input">
               <label className="label" htmlFor="style">Review </label>
               <textarea
-              onChange={this.setDescription}
+                onChange={this.setDescription}
                 rows="4"
                 id="review"
                 name="review"

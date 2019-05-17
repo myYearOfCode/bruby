@@ -15,6 +15,7 @@ class BrewContainer extends Component {
     if (this.props.sessions ){
       return Object.keys(this.props.sessions).reverse().map(session => {
         return <Brew
+          setRedirect={this.props.setRedirect}
           sessions={this.props.sessions}
           key={session}
           sessionId={session}
