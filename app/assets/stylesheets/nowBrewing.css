@@ -13,7 +13,6 @@
   border-left: 1px solid #8080804d;
   width: 70vw;
   max-width: 800px;
-  min-width: 450px;
   display: flex;
   flex-direction: column;
 }
@@ -101,4 +100,10 @@
 .progressBar{
   background-color: green;
   height: 20px;
+}
+
+@media only screen and (max-width: 650px) {
+  .nowBrewingWrapper{
+    width:100vw;
+  }
 }

@@ -67,6 +67,7 @@ class ContentContainer extends Component {
     this.paginateStateBreweries = this.paginateStateBreweries.bind(this);
     this.fetchNewestSession = this.fetchNewestSession.bind(this);
     this.setGeoBrewerState = this.setGeoBrewerState.bind(this);
+    this.setRedirect = this.setRedirect.bind(this);
   }
 
     componentDidMount(){
@@ -497,6 +498,9 @@ class ContentContainer extends Component {
       this.getStateBreweries()
     }
 
+    setRedirect(redirect){
+      this.setState({redirect: redirect})
+    }
   render () {
     if (this.state.redirect) {
       let goTo = this.state.redirect
@@ -557,7 +561,10 @@ class ContentContainer extends Component {
         <Route
           path='/dashboard/brews'
           render={() =>
-            <BrewContainer sessions = {this.state.sessions}/>
+            <BrewContainer
+              setRedirect={this.setRedirect}
+              sessions = {this.state.sessions}
+            />
           }
         />
         <Route

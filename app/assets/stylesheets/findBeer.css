@@ -13,7 +13,6 @@
   border-left: 1px solid #8080804d;
   width: 70vw;
   max-width: 800px;
-  min-width: 450px;
 }
 
 .mapWrapper{
@@ -87,4 +86,16 @@
 
 .roman {
   font-style: normal;
+}
+
+@media only screen and (max-width: 650px) {
+  .findBeerWrapper{
+    width:100vw;
+  }
+  .mapWrapper{
+    height: '30vh';
+    width: '100%';
+    background-color: #e8e8e8;
+  }
+
 }

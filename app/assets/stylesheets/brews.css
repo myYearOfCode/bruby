@@ -17,11 +17,14 @@
   border-left: 1px solid #8080804d;
   width: 70vw;
   max-width: 800px;
-  min-width: 450px;
 }
 
 .brewWrapper{
   padding: 20px;
+}
+
+.brewedOn{
+  display: inline;
 }
 
 .brewBody:nth-child(even) {
@@ -54,4 +57,13 @@
 .button-box{
   display: flex;
   justify-content: flex-end
+}
+
+@media only screen and (max-width: 650px) {
+  .brewsWrapper{
+    width:100vw;
+  }
+  .brewedOn{
+    display:none;
+  }
 }
