@@ -23,7 +23,7 @@ class User extends Component {
 
             <div className="userContainer">
               <div className="statsContainer">
-                <div className="statsWrapper">
+                <div className="statsWrapper userWrapper">
                   <div className="numBrewsWrapper">
                     <div className="numBrews big">
                       10
@@ -41,7 +41,7 @@ class User extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="statsWrapper">
+                <div className="statsWrapper userWrapper">
                   <div className="numHoursWrapper">
                     <div className="numHours big">
                       10
@@ -50,7 +50,7 @@ class User extends Component {
                       Hours Brewing
                     </div>
                   </div>
-                  <div className="numRecipesWrapper">
+                  <div className="numRecipesWrapper userWrapper">
                     <div className="numRecipes big">
                       8
                     </div>

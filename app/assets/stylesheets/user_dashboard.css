@@ -25,6 +25,15 @@
   font-size: 4vw;
 }
 
+/* .numBrewsWrapper{
+  display: flex;
+  flex-wrap: wrap;
+} */
+
+.userWrapper{
+  min-width: 300px;
+}
+
 .statsWrapper{
   display: flex;
   flex-wrap: nowrap;
@@ -45,7 +54,9 @@
 .statsContainer{
   display:flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   max-width: 100%;
 }
 
