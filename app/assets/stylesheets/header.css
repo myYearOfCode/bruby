@@ -2,7 +2,25 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  color: #ddd;
+  background: #666;
+  /* height: 25px; */
 }
-.links-section{
 
+.links-section a{
+  color:inherit;
+  text-decoration: none;
+}
+
+.links-section {
+  display:flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+
+.headerLink{
+  padding: 0 5px 0 5px;
+  display: flex;
+  flex-wrap: none
 }
