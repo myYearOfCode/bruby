@@ -9,7 +9,7 @@ const Header = (props) => {
               <Link to="/dashboard/recipes">Recipes</Link>
           </div>
           <div className="headerLink">
-              <Link to="/dashboard/brews">Brews</Link>
+              <Link to="/dashboard/brews">Reviews</Link>
           </div>
           <div className="headerLink">
               <Link to="/dashboard/nowBrewing">Now Brewing</Link>
@@ -21,26 +21,19 @@ const Header = (props) => {
               <Link to="/dashboard/findBeer">Find Beer</Link>
           </div>
         </div>
-      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/hazybeer.jpg"/>
-      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/437743.jpg"/>
-      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/413078.jpg"/>
-      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/boilingWort.png"/>
-      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/Cooper-River-Brewery.jpg"/>
-      <link rel="preload" as="image" href="https://s3.amazonaws.com/bruby/site_images/beer_bottles_homebrew.jpg"/>
+      <div className="hiddenImages">
+        <img hidden src="https://s3.amazonaws.com/bruby/site_images/hazybeer.jpg" width="1" height="1" />
+        <img hidden src="https://s3.amazonaws.com/bruby/site_images/437743.jpg" width="1" height="1" />
+
+        <img hidden src="https://s3.amazonaws.com/bruby/site_images/413078.jpg" width="1" height="1" />
+
+        <img hidden src="https://s3.amazonaws.com/bruby/site_images/boilingWort.png" width="1" height="1" />
+
+        <img hidden src="https://s3.amazonaws.com/bruby/site_images/Cooper-River-Brewery.jpg" width="1" height="1" />
+
+        <img hidden src="https://s3.amazonaws.com/bruby/site_images/beer_bottles_homebrew.jpg" width="1" height="1" />
+      </div>
     </div>
   )
 }
 export default Header;
-
-
-// <img hidden src="https://s3.amazonaws.com/bruby/site_images/hazybeer.jpg" width="1" height="1" />
-
-// <img hidden src="https://s3.amazonaws.com/bruby/site_images/437743.jpg" width="1" height="1" />
-
-// <img hidden src="https://s3.amazonaws.com/bruby/site_images/413078.jpg" width="1" height="1" />
-
-// <img hidden src="https://s3.amazonaws.com/bruby/site_images/boilingWort.png" width="1" height="1" />
-
-// <img hidden src="https://s3.amazonaws.com/bruby/site_images/Cooper-River-Brewery.jpg" width="1" height="1" />
-
-// <img hidden src="https://s3.amazonaws.com/bruby/site_images/beer_bottles_homebrew.jpg" width="1" height="1" />
