@@ -19,10 +19,9 @@
 }
 
 .centerMessage{
-  margin:auto;
   padding: 20px 50px 20px 50px;
   font-size: 100px;
-  max-width: 30vw;
+  max-width: 450px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -42,6 +41,8 @@
   align-self: center;
   background-color: #0000008a;
   font-size: 100px;
+  display: flex;
+  justify-content: left;
 }
 
 @media only screen and (max-width: 650px) {
@@ -61,7 +62,6 @@
     padding: 20px 50px 20px 50px;
     border: 0px solid white;
   }
-
   .topThird{
     margin-top: -4vh;
     min-height: 50vh;
@@ -70,4 +70,5 @@
 
 .welcomeTitle{
   font-weight: bold;
+  font-size: 40px;
 }
