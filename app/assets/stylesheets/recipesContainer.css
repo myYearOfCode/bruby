@@ -34,7 +34,8 @@
 }
 
 .recipeOverview.is-active {
-    height: 300px;
+    height: auto;
+    padding-bottom: 10px;
 }
 
 .recipeDescription{
