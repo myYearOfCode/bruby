@@ -239,10 +239,10 @@ class NowBrewing extends Component {
     return(
       <div className="nowBrewingBody">
         <div className="nowBrewingWrapper">
-        <div className="scriptHeader">
-          Now Brewing
-        </div>
-          <div className="gaugesWrapper">
+          <div className="scriptHeader">
+            Now Brewing
+          </div>
+            <div className="gaugesWrapper">
               <div className = "brewNextName">
                 {this.props.brewNextName}
               </div>
@@ -263,7 +263,6 @@ class NowBrewing extends Component {
                 </div>
                 <div className="gaugeLabel">
                   Steam Temp
-
                   <svg id="fillgauge5" width="100%"></svg>
                 </div>
               </div>
@@ -273,18 +272,16 @@ class NowBrewing extends Component {
                   <svg id="fillgauge6" width="100%"></svg>
                 </div>
               </div>
-            <div className="gaugeLabels">
-              Current Step: {this.getSessionValues('step')}
+              <div className="gaugeLabels">
+                Current Step: {this.getSessionValues('step')}
+              </div>
+              <div id="curve_chart">
+              </div>
             </div>
           </div>
-          <div id="curve_chart">
-          </div>
         </div>
-      </div>
-
-
-
-    )
+      )
+    }
   }
-}
+
 export default NowBrewing;

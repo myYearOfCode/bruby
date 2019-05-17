@@ -1,13 +1,14 @@
 import React from 'react';
 
 const RecipeOverview = (props) => {
-  let showImage = () => {
-    if (props.recipe.profile_photo){
-      return <div className="thumbnail">
-        <img className="recipeThumbnail" src={props.recipe.profile_photo}/>
-      </div>
+
+  let isBrewNext = () => {
+    // debugger
+    if (props.brewNext == props.recipe.id){
+      return <span className="brewingNextLabel"> Brewing Next</span>
     }
   }
+
   return(
     <div className={`recipeOverview ${props.recipeExpanded == props.recipe.id ? "selectedRecipe is-active" : ""}`}>
       <div
@@ -17,11 +18,10 @@ const RecipeOverview = (props) => {
         name={props.recipe.id}
       >
         <div>
-          {props.recipe.name} • {props.recipe.style || ""}
+          {props.recipe.name} • {props.recipe.style || ""} {isBrewNext()}
         </div>
       </div>
       <div className="recipeDescription">
-        {showImage()}
         <div>
           {`Description: ${props.recipe.description}`}
         </div>
