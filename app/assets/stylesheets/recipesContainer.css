@@ -115,3 +115,10 @@
 .recipesFormExpanded{
   overflow: scroll;
 }
+
+.brewingNextLabel{
+  color: red;
+  font-size: .5em;
+  font-weight: 800;
+  text-shadow: 0px 0px 0px #000;
+}

@@ -24,6 +24,7 @@ class RecipesContainer extends Component {
             loadRecipeHandler={this.props.loadRecipeHandler}
             recipeExpanded={this.props.recipeExpanded}
             viewRecipeHandler={this.props.viewRecipeHandler}
+            brewNext={this.props.brewNext}
           />
         )
       })
