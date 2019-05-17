@@ -6,9 +6,6 @@ const Header = (props) => {
     <div className="full-width">
         <div className="links-section">
           <div className="headerLink">
-              <Link to="/dashboard/home">Home</Link>
-          </div>
-          <div className="headerLink">
               <Link to="/dashboard/recipes">Recipes</Link>
           </div>
           <div className="headerLink">
