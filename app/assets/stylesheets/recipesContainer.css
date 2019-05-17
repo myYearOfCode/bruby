@@ -18,6 +18,11 @@
   transition: background-color 300ms linear;
 }
 
+.recipeTitle{
+  font-size: 30px;
+  text-overflow: ellipsis;
+}
+
 .recipeOverview{
   display: flex;
   flex-wrap: wrap;
@@ -75,13 +80,12 @@
   font-weight: 100;
   font-size: 2em;
   width: 100%;
+  overflow: hidden;
   padding: 0 10px 0 10px;
-  /* font-family: 'Baloo Bhai', cursive; */
   font-family: 'Montserrat', sans-serif;
 }
 
 .yourRecipes{
-  /* background-image: linear-gradient(90deg, #717171 0%, #c3c3c3 100%); */
   background: black url("https://s3.amazonaws.com/bruby/site_images/413078.jpg") no-repeat fixed;
   width: 100%;
   height: 100vh;
@@ -96,25 +100,20 @@
 }
 
 .scriptHeader{
-  /* font-family: 'Montserrat', sans-serif; */
   font-family: 'Quicksand', sans-serif;
   font-size: 2.5em;
   color: #FFF;
-  /* text-shadow: 2px 2px 3px #00000082; */
   padding: 0 0 0px 12px;
   background-color: rgba(0,0,0,0.65);
-
-  /* background-image: linear-gradient(90deg, #717171 0%, #c3c3c3 100%) */
 }
 
 .recipesWrapper{
-  overflow: scroll;
   background-color: rgba(0,0,0,.5);
   border-right: 1px solid #8080804d;
   border-left: 1px solid #8080804d;
   width: 70vw;
   max-width: 800px;
-  min-width: 450px;
+  overflow: hidden;
 }
 
 .recipesFormExpanded{
@@ -126,4 +125,17 @@
   font-size: .5em;
   font-weight: 800;
   text-shadow: 0px 0px 0px #000;
+}
+
+@media only screen and (max-width: 500px) {
+  .recipeTitle {
+    font-size: 0.7em;
+  }
+  .recipesWrapper{
+    width: 100vw;
+  }
+
+  .recipeOverview{
+    height: 35px;
+  }
 }
