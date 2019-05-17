@@ -17,7 +17,7 @@ const RecipeOverview = (props) => {
         value={props.recipe.id}
         name={props.recipe.id}
       >
-        <div>
+        <div className="recipeTitle">
           {props.recipe.name} • {props.recipe.style || ""} {isBrewNext()}
         </div>
       </div>
