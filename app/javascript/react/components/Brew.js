@@ -119,7 +119,7 @@ class Brew extends Component {
             <div className="brewRecipeName">
               {this.showName()}
             </div>
-            <div>
+            <div className="brewedOn">
               Brewed on {this.formatDate()}
             </div>
             <div>
