@@ -23,7 +23,12 @@ const RecipeOverview = (props) => {
       </div>
       <div className="recipeDescription">
         <div>
-          {`Description: ${props.recipe.description}`}
+          <span className="recipeCategory">Description:</span>
+          <span>{` ${props.recipe.description}`}</span>
+        </div>
+        <div>
+            <span className="recipeCategory">Yeast: </span>
+            <span>{`${props.recipe.yeast}`}</span>
         </div>
       </div>
       <div className='recipeRightRide'>
