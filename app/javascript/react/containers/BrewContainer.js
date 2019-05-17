@@ -13,7 +13,7 @@ class BrewContainer extends Component {
 
   makeList() {
     if (this.props.sessions ){
-      return Object.keys(this.props.sessions).map(session => {
+      return Object.keys(this.props.sessions).reverse().map(session => {
         return <Brew
           sessions={this.props.sessions}
           key={session}

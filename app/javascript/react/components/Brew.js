@@ -40,8 +40,6 @@ class Brew extends Component {
 
   updateBrew(event){
     event.preventDefault()
-    console.log(`/api/v1/brews/${this.state.brew.id}`)
-
     fetch(`/api/v1/brews/${this.state.brew.id}`, {
       method: 'PUT',
       headers: {
@@ -62,8 +60,8 @@ class Brew extends Component {
     .then(response => response.json())
     .then(body => {
       // debugger
-      console.log(body)
-      // this.setState({recipes: body.recipes, error: ""})
+      // console.log(body)
+      this.setState({recipes: body.recipes, error: ""})
     })
     .catch(error => {
       console.error( `Error in fetch: ${error.message}`)
@@ -88,8 +86,8 @@ class Brew extends Component {
   }
 
   formatDate(){
-    if (this.state.session && this.state.session.created_at){
-      return this.state.session.created_at.split('T')[0]
+    if (this.props.sessions && this.props.sessionId && this.props.sessions[this.props.sessionId][0].created_at){
+      return this.props.sessions[this.props.sessionId][0].created_at.split('T')[0]
     }
   }
 
@@ -169,8 +167,5 @@ class Brew extends Component {
     )
   }
 }
-
-// {this.props.sessions}
-// <div id="curve_chart"></div>
 
 export default Brew;

@@ -104,7 +104,6 @@ class NowBrewing extends Component {
       }
   }
 
-
   getPercentComplete(){
     if (this.state.session && this.state.session.length > 0){
       let percent = this.state.session[0]['timeLeft']/(this.state.session[0]['timeLeft']-this.state.session[this.state.session.length-1]['timeLeft'])
@@ -130,76 +129,62 @@ class NowBrewing extends Component {
     chart.draw(data, options);
   }
 
-  drawPie() {
-    var data = google.visualization.arrayToDataTable([
-      ['Task', 'Hours per Day'],
-      ['Finished',     90],
-      ['Unfinished',      10],
+  makeBigType(label, number, extension){
+    return (
+      <div className = "brewStatHeader">
+        <div className="brewStatLabel">
+          {label}
+        </div>
+        <div className="brewStatDigit">
+          {number}
+        </div>
+        <div className="brewStatLabel">
+          {extension}
+        </div>
+      </div>
+    )
+  }
 
-    ]);
-
-    var options = {
-      legend: '% completed',
-      pieSliceText: 'none',
-      pieStartAngle: 0,
-      slices: {
-        0: { color: 'blue' },
-        1: { color: 'transparent' }
-      },
-      pieHole: 0.6,
+  makeProgressBar(){
+    const progress = {
+      width: `${this.getPercentComplete()}%`
     };
-
-    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-    chart.draw(data, options);
+    return (
+      <div className="progressWrapper"  title={`${this.getPercentComplete()}% complete`}>
+        <div className="progressBar" style={progress}>
+        </div>
+      </div>
+    )
   }
 
   render () {
     this.chartWrapper()
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(this.drawPie);
-    google.charts.load('current', {'packages':['gauge']});
-    google.charts.setOnLoadCallback(this.drawChart);
     return(
       <div className="nowBrewingBody">
         <div className="nowBrewingWrapper">
-        <div className="scriptHeader">
-          Now Brewing
-        </div>
-          <div className = "brewStatWrapper">
-            <div className = "brewNextName">
-              Brewing: {this.props.brewNextName}
-            </div>
-            <div className = "brewStatHeader">
-              Current Wort Temp: {this.getSessionValues('wort')}°F
-            </div>
-            <div className = "brewStatHeader">
-              Current Steam Temp: {this.getSessionValues('therm')}°F
-            </div>
-            <div className = "brewStatHeader">
-              Time Remaining: {(this.getSessionValues('timeLeft')/60).toFixed()} minutes
-            </div>
-            <div className = "brewStatHeader">
-              Percent Complete: {this.getPercentComplete()}%
-            </div>
-            <div className = "brewStatHeader">
-              Current Step: {this.getSessionValues('step')}
-            </div>
-            <div className = "brewStatHeader">
-              Boiler Scale: {this.getSessionValues('shutScale')}
-            </div>
+          <div className="scriptHeader">
+            Now Brewing
           </div>
-          <div className="gaugesWrapper">
-            <div id="donutchart"></div>
-            <div id="chart_div" className="wortGauge"></div>
-          </div>
-          <div id="curve_chart">
+            <div className = "brewStatWrapper">
+              <div className = "brewNextName">
+                {this.props.brewNextName}
+              </div>
+              {this.makeBigType("Current Wort Temp:", this.getSessionValues('wort'),"°F" )}
+              {this.makeBigType("Current Steam Temp:", this.getSessionValues('therm'),"°F" )}
+              {this.makeBigType("Time Left:", (this.getSessionValues('timeLeft')/60).toFixed(),"minutes" )}
+              {this.makeBigType("Percent Complete:", this.getPercentComplete(),"%" )}
+              {this.makeBigType("Step:", this.getSessionValues('step'), "" )}
+              {this.makeBigType("Boiler Scale:", this.getSessionValues('shutScale'), "" )}
+              <div className="progressWrapper">
+                {this.makeProgressBar()}
+              </div>
+            </div>
+            <div id="curve_chart">
+            </div>
           </div>
         </div>
-      </div>
-
-
-
-    )
+      )
+    }
   }
-}
+
 export default NowBrewing;
