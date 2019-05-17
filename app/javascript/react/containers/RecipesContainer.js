@@ -8,7 +8,6 @@ class RecipesContainer extends Component {
       recipesWrapper: "recipesWrapper is-active"
     }
     this.toggleSelected = this.toggleSelected.bind(this);
-    // this.isBrewingNext = this.isBrewingNext.bind(this);
   }
 
   renderRecipes() {
@@ -48,13 +47,9 @@ class RecipesContainer extends Component {
         id="yourRecipes"
         className="yourRecipes"
       >
-        <div
-          className={this.state.recipesWrapper}
-        >
-          <div
-          className="scriptHeader"
-          >
-          Recipes
+        <div className={this.state.recipesWrapper}>
+          <div className="scriptHeader">
+            Recipes
           </div>
           { this.renderRecipes() }
         </div>
