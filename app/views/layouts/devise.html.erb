@@ -4,30 +4,28 @@
   <title>Bruby</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
-
+  <%= javascript_include_tag "vendor/modernizr" %>
+  <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
 <body class="deviseBackground">
 
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1 class="siteTitle"><a href="/">Bruby</a></h1>
-      </li>
-    </ul>
-
-    <section class="top-bar-section">
-      <ul class="right">
+  <nav class="railsHeader">
+    <div class="leftHeader">
+      <%- if !current_user -%>
+        <%= link_to 'Sign Up', new_user_registration_path %>
+      <%- end -%>
+    </div>
+    <div class="centerHeader">
+      <div class="siteTitle"><a href="/">Bruby</a></div>
+    </div>
+    <div class="rightHeader">
         <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
         <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <%= link_to 'Sign In', new_user_session_path %>
         <%- end -%>
-      </ul>
-    </section>
+    </div>
   </nav>
 
   <%- flash.each do |key, value| -%>
