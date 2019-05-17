@@ -7,13 +7,13 @@
   <%= javascript_include_tag "vendor/modernizr" %>
   <link href="https://fonts.googleapis.com/css?family=Yellowtail|Amita|Montserrat|Galada|Pacifico|Baloo+Bhai|Alfa+Slab+One" rel="stylesheet">
   <%= csrf_meta_tags %>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 
   <nav class="railsHeader">
     <div class="leftHeader">
-      <%- if !current_user -%>
+      <%- if current_user -%>
+      <%- else -%>
         <%= link_to 'Sign Up', new_user_registration_path %>
       <%- end -%>
     </div>
