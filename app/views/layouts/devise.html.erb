@@ -1,53 +1,62 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Bruby</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag "vendor/modernizr" %>
-  <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
-  <%= csrf_meta_tags %>
-  <link href="/favicon.ico" rel="icon" type="image/x-icon" />
-</head>
-<body class="deviseBackground">
+  <head>
+    <title>Bruby</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
+    <%= csrf_meta_tags %>
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140420028-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  <nav class="railsHeader">
-    <div class="leftHeader">
-      <%- if !current_user -%>
-        <%= link_to 'Sign Up', new_user_registration_path %>
-      <%- end -%>
-    </div>
-    <div class="centerHeader">
-      <div class="siteTitle"><a href="/">Bruby</a></div>
-    </div>
-    <div class="rightHeader">
-        <%- if current_user -%>
-          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-        <%- else -%>
-          <%= link_to 'Sign In', new_user_session_path %>
+      gtag('config', 'UA-140420028-1');
+    </script>
+  </head>
+  <body class="deviseBackground">
+
+    <nav class="railsHeader">
+      <div class="leftHeader">
+        <%- if !current_user -%>
+          <%= link_to 'Sign Up', new_user_registration_path %>
         <%- end -%>
-    </div>
-  </nav>
+      </div>
+      <div class="centerHeader">
+        <div class="siteTitle"><a href="/">Bruby</a></div>
+      </div>
+      <div class="rightHeader">
+          <%- if current_user -%>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+          <%- else -%>
+            <%= link_to 'Sign In', new_user_session_path %>
+          <%- end -%>
+      </div>
+    </nav>
 
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
-  <%- end -%>
-  <div class="formWrapper">
-    <div class="deviseForm">
-      <%= yield %>
-    </div>
-  </div>
-  <%= javascript_include_tag 'application' %>
-
-  <%- if Rails.env.development? || Rails.env.test? -%>
-    <%= javascript_tag do %>
-      window.railsEnv = '<%= Rails.env %>'
+    <%- flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>">
+        <%= value %>
+      </div>
     <%- end -%>
-  <%- end -%>
-  <%= javascript_pack_tag 'application' %>
+    <div class="formWrapper">
+      <div class="deviseForm">
+        <%= yield %>
+      </div>
+    </div>
+    <%= javascript_include_tag 'application' %>
 
-  <%= yield :extra_footer %>
-</body>
+    <%- if Rails.env.development? || Rails.env.test? -%>
+      <%= javascript_tag do %>
+        window.railsEnv = '<%= Rails.env %>'
+      <%- end -%>
+    <%- end -%>
+    <%= javascript_pack_tag 'application' %>
+
+    <%= yield :extra_footer %>
+  </body>
 </html>
