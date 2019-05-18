@@ -46,8 +46,6 @@ class Api::V1::RecipesController < ApplicationController
 
   def update
     if current_user
-      # binding.pry
-      # if current_user.recipes.include? recipe_params[:id]
       recipe = Recipe.find(params[:id])
       if recipe.update(
         name:   recipe_params[:name],

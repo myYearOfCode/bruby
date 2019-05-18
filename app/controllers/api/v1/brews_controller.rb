@@ -21,8 +21,6 @@ class Api::V1::BrewsController < ApplicationController
 
   def update
     if current_user
-      # binding.pry
-      # if current_user.recipes.include? recipe_params[:id]
       brew = Brew.find(params[:id])
       if brew.update(
         description: update_params[:description],
