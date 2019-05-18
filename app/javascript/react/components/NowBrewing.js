@@ -126,8 +126,8 @@ class NowBrewing extends Component {
 
   getPercentComplete(){
     if (this.state.session && this.state.session.length > 0){
-      let percent = this.state.session[0]['timeLeft']/(this.state.session[0]['timeLeft']-this.state.session[this.state.session.length-1]['timeLeft'])
-      return percent.toFixed(0)
+      let percent = (this.state.session[0]['timeLeft']-this.state.session[this.state.session.length-1]['timeLeft'])/this.state.session[0]['timeLeft']
+      return (percent*100).toFixed()
     }
   }
 
@@ -235,7 +235,7 @@ class NowBrewing extends Component {
   }
 
   render () {
-    this.chartWrapper()
+    // this.chartWrapper()
     return(
       <div className="nowBrewingBody">
         <div className="nowBrewingWrapper">
