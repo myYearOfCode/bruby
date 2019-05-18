@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Bruby</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag "vendor/modernizr" %>
-  <link href="https://fonts.googleapis.com/css?family=Yellowtail|Amita|Montserrat|Galada|Pacifico|Baloo+Bhai|Alfa+Slab+One" rel="stylesheet">
-  <%= csrf_meta_tags %>
-  <link href="https://s3.amazonaws.com/bruby/site_images/favicon.ico" rel="icon" type="image/x-icon" />
-</head>
+  <head>
+    <title>Bruby</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <link href="https://fonts.googleapis.com/css?family=Yellowtail|Amita|Montserrat|Galada|Pacifico|Baloo+Bhai|Alfa+Slab+One" rel="stylesheet">
+    <%= csrf_meta_tags %>
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140420028-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140420028-1');
+    </script>
+  </head>
 <body>
 
   <nav class="railsHeader">
