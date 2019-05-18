@@ -121,28 +121,28 @@ Brew.create!(
   user: user,
   recipe: recipe,
   rating: 5,
-  review: "This came out perfectly. Make more, and save some for Wally next time."
+  description: "This came out perfectly. Make more, and save some for Wally next time."
 )
 
 Brew.create!(
   user: user,
   recipe: recipe2,
   rating: 3,
-  review: "This tasted weak and watery. Maybe up the grains or add some extract to goose the sugars up."
+  description: "This tasted weak and watery. Maybe up the grains or add some extract to goose the sugars up."
 )
 
 Brew.create!(
   user: user,
   recipe: recipe3,
   rating: 3,
-  review: "This beer my mom LOVED! I'm going to brew some wuickly so she can have a 6 pack  for her birthday."
+  description: "This beer my mom LOVED! I'm going to brew some wuickly so she can have a 6 pack  for her birthday."
 )
 
 Brew.create!(
   user: user,
   recipe: recipe4,
   rating: 3,
-  review: "This is going into my basement for 6 mos. I'll report back."
+  description: "This is going into my basement for 6 mos. I'll report back."
 )
 
 BrewLog.create!(uid: "f91dc3e8cfa484a6d37911d951ac0a72", sesId: "0454356aec4a80", wort: "107", therm: "276", step: "Preparing to Brew", event:"Preparing to Brew", error: "0", sesType: "0", timeLeft: "0", shutScale: "0.24", brew: Brew.last)

@@ -100,7 +100,6 @@ class ContentContainer extends Component {
       .then(response => response.json())
       .then(body => {
         this.setState({recipes: body.recipes})
-        console.log(`recipes: ${body.recipes}`)
       })
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
 
@@ -117,7 +116,6 @@ class ContentContainer extends Component {
       .then(response => response.json())
       .then(body => {
         this.setState({sessions: body})
-        console.log(`sessions :${body}`)
       })
       .catch(error => console.error( `Error in fetch: ${error.message}` ));
     }
@@ -503,6 +501,7 @@ class ContentContainer extends Component {
     setRedirect(redirect){
       this.setState({redirect: redirect})
     }
+
   render () {
     if (this.state.redirect) {
       let goTo = this.state.redirect
