@@ -235,7 +235,7 @@ class NowBrewing extends Component {
   }
 
   render () {
-    // this.chartWrapper()
+    this.chartWrapper()
     return(
       <div className="nowBrewingBody">
         <div className="nowBrewingWrapper">
