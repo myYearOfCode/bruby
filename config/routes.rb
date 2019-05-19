@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'API/pico/log', to: 'brew_log#index'
   get 'API/pico/register', to: 'register#index'
   get 'API/pico/checkFirmware', to: 'check_firmware#index'
+  get 'API/pico/getFirmware', to: 'get_firmware#index'
   get 'API/pico/picoChangeState', to: 'pico_change_state#index'
   get 'API/pico/getActionsNeeded', to: 'get_actions_needed#index'
 end
