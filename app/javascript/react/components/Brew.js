@@ -30,7 +30,7 @@ class Brew extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({brew: body.brew, recipe: body.recipe})
+      this.setState({brew: body.brew, recipe: body.recipe, description: body.brew.description, rating: body.brew.rating})
     })
     .catch(error => console.error( `Error in fetch: ${error.message}` ));
   }
@@ -124,7 +124,7 @@ class Brew extends Component {
             <div className="brewedOn">
               Brewed on {this.formatDate()}
             </div>
-            <div>
+            <div className="rating">
               {this.getRating()}
             </div>
           </div>
