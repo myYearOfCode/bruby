@@ -1,6 +1,7 @@
 .homes{
   background: black url("https://s3.amazonaws.com/bruby/site_images/home_bkg.png") no-repeat center center fixed;
   color: white;
+  min-height: 100vh;
 }
 
 .wrapper{
@@ -14,8 +15,8 @@
 .topThird{
   font-family: 'Yellowtail', cursive;
   font-size: 25vw;
-  color: #151515;
-  z-index: 2;
+  color: #080808;
+  z-index: 0;
 }
 
 .centerMessage{
@@ -36,14 +37,14 @@
 
 .darkBar{
   min-width: 100%;
-  padding: 20px;
-  margin-top: -100px;
+  padding: 0 0 0 20px;
+  margin-top: -160px;
   min-height: 20%;
   align-self: center;
-  background-color: #0000008a;
   font-size: 100px;
   display: flex;
   justify-content: left;
+  z-index: 1;
 }
 
 @media only screen and (max-width: 650px) {
@@ -57,6 +58,8 @@
   }
   .darkBar {
     align-self: flex-start;
+    margin-top: 0;
+    background-color: #0000008a;
   }
   .centerMessage{
     margin:auto;
@@ -66,6 +69,7 @@
   .topThird{
     margin-top: -4vh;
     min-height: 50vh;
+    display:none;
   }
 }
 

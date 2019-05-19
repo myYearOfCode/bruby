@@ -501,6 +501,7 @@ class ContentContainer extends Component {
     setRedirect(redirect){
       this.setState({redirect: redirect})
     }
+
   render () {
     if (this.state.redirect) {
       let goTo = this.state.redirect

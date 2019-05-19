@@ -39,3 +39,7 @@ body.deviseBackground {
 .deviseBackground label{
   color: white;
 }
+
+body {
+  background: #fff;
+}
