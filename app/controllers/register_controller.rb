@@ -4,8 +4,8 @@ class RegisterController < ApplicationController
     output = "#{request.url}#{in_uri.request_uri}"
     @address = "ross@myyearofcode.com"
     #do logic to look up user email from machine id
-    ReminderEmailMailer.bottle_email(@address).deliver_now
-    ReminderEmailMailer.bottle_email(@address).deliver_later(wait: 20.minutes)
+    ReminderEmailMailer.reminder_email(@address).deliver_later(wait: 14.days)
+    ReminderEmailMailer.bottle_email(@address).deliver_later(wait: 28.days)
     render plain: "#T#"
   end
 end
