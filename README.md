@@ -9,6 +9,7 @@ It was conceived and created as a 'breakable toy' 2-week project at the end of L
 A local dns redirect and a python proxy server are used to route the machine's api
 calls to the heroku instance. I used dnsmasq for the redirect but there are many
 other ways. The python proxy server code is available [in this repo](https://github.com/myYearOfCode/bruby-proxy). It finishes the task of routing one url to another url. Bruby operates without the proxy enabled, but it is required to connect your device.
+
 ![python proxy server](https://s3.amazonaws.com/bruby/github_images/Screen+Shot+2019-05-19+at+10.03.13+PM.png)
 
 ## Features:
@@ -16,10 +17,12 @@ other ways. The python proxy server code is available [in this repo](https://git
 
 * Create / read / update / delete recipes.
 ![Bruby recipes page](https://s3.amazonaws.com/bruby/github_images/Screen+Shot+2019-05-19+at+9.33.17+PM.png)
+
 * Rate and review brews.
 * Upload a recipe to the machine.
 * View live stats during a brew visualized with d3 and Google Charts.
 ![Bruby Now brewing page](https://s3.amazonaws.com/bruby/github_images/Screen+Shot+2019-05-19+at+9.33.29+PM.png)
+
 * Receive reminder emails via a rails mailer to tell you when it is time to bottle or drink.
 * Find microbreweries in your area. (using 3 apis: geolocation, brewery lookup, and Google Maps)
 ![Bruby find beer page](https://s3.amazonaws.com/bruby/github_images/Screen+Shot+2019-05-19+at+9.33.42+PM.png)
