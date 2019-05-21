@@ -1,13 +1,13 @@
 [![Codeship Status for myYearOfCode/bruby](https://app.codeship.com/projects/f3629530-4797-0137-d17b-5eef5ae52f91/status?branch=master)](https://app.codeship.com/projects/337557)
 # bruby
-A companion app for your IOT brewing appliance with a Ruby on Rails back end, a postgres database and a React front end. This app enables a user to add functionality to their brewing appliance.
+Bruby is a companion app for your IOT brewing appliance with a Ruby on Rails back end, a postgres database, and a React front end. It enables users to add functionality like recipe creation and email reminders to their brewing appliance.
 It was conceived and created as a 'breakable toy' 2-week project at the end of Launch Academy's 18-week intensive program. I feel it shows off the skills I have learned during my time at Launch Academy.
 [live demo](https://bruby-app.herokuapp.com/)
 ![Bruby home page](https://s3.amazonaws.com/bruby/github_images/Screen+Shot+2019-05-19+at+9.33.01+PM.png)
 ## Proxy Setup
 A local dns redirect and a python proxy server are used to route the machine's api
 calls to the heroku instance. I used dnsmasq for the redirect but there are many
-other ways. The python proxy server code is available [in this repo](https://github.com/myYearOfCode/bruby-proxy). It finishes the task of routing one url to another url.
+other ways. The python proxy server code is available [in this repo](https://github.com/myYearOfCode/bruby-proxy). It finishes the task of routing one url to another url. Bruby operates without the proxy enabled, but it is required to connect your device.
 ![python proxy server](https://s3.amazonaws.com/bruby/github_images/Screen+Shot+2019-05-19+at+10.03.13+PM.png)
 
 ## Features:
