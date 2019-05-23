@@ -3,10 +3,10 @@ input {
      display:block
 }
 
-.step_wrapper:nth-child(even) {
+.stepInputArea:nth-child(even) {
   /* background: rgba(255,255,255,.15) */
 }
-.step_wrapper:nth-child(odd) {
+.stepInputArea:nth-child(odd) {
   background: rgba(0,0,0,.25)
 }
 
@@ -17,6 +17,10 @@ input {
 
 .Time {
   padding: 0 25px 0 25px;
+}
+
+.error{
+  border: 1px solid red;
 }
 
 #form_container{
@@ -65,11 +69,16 @@ input {
   max-width: 40px;
 }
 
-.step_wrapper {
+.stepInputArea {
   display: flex;
   padding: 0 25px 0 25px;
   margin-top: 0;
   justify-content: space-between;
+}
+
+.errors{
+  color: red;
+  padding-left: 20px;
 }
 
 .button-group {
