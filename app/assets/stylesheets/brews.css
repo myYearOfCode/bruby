@@ -59,6 +59,10 @@
   justify-content: flex-end
 }
 
+.text_input select{
+  max-width: 50px;
+}
+
 @media only screen and (max-width: 650px) {
   .brewsWrapper{
     width:100vw;
