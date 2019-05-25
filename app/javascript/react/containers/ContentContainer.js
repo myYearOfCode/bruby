@@ -154,8 +154,14 @@ class ContentContainer extends Component {
     }
 
     recipeOnChangeHandler(event) {
-      console.log(event.target.value)
-      this.setState({ [event.target.name]: event.target.value })
+      var reg = /^\d+$/;
+      if (!["name","description","yeast","style"].includes(event.target.name)){
+        if (reg.test(event.target.value)){
+          this.setState({ [event.target.name]: event.target.value })
+        }
+      } else {
+        this.setState({ [event.target.name]: event.target.value })
+      }
     }
 
     brewNextOnChangeHandler(event) {
